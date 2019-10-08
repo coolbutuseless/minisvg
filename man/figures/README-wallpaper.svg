@@ -1,0 +1,22 @@
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect fill="#9B8A54" x="0" y="0" width="100%" height="100%" />
+  <pattern id="motif" width="400" height="400" patternUnits="userSpaceOnUse">
+    <g>
+      <circle fill="white" cx="0" cy="0" r="138" />
+      <circle fill="white" cx="0" cy="400" r="138" />
+      <circle fill="white" cx="400" cy="0" r="138" />
+      <circle fill="white" cx="400" cy="400" r="138" />
+      <circle fill="white" cx="200" cy="200" r="138" />
+      <circle fill="none" stroke="#4a3322" stroke-width="35" cx="0" cy="0" r="90" />
+      <circle fill="none" stroke="#4a3322" stroke-width="35" cx="0" cy="400" r="90" />
+      <circle fill="none" stroke="#4a3322" stroke-width="35" cx="400" cy="0" r="90" />
+      <circle fill="none" stroke="#4a3322" stroke-width="35" cx="400" cy="400" r="90" />
+      <circle fill="none" stroke="#4a3322" stroke-width="35" cx="200" cy="200" r="90" />
+      <circle fill="none" stroke="#4a3322" stroke-width="10" cx="200" cy="0" r="90" />
+      <circle fill="none" stroke="#4a3322" stroke-width="10" cx="0" cy="200" r="90" />
+      <circle fill="none" stroke="#4a3322" stroke-width="10" cx="400" cy="200" r="90" />
+      <circle fill="none" stroke="#4a3322" stroke-width="10" cx="200" cy="400" r="90" />
+    </g>
+  </pattern>
+  <rect fill="url('#motif')" x="0" y="0" width="100%" height="100%" />
+</svg>

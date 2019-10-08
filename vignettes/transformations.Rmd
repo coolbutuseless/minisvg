@@ -1,0 +1,93 @@
+---
+title: "Transformations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Transformations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = FALSE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+
+## Introduction
+
+This example was taken from the tutorial on attribute transforms on [MDN](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform)
+
+* The outline of the heart is defined as a `path`
+* The path is shown as a red outline
+* A copy of this path is filled with grey and transformed to mimic a shadow
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the heart shape
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+heart_shape <- stag$path(
+  id="heart", 
+  d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"
+)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Style the heart shape to look like a shadow on the ground (using transforms)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+heart_shadow <- stag$g(
+  fill = 'grey',
+  svg_prop$transform$rotate(-10, 50, 100),
+  svg_prop$transform$translate(-36, 45.5),
+  svg_prop$transform$skewX(40),
+  svg_prop$transform$scale(1, 0.5),
+  heart_shape
+)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Style the heart shape as an outline
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+heart_outline <- stag$use(href='#heart', fill = 'none', stroke = 'red')
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build the SVG document with the shadow and outline
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- SVGDocument$new(
+  width = 150, height = 100, viewBox = "-40 0 150 100",
+  heart_shadow,
+  heart_outline
+)
+```
+
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc
+```
+
+
+
+## Details
+
+Unlike other attributes on SVG nodes, transformations are treated as cumulative.
+
+For other attributes, setting a new value overwrites the old, but for transforms
+they are concatenated.
+
+To reset the transforms on an element, use `$reset_transform()`
+
+
+
+

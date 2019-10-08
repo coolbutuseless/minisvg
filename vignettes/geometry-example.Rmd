@@ -1,0 +1,180 @@
+---
+title: "Geometry"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Geometry}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+
+# Geometry Animation 1
+
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create a document with a brown background
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 400, height = 400)
+doc$rect(x=0, y=0, width=400, height=400, fill = '#9B8A54')
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the circles
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+radius <- 25
+N <- 400/radius
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Draw a grid of cicles adding a phase-shifted animation to each one
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for (i in seq(N)) {
+  for (j in seq(N)) {
+    this_circle <- doc$circle(cx = (i-1)*(radius * 2) + radius, cy = (j-1)*(radius*2)+radius, r = radius, fill = 'white')
+    
+    radii <- radius * sin(seq(0, 2*pi, length.out = N) + (max(i, j)/N) * pi) + radius/2
+    
+    this_circle$animate(
+      attributeName = 'r', 
+      keyTimes      = seq(0, 1, length.out = length(radii)), 
+      values        = radii,
+      dur           = 5, 
+      repeatCount   = 'indefinite'
+    )  
+  }
+}
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+
+
+# Geometry Animation 2
+
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create a document with a black background
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 400, height = 400)
+bg <- doc$rect(x=0, y=0, width=400, height=400, fill = '#000000')
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# animate the bg colour from black-to-white-to-black
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bg$animate(
+  attributeName = 'fill',
+  keyTimes      = c(0, 0.5, 1),
+  values        = c('#000000', '#ffffff', '#000000'),
+  dur           = 5,
+  repeatCount   = 'indefinite'
+)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the rect size
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+l <- 50
+N <- 400/l
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add rotating smaller rectangles
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for (i in seq(N)) {
+  for (j in seq(i %% 2, N, by = 2)) {
+    this_rect <- doc$rect(
+      x = (i-1)*l,
+      y = (j-1)*l,
+      width = l,
+      height = l,
+      fill = '#ffffff'
+    )
+    
+    # animate the rotation
+    this_rect$animateTransform(
+      attributeName = 'transform',
+      type          = 'rotate',
+      from          = paste(  0, (i-0.5)*l, (j-0.5)*l),
+      to            = paste(180, (i-0.5)*l, (j-0.5)*l),
+      dur           = 5,
+      repeatCount   = 'indefinite'
+    )
+    
+    # Animate the colour
+    this_rect$animate(
+      attributeName = 'fill',
+      keyTimes      = c(0, 0.5, 1),
+      values        = c('#ffffff', '#000000', '#ffffff'),
+      dur           = 5,
+      repeatCount   = 'indefinite'
+    )
+  }
+}
+
+
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

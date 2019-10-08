@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^working$
+^data-raw$
+^pkgdown$
+^doc$
+^Meta$

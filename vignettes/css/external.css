@@ -1,0 +1,10 @@
+
+#myrect {
+  fill: green;
+}
+
+.rect-two {
+  stroke: black;
+  fill-opacity: 0.2;
+  stroke-width: 4;
+}

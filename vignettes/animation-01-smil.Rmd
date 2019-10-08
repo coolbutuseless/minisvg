@@ -1,0 +1,257 @@
+---
+title: "Animation with SMIL"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Animation with SMIL}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "  "
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+
+Introduction
+==============================================================================
+
+There are at least 5 methods of animating SVG. These methods are detailed on the [w3.org pages](https://www.w3.org/TR/SVG/animate.html)).
+
+The 5 methods are as follows:
+
+1. SMIL - Synchronized Multimedia Integration Language.  [MDN doc](https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_animation_with_SMIL)
+2. CSS Animations [w3 css animation reference](https://www.w3.org/TR/css-animations-1/)
+3. CSS Transitions [w3 css transitions reference](https://www.w3.org/TR/css-transitions-1/)
+4. SVG DOM manipulation via scripting  [w3 reference](https://www.w3.org/TR/SVG/types.html#SVGDOMOverview)
+5. Web Animation [w3 web animation reference](https://www.w3.org/TR/web-animations-1/)
+
+This vignette assumes you are familiar with SVG tags and document structures.
+
+This document describes method 1 - SMIL animation
+
+
+SMIL animation
+==============================================================================
+
+SMIL stands for [Synchronized Multimedia Integration Language](http://www.w3.org/TR/REC-smil).
+
+The way it works is to add an `animate`, `animateTransform` or `animateMotion` tag
+as a child of the element to be animated.
+
+The `animate` tag describes the parent attribute to be modified 
+and a list of states for that attribute, or perhaps a path to be followed.
+
+The following examples are adaptions of the [MDN docs on SMIL animation](https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_animation_with_SMIL)
+
+
+The `animate` tag
+==============================================================================
+
+Use `animate` with `from` and `to`
+------------------------------------------------------------------------------
+
+An easy way to use `animate` is to just specify the start and end values of an 
+attribute.  
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build a small SVG with a circle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 240, height = 100)
+doc$title("Attribute animation with SMIL")
+doc$rect(x=0, y=0, width=240, height = 100, stroke='black', fill='white', stroke_width = 1)
+circle <- doc$circle(cx = 20, cy = 50, r=15, fill = 'blue', stroke = 'none', stroke_width = 1)
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add an 'animate' child to the circle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+circle$animate(attributeName = 'cx', from=-20, to=260, dur=5, repeatCount = 'indefinite')
+```
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+
+Use `animate` with `keyTimes`
+------------------------------------------------------------------------------
+
+To have more control of the animation over time, you can set a particular value
+(`values`) at a set of nominated key frames (`keyTimes`)
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build a small SVG with a circle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 240, height = 100)
+doc$title("Attribute animation with SMIL")
+doc$rect(x=0, y=0, width=240, height = 100, stroke='black', fill='white', stroke_width = 1)
+circle <- doc$circle(cx = 20, cy = 50, r=15, fill = 'blue', stroke = 'none')
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Animate the X coordinate of the circle giving it key times and 
+# corresponding values
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+circle$animate(
+  attributeName = 'cx', 
+  keyTimes     = c( 0, 0.25, 0.5, 0.75,  1), 
+  values       = c(20  , 60, 220,   60, 20),
+  dur          = 5, 
+  repeatCount = 'indefinite'
+)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Also animate the y coordinate
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+circle$animate(
+  attributeName = 'cy', 
+  keyTimes     = c( 0, 0.33, 0.66, 0.9,  1), 
+  values       = c(50,  100,   50,   0, 50),
+  dur          = 5, 
+  repeatCount = 'indefinite'
+)
+```
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+The `animateTransform` tag
+==============================================================================
+
+As the name suggests `animateTransform` lets you animate the transformation associated
+with its parent.  We are no longer animating a simple attribute but the entire transformation
+which puts the object into the document.
+
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build a small SVG with a rectangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 240, height = 100)
+doc$title("Attribute animation with SMIL")
+doc$rect(x=0, y=0, width=240, height = 100, stroke='black', fill='white', stroke_width = 1)
+rect <- doc$rect(x=80, y=40, width=15, height=34, fill = 'blue', stroke = 'none')
+
+rect$animateTransform(
+  attributeName = 'transform',
+  type          = 'rotate',
+  from          = c(0  , 120, 50),
+  to            = c(360, 120, 50),
+  dur           = 5,
+  repeatCount   = 'indefinite'
+)
+```
+
+
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+The `animateMotion` tag
+==============================================================================
+
+`animateMotion` is a way of animating the position and rotation of an element by
+moving it along a path.
+
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build a small SVG with a circle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 300, height = 100)
+doc$title("Attribute animation with SMIL")
+doc$rect(x=0, y=0, width=300, height = 100, stroke='black', fill='white', stroke_width = 1)
+rect <- doc$rect(x=0, y=0, width=20, height=20, fill = 'blue', stroke = 'none')
+
+rect$animateMotion(
+  path = "M 250,80 H 50 Q 30,80 30,50 Q 30,20 50,20 H 250 Q 280,20,280,50 Q 280,80,250,80Z",
+  dur         = 3,
+  repeatCount = 'indefinite',
+  rotate      = 'auto'
+)
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```

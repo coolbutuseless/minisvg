@@ -1,0 +1,136 @@
+---
+title: "Styling SVG with CSS"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Styling SVG with CSS}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "  "
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+Introduction
+==============================================================================
+
+This vignette presents a small example of how to include a CSS style block within
+SVG.
+
+For a more detailed example see [MDN](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_and_CSS)
+
+
+
+Inline CSS style
+==============================================================================
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build a small SVG with a rectangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 240, height = 100)
+doc$title("Inline CSS style")
+doc$rect(x=0, y=0, width=240, height = 100, stroke='black', fill='white', stroke_width = 1)
+doc$rect(id = 'myrect', x = 80, y=20, width=80, height=60, fill = 'yellow')
+doc$rect(class = 'rect-two', x = 130, y=20, width=80, height=60)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add a CSS style block to the SVG document. CSS definitions will override
+# any inline definitions defined above
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$inline_css("
+#myrect {
+  fill: green;
+}
+
+.rect-two {
+  stroke: black;
+  fill-opacity: 0.2;
+  stroke-width: 4;
+}
+")
+
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+
+
+Inline CSS style
+==============================================================================
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build a small SVG with a rectangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 240, height = 100)
+doc$title("External CSS File")
+doc$rect(x=0, y=0, width=240, height = 100, stroke='black', fill='white', stroke_width = 1)
+doc$rect(id = 'myrect', x = 80, y=20, width=80, height=60, fill = 'yellow')
+doc$rect(class = 'rect-two', x = 130, y=20, width=80, height=60)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Write some CSS to a file
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+css <- "
+#myrect {
+  fill: green;
+}
+
+.rect-two {
+  stroke: black;
+  fill-opacity: 0.2;
+  stroke-width: 4;
+}"
+
+writeLines(css, "css/external.css")
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Link the external CSS file into the SVG
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$external_css_url("css/external.css")
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+

@@ -1,0 +1,8 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <circle fill="yellow" cx="200" cy="200" r="100" />
+  <rect fill="none" stroke="black" stroke-width="12" x="0" y="0" width="400" height="400" />
+  <text size="30" x="160" y="210">
+    Hello world
+    <animateTransform attributeName="transform" from="0 200 200" to="360 200 200" type="rotate" dur="5" repeatCount="indefinite" />
+  </text>
+</svg>
