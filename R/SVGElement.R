@@ -118,10 +118,11 @@ SVGElement <- R6::R6Class(
       # Correct some make names with colons and dashes easier to pass in
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       attrib_names <- names(attribs)
+      attrib_names[attrib_names == 'in_'] <- 'in'
       attrib_names <- gsub("xmlns_xlink", "xmlns:xlink", attrib_names)
-      attrib_names <- gsub("xlink_href" , "xlink:href", attrib_names)
-      attrib_names <- gsub("_"          , "-"         , attrib_names)
-      attrib_names <- gsub("colour"     , "color"     , attrib_names)
+      attrib_names <- gsub("xlink_href" , "xlink:href" , attrib_names)
+      attrib_names <- gsub("_"          , "-"          , attrib_names)
+      attrib_names <- gsub("colour"     , "color"      , attrib_names)
       names(attribs) <- attrib_names
 
 

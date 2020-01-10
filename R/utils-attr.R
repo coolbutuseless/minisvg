@@ -57,6 +57,7 @@ pres <- function(
   }
 
   attr_names <- gsub('colour', 'color', attr_names)
+  attr_names[attr_names == 'in_'] <- 'in'
   attr_names <- gsub("_"     , "-"    , attr_names)
 
   setNames(varargs, attr_names)

@@ -46,6 +46,8 @@
     Shining](https://coolbutuseless.github.io/package/minisvg/articles/carpet-01.html)
   - [Creating and Animating the a seventies wallpaper
     pattern](https://coolbutuseless.github.io/package/minisvg/articles/wallpaper-01.html)
+  - [Some example of filter
+    usage](https://coolbutuseless.github.io/package/minisvg/articles/filter-effects)
 
 ## Installation
 
@@ -111,8 +113,7 @@ This first example demonstrates:
   - using the `svg_prop` helper (and autocomplete) to assist in
     remembering what the stroke width parameter is called
   - adding text
-  - adding a rotation transformation to the
-text
+  - adding a rotation transformation to the text
 
 <!-- end list -->
 

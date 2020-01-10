@@ -7,10 +7,19 @@
 \usage{
 parse_svg_doc(x, encoding = "", ..., as_html = FALSE, options = "NOBLANKS")
 
-parse_svg_elem(x, encoding = "", ..., as_html = FALSE, options = "NOBLANKS")
+parse_svg_elem(
+  x,
+  encoding = "",
+  ...,
+  as_html = FALSE,
+  options = "NOBLANKS",
+  as_pattern = FALSE
+)
 }
 \arguments{
 \item{x, encoding, ..., as_html, options}{options passed to \code{xml2::read_xml()}}
+
+\item{as_pattern}{parse the root node as a pattern node. Default: FALSE}
 }
 \value{
 XMLDocument or XMLElement

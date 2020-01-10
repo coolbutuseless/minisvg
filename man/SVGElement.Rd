@@ -33,6 +33,22 @@ A class representing a single SVG element.
 \item \href{#method-desc}{\code{SVGElement$desc()}}
 \item \href{#method-discard}{\code{SVGElement$discard()}}
 \item \href{#method-ellipse}{\code{SVGElement$ellipse()}}
+\item \href{#method-feBlend}{\code{SVGElement$feBlend()}}
+\item \href{#method-feColorMatrix}{\code{SVGElement$feColorMatrix()}}
+\item \href{#method-feComponentTransfer}{\code{SVGElement$feComponentTransfer()}}
+\item \href{#method-feComposite}{\code{SVGElement$feComposite()}}
+\item \href{#method-feConvolveMatrix}{\code{SVGElement$feConvolveMatrix()}}
+\item \href{#method-feDiffuseLighting}{\code{SVGElement$feDiffuseLighting()}}
+\item \href{#method-feDisplacementMap}{\code{SVGElement$feDisplacementMap()}}
+\item \href{#method-feFlood}{\code{SVGElement$feFlood()}}
+\item \href{#method-feGaussianBlur}{\code{SVGElement$feGaussianBlur()}}
+\item \href{#method-feImage}{\code{SVGElement$feImage()}}
+\item \href{#method-feMerge}{\code{SVGElement$feMerge()}}
+\item \href{#method-feMorphology}{\code{SVGElement$feMorphology()}}
+\item \href{#method-feOffset}{\code{SVGElement$feOffset()}}
+\item \href{#method-feSpecularLighting}{\code{SVGElement$feSpecularLighting()}}
+\item \href{#method-feTile}{\code{SVGElement$feTile()}}
+\item \href{#method-feTurbulence}{\code{SVGElement$feTurbulence()}}
 \item \href{#method-filter}{\code{SVGElement$filter()}}
 \item \href{#method-foreignObject}{\code{SVGElement$foreignObject()}}
 \item \href{#method-g}{\code{SVGElement$g()}}
@@ -56,6 +72,14 @@ A class representing a single SVG element.
 \item \href{#method-textPath}{\code{SVGElement$textPath()}}
 \item \href{#method-title}{\code{SVGElement$title()}}
 \item \href{#method-use}{\code{SVGElement$use()}}
+\item \href{#method-matrix}{\code{SVGElement$matrix()}}
+\item \href{#method-translate}{\code{SVGElement$translate()}}
+\item \href{#method-scale}{\code{SVGElement$scale()}}
+\item \href{#method-rotate}{\code{SVGElement$rotate()}}
+\item \href{#method-skewX}{\code{SVGElement$skewX()}}
+\item \href{#method-skewY}{\code{SVGElement$skewY()}}
+\item \href{#method-polygon}{\code{SVGElement$polygon()}}
+\item \href{#method-polyline}{\code{SVGElement$polyline()}}
 \item \href{#method-new}{\code{SVGElement$new()}}
 \item \href{#method-update}{\code{SVGElement$update()}}
 \item \href{#method-append}{\code{SVGElement$append()}}
@@ -67,14 +91,7 @@ A class representing a single SVG element.
 \item \href{#method-print}{\code{SVGElement$print()}}
 \item \href{#method-save}{\code{SVGElement$save()}}
 \item \href{#method-copy}{\code{SVGElement$copy()}}
-\item \href{#method-polygon}{\code{SVGElement$polygon()}}
-\item \href{#method-polyline}{\code{SVGElement$polyline()}}
-\item \href{#method-matrix}{\code{SVGElement$matrix()}}
-\item \href{#method-translate}{\code{SVGElement$translate()}}
-\item \href{#method-scale}{\code{SVGElement$scale()}}
-\item \href{#method-rotate}{\code{SVGElement$rotate()}}
-\item \href{#method-skewX}{\code{SVGElement$skewX()}}
-\item \href{#method-skewY}{\code{SVGElement$skewY()}}
+\item \href{#method-clone}{\code{SVGElement$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -186,6 +203,188 @@ A class representing a single SVG element.
 \subsection{Method \code{ellipse()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$ellipse(..., cx = NULL, cy = NULL, rx = NULL, ry = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feBlend"></a>}}
+\subsection{Method \code{feBlend()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feBlend(..., in_ = NULL, in2 = NULL, mode = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feColorMatrix"></a>}}
+\subsection{Method \code{feColorMatrix()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feColorMatrix(..., in_ = NULL, type = NULL, values = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feComponentTransfer"></a>}}
+\subsection{Method \code{feComponentTransfer()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feComponentTransfer(..., in_ = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feComposite"></a>}}
+\subsection{Method \code{feComposite()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feComposite(
+  ...,
+  in_ = NULL,
+  in2 = NULL,
+  operator = NULL,
+  k1 = NULL,
+  k2 = NULL,
+  k3 = NULL,
+  k4 = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feConvolveMatrix"></a>}}
+\subsection{Method \code{feConvolveMatrix()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feConvolveMatrix(
+  ...,
+  in_ = NULL,
+  order = NULL,
+  kernelMatrix = NULL,
+  divisor = NULL,
+  bias = NULL,
+  targetX = NULL,
+  targetY = NULL,
+  edgeMode = NULL,
+  kernelUnitLength = NULL,
+  preserveAlpha = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feDiffuseLighting"></a>}}
+\subsection{Method \code{feDiffuseLighting()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feDiffuseLighting(
+  ...,
+  in_ = NULL,
+  surfaceScale = NULL,
+  diffuseConstant = NULL,
+  kernelUnitLength = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feDisplacementMap"></a>}}
+\subsection{Method \code{feDisplacementMap()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feDisplacementMap(
+  ...,
+  in_ = NULL,
+  in2 = NULL,
+  scale = NULL,
+  xChannelSelector = NULL,
+  yChannelSelector = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feFlood"></a>}}
+\subsection{Method \code{feFlood()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFlood(..., flood_color = NULL, flood_opacity = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feGaussianBlur"></a>}}
+\subsection{Method \code{feGaussianBlur()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feGaussianBlur(
+  ...,
+  in_ = NULL,
+  stdDeviation = NULL,
+  edgeMode = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feImage"></a>}}
+\subsection{Method \code{feImage()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feImage(..., preserveAspectRatio = NULL, xlink_href = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feMerge"></a>}}
+\subsection{Method \code{feMerge()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMerge(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feMorphology"></a>}}
+\subsection{Method \code{feMorphology()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMorphology(..., in_ = NULL, operator = NULL, radius = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feOffset"></a>}}
+\subsection{Method \code{feOffset()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feOffset(..., in_ = NULL, dx = NULL, dy = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feSpecularLighting"></a>}}
+\subsection{Method \code{feSpecularLighting()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feSpecularLighting(
+  ...,
+  in_ = NULL,
+  surfaceScale = NULL,
+  specularConstant = NULL,
+  specularExponent = NULL,
+  kernelUnitLength = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feTile"></a>}}
+\subsection{Method \code{feTile()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feTile(..., in_ = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feTurbulence"></a>}}
+\subsection{Method \code{feTurbulence()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feTurbulence(
+  ...,
+  type = NULL,
+  baseFrequency = NULL,
+  numOctaves = NULL,
+  result = NULL,
+  seed = NULL,
+  stitchTiles = NULL
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -489,6 +688,70 @@ A class representing a single SVG element.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-matrix"></a>}}
+\subsection{Method \code{matrix()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$matrix(a, b, c, d, e, f)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-translate"></a>}}
+\subsection{Method \code{translate()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$translate(x, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scale"></a>}}
+\subsection{Method \code{scale()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$scale(x, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-rotate"></a>}}
+\subsection{Method \code{rotate()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$rotate(a, x = NULL, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-skewX"></a>}}
+\subsection{Method \code{skewX()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewX(a)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-skewY"></a>}}
+\subsection{Method \code{skewY()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewY(a)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-polygon"></a>}}
+\subsection{Method \code{polygon()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polygon(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-polyline"></a>}}
+\subsection{Method \code{polyline()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polyline(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
 Initialize an SVGElement
@@ -692,67 +955,19 @@ Make a deep copy of this node and its children
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-polygon"></a>}}
-\subsection{Method \code{polygon()}}{
+\if{html}{\out{<a id="method-clone"></a>}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polygon(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$clone(deep = FALSE)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
 }
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-polyline"></a>}}
-\subsection{Method \code{polyline()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polyline(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{</div>}}
 }
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-matrix"></a>}}
-\subsection{Method \code{matrix()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$matrix(a, b, c, d, e, f)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-translate"></a>}}
-\subsection{Method \code{translate()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$translate(x, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-scale"></a>}}
-\subsection{Method \code{scale()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$scale(x, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-rotate"></a>}}
-\subsection{Method \code{rotate()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$rotate(a, x = NULL, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-skewX"></a>}}
-\subsection{Method \code{skewX()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewX(a)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-skewY"></a>}}
-\subsection{Method \code{skewY()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewY(a)}\if{html}{\out{</div>}}
-}
-
 }
 }

@@ -14,6 +14,7 @@ create_stag_func <- function(name, attribs) {
   attribs <- c('...', attribs)
   attribs <- gsub("-", "_", attribs)
   attribs <- gsub(":", "..", attribs)
+  attribs[attribs == 'in'] <- 'in_'
 
   func_text <- glue("
 function({paste(attribs, collapse = ', ')}) {{

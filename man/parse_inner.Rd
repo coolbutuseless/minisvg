@@ -4,13 +4,14 @@
 \alias{parse_inner}
 \title{Recursively parse an XML2 node tree into a `minixml` document}
 \usage{
-parse_inner(xml2_node, as_document = TRUE)
+parse_inner(xml2_node, as_document = TRUE, as_pattern = FALSE)
 }
 \arguments{
 \item{xml2_node}{root node of a document or an element node}
 
-\item{as_document}{whether or not to make the root node a document node. Otherwise
-just create an element node.}
+\item{as_document}{parse the root node as a document node. Default: TRUE}
+
+\item{as_pattern}{parse the root node as a pattern node. Default: FALSE}
 }
 \description{
 This uses 'xml2' package to do the parsing.

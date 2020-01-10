@@ -1,0 +1,242 @@
+---
+title: "filter-effects"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{filter-effects}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+
+## Example images
+
+Using the example image from the [MDN site](https://developer.mozilla.org). For
+these vignettes, I'm going to use an inline version of the image for future-proofing.
+
+<img src="images/mdn_logo.png" width="25%">
+
+```{r}
+inline_img <- paste0("data:image/png;base64,", base64enc::base64encode("./images/mdn_logo.png"))
+```
+
+## `feBlend`
+
+The `<feBlend>` SVG filter primitive composes two objects together ruled by a certain blending mode. This is similar to what is known from image editing software when blending two layers. The mode is defined by the mode attribute.
+
+Example from [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feBlend).
+
+
+
+
+```{r}
+doc <- svg_doc(
+  width = 200, height = 200,
+  stag$defs(
+    stag$filter(
+      id="spotlight",
+      stag$feFlood(
+        x=0, y=0, 
+        result        = "floodFill", 
+        width         = "100%", 
+        height        = "100%",
+        flood_color   = "green", 
+        flood_opacity = "1"
+      ),
+      stag$feBlend(
+        in_ = "SourceGraphic", in2="floodFill", mode="multiply"  
+      )
+    )
+  ),
+  
+  stag$image(
+    xlink_href = inline_img,
+    x="10%", y="10%", width="80%", height="80%",
+    style="filter:url(#spotlight);"
+  )
+)
+```
+
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+## `feColorMatrix`
+
+The `<feColorMatrix>` SVG filter element changes colors based on a transformation matrix. Every pixel's color value (represented by an [R,G,B,A] vector) is matrix multiplied to create a new color.
+
+
+Example from [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feColorMatrix).
+
+```{r}
+doc <- svg_doc(
+  width="40%", height="40%", viewBox="0 0 150 360",
+  preserveAspectRatio = "xMidYMid meet",
+  
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # 3 overlapping circles
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  stag$defs(
+    stag$g(
+      id="circles",
+      stag$circle(cx=30, cy=30, r=20, fill="blue" , fill_opacity="0.5"),
+      stag$circle(cx=20, cy=50, r=20, fill="green", fill_opacity="0.5"),
+      stag$circle(cx=40, cy=50, r=20, fill="red"  , fill_opacity="0.5")
+    )
+  ),
+  
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Reference rendering of the circles
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  stag$use(href='#circles'),
+  stag$text(x=70, y=50, "Reference"),
+  
+  
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Applying a colour transformation matrix to these circles
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  stag$filter(
+    id="colorMeMatrix",
+    stag$feColorMatrix(
+      in_    = "SourceGraphic",
+      type   = "matrix",         # matrix | saturate | hueRotate | luminanceToAlpha
+      values = "0 0 0 0 0   1 1 1 1 0   0 0 0 0 0   0 0 0 1 0"
+    )
+  ),
+  stag$use(href='#circles', transform="translate(0 35)", filter="url(#colorMeMatrix)"),
+  stag$text(x=70, y=120, "Matrix"),
+  
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Desaturate the colour of the circles
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  stag$filter(
+    id = "colorMeSaturate",
+    stag$feColorMatrix(
+      in_    = "SourceGraphic",
+      type   = "saturate",
+      values = "0.2"
+    )
+  ),
+  stag$use(href='#circles', transform="translate(0 70)", filter="url(#colorMeSaturate)"),
+  stag$text(x=70, y=190, "Saturate")
+)
+```
+
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+
+## `feTurbulence`
+
+The `<feTurbulence>` SVG filter primitive creates an image using the Perlin turbulence function. It allows the synthesis of artificial textures like clouds or marble. The resulting image will fill the entire filter primitive subregion.
+
+
+Example from [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTurbulence).
+
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define filter with turbulence driving the displacmenet
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+my_filter <- stag$filter(
+  id = "displacementFilter",
+  stag$feTurbulence(
+    type          = "turbulence", 
+    baseFrequency = 0.05, 
+    numOctaves    = 2, 
+    result        = "turbulence"),
+  stag$feDisplacementMap(
+    in_   = "SourceGraphic", 
+    in2   = "turbulence", 
+    scale = 50, 
+    xChannelSelector = 'R', 
+    yChannelSelector = 'G')
+)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Apply this displacement filter to a circle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(
+  width = 200, height = 200,
+  my_filter,
+  stag$circle(cx=100, cy=100, r=80, filter = my_filter)
+)
+```
+
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

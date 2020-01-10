@@ -23,6 +23,7 @@ to specifically handle SVG \code{<pattern>} nodes
 \item \href{#method-as_full_svg}{\code{SVGPattern$as_full_svg()}}
 \item \href{#method-save_full_svg}{\code{SVGPattern$save_full_svg()}}
 \item \href{#method-show}{\code{SVGPattern$show()}}
+\item \href{#method-clone}{\code{SVGPattern$clone()}}
 }
 }
 \if{html}{
@@ -43,6 +44,22 @@ to specifically handle SVG \code{<pattern>} nodes
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="desc">}\href{../../minisvg/html/SVGElement.html#method-desc}{\code{minisvg::SVGElement$desc()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="discard">}\href{../../minisvg/html/SVGElement.html#method-discard}{\code{minisvg::SVGElement$discard()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="ellipse">}\href{../../minisvg/html/SVGElement.html#method-ellipse}{\code{minisvg::SVGElement$ellipse()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feBlend">}\href{../../minisvg/html/SVGElement.html#method-feBlend}{\code{minisvg::SVGElement$feBlend()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feColorMatrix">}\href{../../minisvg/html/SVGElement.html#method-feColorMatrix}{\code{minisvg::SVGElement$feColorMatrix()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feComponentTransfer">}\href{../../minisvg/html/SVGElement.html#method-feComponentTransfer}{\code{minisvg::SVGElement$feComponentTransfer()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feComposite">}\href{../../minisvg/html/SVGElement.html#method-feComposite}{\code{minisvg::SVGElement$feComposite()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feConvolveMatrix">}\href{../../minisvg/html/SVGElement.html#method-feConvolveMatrix}{\code{minisvg::SVGElement$feConvolveMatrix()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feDiffuseLighting">}\href{../../minisvg/html/SVGElement.html#method-feDiffuseLighting}{\code{minisvg::SVGElement$feDiffuseLighting()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feDisplacementMap">}\href{../../minisvg/html/SVGElement.html#method-feDisplacementMap}{\code{minisvg::SVGElement$feDisplacementMap()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feFlood">}\href{../../minisvg/html/SVGElement.html#method-feFlood}{\code{minisvg::SVGElement$feFlood()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feGaussianBlur">}\href{../../minisvg/html/SVGElement.html#method-feGaussianBlur}{\code{minisvg::SVGElement$feGaussianBlur()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feImage">}\href{../../minisvg/html/SVGElement.html#method-feImage}{\code{minisvg::SVGElement$feImage()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feMerge">}\href{../../minisvg/html/SVGElement.html#method-feMerge}{\code{minisvg::SVGElement$feMerge()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feMorphology">}\href{../../minisvg/html/SVGElement.html#method-feMorphology}{\code{minisvg::SVGElement$feMorphology()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feOffset">}\href{../../minisvg/html/SVGElement.html#method-feOffset}{\code{minisvg::SVGElement$feOffset()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feSpecularLighting">}\href{../../minisvg/html/SVGElement.html#method-feSpecularLighting}{\code{minisvg::SVGElement$feSpecularLighting()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feTile">}\href{../../minisvg/html/SVGElement.html#method-feTile}{\code{minisvg::SVGElement$feTile()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feTurbulence">}\href{../../minisvg/html/SVGElement.html#method-feTurbulence}{\code{minisvg::SVGElement$feTurbulence()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="filter">}\href{../../minisvg/html/SVGElement.html#method-filter}{\code{minisvg::SVGElement$filter()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="foreignObject">}\href{../../minisvg/html/SVGElement.html#method-foreignObject}{\code{minisvg::SVGElement$foreignObject()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="g">}\href{../../minisvg/html/SVGElement.html#method-g}{\code{minisvg::SVGElement$g()}}\out{</span>}
@@ -150,6 +167,22 @@ Render this pattern in the context of a complete SVG document
 \item{\code{...}}{Further arguments passed to \code{SVGPattern$save_full_svg()}}
 
 \item{\code{viewer}}{viewer.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGPattern$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
 }
 \if{html}{\out{</div>}}
 }
