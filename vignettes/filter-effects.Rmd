@@ -225,6 +225,44 @@ if (interactive()) {
 
 
 
+## `feTurbulence` - simple example
+
+```{r}
+doc <- svg_doc(
+  width = 250, height = 250,
+  stag$filter(
+    id = "noise",
+    stag$feTurbulence(baseFrequency = 0.05)
+  ),
+  
+  stag$rect(
+    x      = 0, 
+    y      = 0, 
+    height = "100%", 
+    filter = "url(#noise)", 
+    fill   = 'none')
+)
+
+doc$show()
+```
+
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+
+
 
 
 
