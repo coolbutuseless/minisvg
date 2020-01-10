@@ -242,8 +242,6 @@ doc <- svg_doc(
     filter = "url(#noise)", 
     fill   = 'none')
 )
-
-doc$show()
 ```
 
 
