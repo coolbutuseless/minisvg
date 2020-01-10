@@ -41,9 +41,14 @@ A class representing a single SVG element.
 \item \href{#method-feDiffuseLighting}{\code{SVGElement$feDiffuseLighting()}}
 \item \href{#method-feDisplacementMap}{\code{SVGElement$feDisplacementMap()}}
 \item \href{#method-feFlood}{\code{SVGElement$feFlood()}}
+\item \href{#method-feFuncR}{\code{SVGElement$feFuncR()}}
+\item \href{#method-feFuncG}{\code{SVGElement$feFuncG()}}
+\item \href{#method-feFuncB}{\code{SVGElement$feFuncB()}}
+\item \href{#method-feFuncA}{\code{SVGElement$feFuncA()}}
 \item \href{#method-feGaussianBlur}{\code{SVGElement$feGaussianBlur()}}
 \item \href{#method-feImage}{\code{SVGElement$feImage()}}
 \item \href{#method-feMerge}{\code{SVGElement$feMerge()}}
+\item \href{#method-feMergeNode}{\code{SVGElement$feMergeNode()}}
 \item \href{#method-feMorphology}{\code{SVGElement$feMorphology()}}
 \item \href{#method-feOffset}{\code{SVGElement$feOffset()}}
 \item \href{#method-feSpecularLighting}{\code{SVGElement$feSpecularLighting()}}
@@ -210,7 +215,7 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feBlend"></a>}}
 \subsection{Method \code{feBlend()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feBlend(..., in_ = NULL, in2 = NULL, mode = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feBlend(..., in_ = NULL, in2 = NULL, mode = NULL, result = NULL)}\if{html}{\out{</div>}}
 }
 
 }
@@ -218,7 +223,13 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feColorMatrix"></a>}}
 \subsection{Method \code{feColorMatrix()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feColorMatrix(..., in_ = NULL, type = NULL, values = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feColorMatrix(
+  ...,
+  in_ = NULL,
+  type = NULL,
+  values = NULL,
+  result = NULL
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -226,7 +237,7 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feComponentTransfer"></a>}}
 \subsection{Method \code{feComponentTransfer()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feComponentTransfer(..., in_ = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feComponentTransfer(..., in_ = NULL, result = NULL)}\if{html}{\out{</div>}}
 }
 
 }
@@ -242,7 +253,8 @@ A class representing a single SVG element.
   k1 = NULL,
   k2 = NULL,
   k3 = NULL,
-  k4 = NULL
+  k4 = NULL,
+  result = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -262,7 +274,8 @@ A class representing a single SVG element.
   targetY = NULL,
   edgeMode = NULL,
   kernelUnitLength = NULL,
-  preserveAlpha = NULL
+  preserveAlpha = NULL,
+  result = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -276,7 +289,8 @@ A class representing a single SVG element.
   in_ = NULL,
   surfaceScale = NULL,
   diffuseConstant = NULL,
-  kernelUnitLength = NULL
+  kernelUnitLength = NULL,
+  result = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -291,7 +305,8 @@ A class representing a single SVG element.
   in2 = NULL,
   scale = NULL,
   xChannelSelector = NULL,
-  yChannelSelector = NULL
+  yChannelSelector = NULL,
+  result = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -300,7 +315,44 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feFlood"></a>}}
 \subsection{Method \code{feFlood()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFlood(..., flood_color = NULL, flood_opacity = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFlood(
+  ...,
+  flood_color = NULL,
+  flood_opacity = NULL,
+  result = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feFuncR"></a>}}
+\subsection{Method \code{feFuncR()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFuncR(..., type = NULL, tableValues = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feFuncG"></a>}}
+\subsection{Method \code{feFuncG()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFuncG(..., type = NULL, tableValues = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feFuncB"></a>}}
+\subsection{Method \code{feFuncB()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFuncB(..., type = NULL, tableValues = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feFuncA"></a>}}
+\subsection{Method \code{feFuncA()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFuncA(..., type = NULL, tableValues = NULL)}\if{html}{\out{</div>}}
 }
 
 }
@@ -312,7 +364,8 @@ A class representing a single SVG element.
   ...,
   in_ = NULL,
   stdDeviation = NULL,
-  edgeMode = NULL
+  edgeMode = NULL,
+  result = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -321,7 +374,12 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feImage"></a>}}
 \subsection{Method \code{feImage()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feImage(..., preserveAspectRatio = NULL, xlink_href = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feImage(
+  ...,
+  preserveAspectRatio = NULL,
+  xlink_href = NULL,
+  result = NULL
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -329,7 +387,15 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feMerge"></a>}}
 \subsection{Method \code{feMerge()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMerge(...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMerge(..., result = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-feMergeNode"></a>}}
+\subsection{Method \code{feMergeNode()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMergeNode(..., in_ = NULL)}\if{html}{\out{</div>}}
 }
 
 }
@@ -337,7 +403,13 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feMorphology"></a>}}
 \subsection{Method \code{feMorphology()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMorphology(..., in_ = NULL, operator = NULL, radius = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMorphology(
+  ...,
+  in_ = NULL,
+  operator = NULL,
+  radius = NULL,
+  result = NULL
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -345,7 +417,7 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feOffset"></a>}}
 \subsection{Method \code{feOffset()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feOffset(..., in_ = NULL, dx = NULL, dy = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feOffset(..., in_ = NULL, dx = NULL, dy = NULL, result = NULL)}\if{html}{\out{</div>}}
 }
 
 }
@@ -359,7 +431,8 @@ A class representing a single SVG element.
   surfaceScale = NULL,
   specularConstant = NULL,
   specularExponent = NULL,
-  kernelUnitLength = NULL
+  kernelUnitLength = NULL,
+  result = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -368,7 +441,7 @@ A class representing a single SVG element.
 \if{html}{\out{<a id="method-feTile"></a>}}
 \subsection{Method \code{feTile()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feTile(..., in_ = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$feTile(..., in_ = NULL, result = NULL)}\if{html}{\out{</div>}}
 }
 
 }
@@ -381,9 +454,9 @@ A class representing a single SVG element.
   type = NULL,
   baseFrequency = NULL,
   numOctaves = NULL,
-  result = NULL,
   seed = NULL,
-  stitchTiles = NULL
+  stitchTiles = NULL,
+  result = NULL
 )}\if{html}{\out{</div>}}
 }
 
