@@ -77,14 +77,6 @@ A class representing a single SVG element.
 \item \href{#method-textPath}{\code{SVGElement$textPath()}}
 \item \href{#method-title}{\code{SVGElement$title()}}
 \item \href{#method-use}{\code{SVGElement$use()}}
-\item \href{#method-matrix}{\code{SVGElement$matrix()}}
-\item \href{#method-translate}{\code{SVGElement$translate()}}
-\item \href{#method-scale}{\code{SVGElement$scale()}}
-\item \href{#method-rotate}{\code{SVGElement$rotate()}}
-\item \href{#method-skewX}{\code{SVGElement$skewX()}}
-\item \href{#method-skewY}{\code{SVGElement$skewY()}}
-\item \href{#method-polygon}{\code{SVGElement$polygon()}}
-\item \href{#method-polyline}{\code{SVGElement$polyline()}}
 \item \href{#method-new}{\code{SVGElement$new()}}
 \item \href{#method-update}{\code{SVGElement$update()}}
 \item \href{#method-append}{\code{SVGElement$append()}}
@@ -96,6 +88,14 @@ A class representing a single SVG element.
 \item \href{#method-print}{\code{SVGElement$print()}}
 \item \href{#method-save}{\code{SVGElement$save()}}
 \item \href{#method-copy}{\code{SVGElement$copy()}}
+\item \href{#method-polygon}{\code{SVGElement$polygon()}}
+\item \href{#method-polyline}{\code{SVGElement$polyline()}}
+\item \href{#method-matrix}{\code{SVGElement$matrix()}}
+\item \href{#method-translate}{\code{SVGElement$translate()}}
+\item \href{#method-scale}{\code{SVGElement$scale()}}
+\item \href{#method-rotate}{\code{SVGElement$rotate()}}
+\item \href{#method-skewX}{\code{SVGElement$skewX()}}
+\item \href{#method-skewY}{\code{SVGElement$skewY()}}
 \item \href{#method-clone}{\code{SVGElement$clone()}}
 }
 }
@@ -761,70 +761,6 @@ A class representing a single SVG element.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-matrix"></a>}}
-\subsection{Method \code{matrix()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$matrix(a, b, c, d, e, f)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-translate"></a>}}
-\subsection{Method \code{translate()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$translate(x, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-scale"></a>}}
-\subsection{Method \code{scale()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$scale(x, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-rotate"></a>}}
-\subsection{Method \code{rotate()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$rotate(a, x = NULL, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-skewX"></a>}}
-\subsection{Method \code{skewX()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewX(a)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-skewY"></a>}}
-\subsection{Method \code{skewY()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewY(a)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-polygon"></a>}}
-\subsection{Method \code{polygon()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polygon(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-polyline"></a>}}
-\subsection{Method \code{polyline()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polyline(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
 Initialize an SVGElement
@@ -1024,6 +960,70 @@ Save the text representation of this node and its children
 Make a deep copy of this node and its children
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$copy()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-polygon"></a>}}
+\subsection{Method \code{polygon()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polygon(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-polyline"></a>}}
+\subsection{Method \code{polyline()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polyline(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-matrix"></a>}}
+\subsection{Method \code{matrix()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$matrix(a, b, c, d, e, f)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-translate"></a>}}
+\subsection{Method \code{translate()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$translate(x, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scale"></a>}}
+\subsection{Method \code{scale()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$scale(x, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-rotate"></a>}}
+\subsection{Method \code{rotate()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$rotate(a, x = NULL, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-skewX"></a>}}
+\subsection{Method \code{skewX()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewX(a)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-skewY"></a>}}
+\subsection{Method \code{skewY()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewY(a)}\if{html}{\out{</div>}}
 }
 
 }

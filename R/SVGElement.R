@@ -132,6 +132,41 @@ SVGElement <- R6::R6Class(
       trans <- attribs[names(attribs) == 'transform']
       attribs[names(attribs) == 'transform'] <- NULL
 
+
+      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # If element is animate, animateColor, animateMotion, animateTransform
+      # and the user passes in a vector for a 'values' or 'keyTimes' attribute, then
+      # collapse it to a single string value.
+      # For 'feColorMatrix' values is collapsed with a space separator.
+      # Ref: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/values
+      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      if (self$name %in% c('animate', 'animateMotion', 'animateColor', 'animateTransform')) {
+        if ('values' %in% names(attribs)) {
+          idx <- which(names(attribs) == 'values')
+          if (length(attribs[[idx]] > 1)) {
+            attribs[[idx]] <- paste(attribs[[idx]], collapse = ";")
+          }
+        }
+        if ('keyTimes' %in% names(attribs)) {
+          idx <- which(names(attribs) == 'keyTimes')
+          if (length(attribs[[idx]] > 1)) {
+            attribs[[idx]] <- paste(attribs[[idx]], collapse = ";")
+          }
+        }
+      }
+
+
+      if (self$name %in% c('feColorMatrix')) {
+        if ('values' %in% names(attribs)) {
+          idx <- which(names(attribs) == 'values')
+          if (length(attribs[[idx]] > 1)) {
+            attribs[[idx]] <- paste(attribs[[idx]], collapse = " ")
+          }
+        }
+      }
+
+
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # all other attribs besides transform overwrite any existing value
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -382,9 +417,27 @@ as.character.SVGElement <- function(x, ...) {
 
 if (FALSE) {
 
-  s <- SVGDocument$new()
-  s$circle(10, 10, 50, fill = 'blue', pres(stroke = 'green'))
-  s
+  valuesx <- c(60, 110, 60, 10, 60)
+  valuesy <- c(11, 60, 110, 60, 10)
+  keyTimes <- c(0, 0.25, 0.5, 0.75, 1)
+
+  s <- NULL
+  s <- svg_doc(
+    width = 120, height = 120,
+    stag$circle(
+      cx = 60,
+      cy = 10,
+      r  = 10,
+      stag$animate(
+        attributeName = 'cx', dur='4s', repeatCount = 'indefinite',
+        values = valuesx, keyTimes = keyTimes
+      ),
+      stag$animate(
+        attributeName = 'cy', dur='4s', repeatCount = 'indefinite',
+        values = valuesy, keyTimes = keyTimes
+      )
+    )
+  )
 
   s$show()
 
