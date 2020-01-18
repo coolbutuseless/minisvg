@@ -152,7 +152,7 @@ mytext$animateTransform(
    <?xml version="1.0" encoding="UTF-8"?>
    <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
      <circle fill="yellow" cx="200" cy="200" r="100" />
-     <rect fill="none" stroke="black" stroke-width="12" x="0" y="0" width="400" height="400" />
+     <rect stroke-width="12" x="0" y="0" width="400" height="400" fill="none" stroke="black" />
      <text size="30" x="160" y="210">
        Hello world
        <animateTransform attributeName="transform" from="0 200 200" to="360 200 200" type="rotate" dur="5" repeatCount="indefinite" />
@@ -184,7 +184,7 @@ print(doc)
    </svg>
 ```
 
-## 70s wallpaper is my jam\!
+## Example: 70s wallpaper is my jam\!
 
 This is a reproduction of a 70s wallpaper pattern.
 
@@ -251,6 +251,87 @@ doc$rect(x=0, y=0, width="100%", height="100%", fill=pat)
 ```
 
 <img src="man/figures/README-wallpaper.svg" />
+
+## Example `SVGPattern` class
+
+One of my main uses for `minisvg` will be for pattern creation for use
+in plotting, so there is a specific `SVGPattern` class for manipulating
+and displaying them.
+
+Key differences from `SVGElement` class:
+
+  - `SVGPattern$as_full_svg()` embeds the pattern within a template of a
+    full SVG document and applies the pattern to a rectangle which
+    covers the entire page.
+  - `SVGPattern$save_full_svg()` saves the output of `as_full_svg()`
+  - Lets the user define `SVGPattern$filter_dev` as a filter that is
+    applied to the pattern.
+
+<!-- end list -->
+
+``` r
+pat <- SVGPattern$new(
+  id           = "test1", 
+  width        = 100, 
+  height       = 50,
+  patternUnits = 'userSpaceOnUse'
+)
+
+pat$circle(cx = 20, cy = 20, r = 10)
+
+# pat$show()
+```
+
+``` 
+   <pattern id="test1" width="100" height="50" patternUnits="userSpaceOnUse">
+     <circle cx="20" cy="20" r="10" />
+   </pattern>
+```
+
+<img src="man/figures/README-svgpattern.svg" />
+
+## Example Adding a filter to an `SVGPattern` class
+
+``` r
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define a filter that uses turbulence to drive displacement
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+displacement_filter <- stag$filter(
+  id = "test-dispfilter",
+  x = "-30%", y = "-30%", width="160%", height="160%",
+  stag$feTurbulence(
+    type          = "turbulence",
+    baseFrequency = 0.05,
+    numOctaves    = 4,
+    seed          = 1,
+    result        = "turbulence-image"),
+  stag$feDisplacementMap(
+    in_              = "SourceGraphic",
+    in2              = "turbulence-image",
+    scale            = 20,
+    yChannelSelector = 'G'
+  )
+)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add the filter to the pattern
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pat$filter_def <- displacement_filter
+
+# pat$show()
+```
+
+``` 
+   <filter id="test-dispfilter" x="-30%" y="-30%" width="160%" height="160%">
+     <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="4" seed="1" result="turbulence-image" />
+     <feDisplacementMap in="SourceGraphic" in2="turbulence-image" scale="20" yChannelSelector="G" />
+   </filter>
+   <pattern id="test1" width="100" height="50" patternUnits="userSpaceOnUse">
+     <circle cx="20" cy="20" r="10" />
+   </pattern>
+```
+
+<img src="man/figures/README-svgpattern-filter.svg" />
 
 ## References
 

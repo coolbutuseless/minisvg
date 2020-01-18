@@ -3,6 +3,7 @@
 
 * When multiple attributes with the same name are given for an element, then 
   only the last one is kept/used.
+* `SVGPattern` objects now have some built-in support for filters
 
 # minisvg 0.1.2  2020-01-12
 

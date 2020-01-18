@@ -7,6 +7,14 @@
 #' This is a slightly specialized subclass of \code{SVGElement} which has methods
 #' to specifically handle SVG \code{<pattern>} nodes
 #'
+#' SVGPattern objects may also have their own 'filter_def' filter definition.
+#'
+#' @examples
+#' \dontrun{
+#' a <- SVGPattern$new()
+#' f <- stag$filter(id = "turbulence-filter", stag$feTurbulence(...))
+#' a$filter_def <- f
+#' }
 #'
 #' @import R6
 #' @importFrom glue glue
@@ -18,6 +26,8 @@ SVGPattern <- R6::R6Class(
 
   public = list(
 
+    filter_def = NULL,
+
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @description Initialise an SVGPattern object
     #' @param name defaults to 'pattern', but some gradients may also be used here
@@ -25,6 +35,7 @@ SVGPattern <- R6::R6Class(
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     initialize = function(..., name = 'pattern') {
       super$initialize(name = name, ...)
+      self$filter_def <- NULL
     },
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,16 +48,27 @@ SVGPattern <- R6::R6Class(
       full_svg <- SVGDocument$new(width = width, height = height)$
         update(width = NULL, height = NULL)
 
+      # add filter definnition if there is one associated with this pattern
+      if (!is.null(self$filter_def)) {
+        full_svg$defs(self$filter_def)
+      }
+
       full_svg$defs(self)
 
-      full_svg$append(
-        stag$rect(
+      display_rect <- stag$rect(
           x      = 0,
           y      = 0,
           height = '100%',
           width  = '100%',
           style  = glue::glue('fill: url(#{self$attribs$id}) #fff;')
         )
+
+      if (!is.null(self$filter_def)) {
+        display_rect$update(filter = self$filter_def)
+      }
+
+      full_svg$append(
+        display_rect
       )
 
       full_svg
@@ -63,6 +85,24 @@ SVGPattern <- R6::R6Class(
 
       writeLines(svg_string, filename)
       invisible(self)
+    },
+
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Recursively convert this SVGElement and children to text
+    #' @param ... ignored
+    #' @param depth recursion depth. default: 0
+    #' @param include_declaration Include the leading XML declaration? default: FALSE
+    #' @return single character string
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    as_character = function(..., depth = 0, include_declaration = FALSE) {
+      filter_text <- NULL
+      if (!is.null(self$filter_def)) {
+        filter_text <- self$filter_def$as_character()
+      }
+
+      this_text <- super$as_character(..., depth=0, include_declaration = include_declaration)
+      paste(c(filter_text, this_text), collapse = "\n")
     },
 
 

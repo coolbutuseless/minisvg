@@ -12,6 +12,16 @@ SVGPattern Class
 \details{
 This is a slightly specialized subclass of \code{SVGElement} which has methods
 to specifically handle SVG \code{<pattern>} nodes
+
+SVGPattern objects may also have their own 'filter_def' filter definition.
+}
+\examples{
+\dontrun{
+a <- SVGPattern$new()
+f <- stag$filter(id = "turbulence-filter", stag$feTurbulence(...))
+a$filter_def <- f
+}
+
 }
 \section{Super class}{
 \code{\link[minisvg:SVGElement]{minisvg::SVGElement}} -> \code{SVGPattern}
@@ -22,6 +32,7 @@ to specifically handle SVG \code{<pattern>} nodes
 \item \href{#method-new}{\code{SVGPattern$new()}}
 \item \href{#method-as_full_svg}{\code{SVGPattern$as_full_svg()}}
 \item \href{#method-save_full_svg}{\code{SVGPattern$save_full_svg()}}
+\item \href{#method-as_character}{\code{SVGPattern$as_character()}}
 \item \href{#method-show}{\code{SVGPattern$show()}}
 \item \href{#method-clone}{\code{SVGPattern$clone()}}
 }
@@ -35,7 +46,6 @@ to specifically handle SVG \code{<pattern>} nodes
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="animateMotion">}\href{../../minisvg/html/SVGElement.html#method-animateMotion}{\code{minisvg::SVGElement$animateMotion()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="animateTransform">}\href{../../minisvg/html/SVGElement.html#method-animateTransform}{\code{minisvg::SVGElement$animateTransform()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="append">}\href{../../minisvg/html/SVGElement.html#method-append}{\code{minisvg::SVGElement$append()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="as_character">}\href{../../minisvg/html/SVGElement.html#method-as_character}{\code{minisvg::SVGElement$as_character()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="as_character_inner">}\href{../../minisvg/html/SVGElement.html#method-as_character_inner}{\code{minisvg::SVGElement$as_character_inner()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="circle">}\href{../../minisvg/html/SVGElement.html#method-circle}{\code{minisvg::SVGElement$circle()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="clipPath">}\href{../../minisvg/html/SVGElement.html#method-clipPath}{\code{minisvg::SVGElement$clipPath()}}\out{</span>}
@@ -156,6 +166,29 @@ Save the SVG for this pattern in a full SVG document
 \item{\code{...}}{Further arguments passed to \code{SVGPattern$as_full_svg()}}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-as_character"></a>}}
+\subsection{Method \code{as_character()}}{
+Recursively convert this SVGElement and children to text
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGPattern$as_character(..., depth = 0, include_declaration = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{ignored}
+
+\item{\code{depth}}{recursion depth. default: 0}
+
+\item{\code{include_declaration}}{Include the leading XML declaration? default: FALSE}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+single character string
 }
 }
 \if{html}{\out{<hr>}}
