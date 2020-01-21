@@ -1,4 +1,12 @@
 
+# minisvg 0.1.4  2020-01-21
+
+* Added an `SVGFilter` class for prototyping filters. This is just a 
+  sub-class of `SVGElement` with some methods to help preview filters.  This 
+  is very similar to how the `SVGPattern` class works.
+* Updated the vignette on CSS animation to include an example that 
+  uses an external CSS style sheet
+
 # minisvg 0.1.3  2020-01-18
 
 * When multiple attributes with the same name are given for an element, then 
@@ -15,7 +23,7 @@
 # minisvg 0.1.1  2020-01-10
 
 * Added `feBlend` and other filter effects to `stag` and `svg_elem`
-* Added vignetted on `filter-elements`
+* Added vignette on `filter-elements`
 
 # minisvg 0.1.0
 

@@ -37,7 +37,7 @@ This vignette assumes you are familiar with SVG tags and document structures.
 This document describes method 2 - CSS animation.
 
 
-CSS animation
+CSS animation - inline CSS
 ==============================================================================
 
 ```{r}
@@ -86,3 +86,56 @@ if (interactive()) {
   doc
 }
 ```
+
+
+
+CSS animation - External CSS StyleSheet
+==============================================================================
+
+This example uses [animate.css](https://github.com/daneden/animate.css) which 
+provided a nice range of useful CSS animations.
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build a small SVG with a rectangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 240, height = 100)
+doc$title("Attribute animation with SMIL")
+doc$rect(x=0, y=0, width=240, height = 100, stroke='black', fill='white', stroke_width = 1)
+doc$rect(x = 80, y=20, width=80, height=60)$
+  update(class = "animated infinite bounce delay-2s")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add a reference to a CSS URL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$css_url <- "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Need to use `include_declarations = TRUE` here as the external CSS
+# declaration is part of the XML declaration header which comes *before*
+# the opening <svg> tag.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$save("svg/animation-css.svg", include_declaration = TRUE)
+```
+
+I have to include a gif animation here because the CSS location in the 
+XML declaration does not seem to be parsed when rendered within a document, 
+but does render OK if you [load the SVG in a web browser directly](svg/animation-css.svg)
+
+<img src = "images/animation-css.gif">
+
+
+
+
+
+
