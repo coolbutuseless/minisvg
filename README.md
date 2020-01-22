@@ -44,9 +44,9 @@
     geometry](https://coolbutuseless.github.io/package/minisvg/articles/geometry-example.html)
   - [Creating and Animating the carpet from The Overlook Hotel in The
     Shining](https://coolbutuseless.github.io/package/minisvg/articles/carpet-01.html)
-  - [Creating and Animating the a seventies wallpaper
+  - [Creating and Animating a 70s wallpaper
     pattern](https://coolbutuseless.github.io/package/minisvg/articles/wallpaper-01.html)
-  - [Some example of filter
+  - [Some examples of filter
     usage](https://coolbutuseless.github.io/package/minisvg/articles/filter-effects)
 
 ## Installation

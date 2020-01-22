@@ -77,25 +77,30 @@ A class representing a single SVG element.
 \item \href{#method-textPath}{\code{SVGElement$textPath()}}
 \item \href{#method-title}{\code{SVGElement$title()}}
 \item \href{#method-use}{\code{SVGElement$use()}}
-\item \href{#method-new}{\code{SVGElement$new()}}
-\item \href{#method-update}{\code{SVGElement$update()}}
-\item \href{#method-append}{\code{SVGElement$append()}}
-\item \href{#method-add}{\code{SVGElement$add()}}
-\item \href{#method-remove}{\code{SVGElement$remove()}}
-\item \href{#method-reset_transform}{\code{SVGElement$reset_transform()}}
-\item \href{#method-as_character_inner}{\code{SVGElement$as_character_inner()}}
-\item \href{#method-as_character}{\code{SVGElement$as_character()}}
-\item \href{#method-print}{\code{SVGElement$print()}}
-\item \href{#method-save}{\code{SVGElement$save()}}
-\item \href{#method-copy}{\code{SVGElement$copy()}}
-\item \href{#method-polygon}{\code{SVGElement$polygon()}}
-\item \href{#method-polyline}{\code{SVGElement$polyline()}}
 \item \href{#method-matrix}{\code{SVGElement$matrix()}}
 \item \href{#method-translate}{\code{SVGElement$translate()}}
 \item \href{#method-scale}{\code{SVGElement$scale()}}
 \item \href{#method-rotate}{\code{SVGElement$rotate()}}
 \item \href{#method-skewX}{\code{SVGElement$skewX()}}
 \item \href{#method-skewY}{\code{SVGElement$skewY()}}
+\item \href{#method-polygon}{\code{SVGElement$polygon()}}
+\item \href{#method-polyline}{\code{SVGElement$polyline()}}
+\item \href{#method-new}{\code{SVGElement$new()}}
+\item \href{#method-update}{\code{SVGElement$update()}}
+\item \href{#method-append}{\code{SVGElement$append()}}
+\item \href{#method-add}{\code{SVGElement$add()}}
+\item \href{#method-remove}{\code{SVGElement$remove()}}
+\item \href{#method-reset_transform}{\code{SVGElement$reset_transform()}}
+\item \href{#method-add_css_url}{\code{SVGElement$add_css_url()}}
+\item \href{#method-add_css}{\code{SVGElement$add_css()}}
+\item \href{#method-get_css_decls}{\code{SVGElement$get_css_decls()}}
+\item \href{#method-get_css_urls}{\code{SVGElement$get_css_urls()}}
+\item \href{#method-get_css_style}{\code{SVGElement$get_css_style()}}
+\item \href{#method-as_character_inner}{\code{SVGElement$as_character_inner()}}
+\item \href{#method-as_character}{\code{SVGElement$as_character()}}
+\item \href{#method-print}{\code{SVGElement$print()}}
+\item \href{#method-save}{\code{SVGElement$save()}}
+\item \href{#method-copy}{\code{SVGElement$copy()}}
 \item \href{#method-clone}{\code{SVGElement$clone()}}
 }
 }
@@ -761,6 +766,70 @@ A class representing a single SVG element.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-matrix"></a>}}
+\subsection{Method \code{matrix()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$matrix(a, b, c, d, e, f)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-translate"></a>}}
+\subsection{Method \code{translate()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$translate(x, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scale"></a>}}
+\subsection{Method \code{scale()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$scale(x, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-rotate"></a>}}
+\subsection{Method \code{rotate()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$rotate(a, x = NULL, y = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-skewX"></a>}}
+\subsection{Method \code{skewX()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewX(a)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-skewY"></a>}}
+\subsection{Method \code{skewY()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewY(a)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-polygon"></a>}}
+\subsection{Method \code{polygon()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polygon(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-polyline"></a>}}
+\subsection{Method \code{polyline()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polyline(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
 Initialize an SVGElement
@@ -873,6 +942,79 @@ Remove any transform attributes from this node
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_css_url"></a>}}
+\subsection{Method \code{add_css_url()}}{
+Add a URL to a CSS style sheet
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$add_css_url(css_url)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{css_url}}{URL to style sheet. e.g. \code{"$add_css_url("css/local.css")}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_css"></a>}}
+\subsection{Method \code{add_css()}}{
+Add a CSS declaration for this element.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$add_css(css_decl)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{css_dec}}{CSS string, or object which can be coerced to character.
+e.g. \code{$add_dec("#thing {font-size: 27px}")}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_css_decls"></a>}}
+\subsection{Method \code{get_css_decls()}}{
+Create a CSS declaration string for inclusion in the
+             character output for this element.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_css_decls()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+this includes all css for all child elements
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_css_urls"></a>}}
+\subsection{Method \code{get_css_urls()}}{
+Create a vector or urls for CSS inclustion
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_css_urls()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+this includes all CSS URLs for all child elements
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_css_style"></a>}}
+\subsection{Method \code{get_css_style()}}{
+Create a complete CSS <style> tag using the declarations
+             and URLs of the current element, and all child elements.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_css_style()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+character string
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_character_inner"></a>}}
 \subsection{Method \code{as_character_inner()}}{
 Recursively convert this SVGElement and children to text
@@ -960,70 +1102,6 @@ Save the text representation of this node and its children
 Make a deep copy of this node and its children
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$copy()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-polygon"></a>}}
-\subsection{Method \code{polygon()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polygon(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-polyline"></a>}}
-\subsection{Method \code{polyline()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$polyline(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-matrix"></a>}}
-\subsection{Method \code{matrix()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$matrix(a, b, c, d, e, f)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-translate"></a>}}
-\subsection{Method \code{translate()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$translate(x, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-scale"></a>}}
-\subsection{Method \code{scale()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$scale(x, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-rotate"></a>}}
-\subsection{Method \code{rotate()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$rotate(a, x = NULL, y = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-skewX"></a>}}
-\subsection{Method \code{skewX()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewX(a)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-skewY"></a>}}
-\subsection{Method \code{skewY()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewY(a)}\if{html}{\out{</div>}}
 }
 
 }

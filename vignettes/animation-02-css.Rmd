@@ -53,22 +53,20 @@ doc$rect(id = 'myrect', x = 80, y=20, width=80, height=60)
 # Add a CSS style block to the SVG document. CSS definitions will override
 # any inline definitions defined above
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-doc$defs("<style type='text/css'><![CDATA[
-      @keyframes moveit {
-        from { fill: green; }
-        50%  { fill: blue; }
-        to   { fill: yellow; }
-      }
-      
-      #myrect {
-        fill: green;
-        animation-name: moveit;
-        animation-duration: 5s;
-        animation-iteration-count: infinite;
-      }
-    ]]>
-    </style>")
+doc$add_css(
+"@keyframes moveit {
+   from { fill: green; }
+   50%  { fill: blue; }
+   to   { fill: yellow; }
+}")
 
+doc$add_css(
+"#myrect {
+   fill: green;
+   animation-name: moveit;
+   animation-duration: 5s;
+   animation-iteration-count: infinite;
+}")
 ```
 
 
@@ -108,7 +106,7 @@ doc$rect(x = 80, y=20, width=80, height=60)$
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Add a reference to a CSS URL
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-doc$css_url <- "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+doc$add_css_url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css")
 ```
 
 
@@ -119,22 +117,14 @@ print(doc)
 ```
 </details> <br />
 
-```{r}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Need to use `include_declarations = TRUE` here as the external CSS
-# declaration is part of the XML declaration header which comes *before*
-# the opening <svg> tag.
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-doc$save("svg/animation-css.svg", include_declaration = TRUE)
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
 ```
-
-I have to include a gif animation here because the CSS location in the 
-XML declaration does not seem to be parsed when rendered within a document, 
-but does render OK if you [load the SVG in a web browser directly](svg/animation-css.svg)
-
-<img src = "images/animation-css.gif">
-
-
 
 
 

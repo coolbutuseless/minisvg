@@ -1,4 +1,15 @@
 
+
+# minisvg 0.1.5  2020-01-22
+
+* Refactored how CSS is handled. 
+    * Can now add multiple external CSS stylesheets with repeated calls to `$add_css_url()`
+    * CSS styles which you want to add to the SVG style sheet can be added 
+      to any `SVGElement` with `$add_css()`
+    * When a top level `<svg>` document is rendered, CSS urls and declarations are 
+      accumulated recursive from all child nodes and rendered as a single 
+      `<style>` block.
+      
 # minisvg 0.1.4  2020-01-21
 
 * Added an `SVGFilter` class for prototyping filters. This is just a 

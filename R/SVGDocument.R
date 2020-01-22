@@ -22,9 +22,8 @@ SVGDocument <- R6::R6Class(
     #' @field width,height dimensions of document
     #' @field css_url External CSS file link. Default: NULL
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    width   = NULL,
-    height  = NULL,
-    css_url = NULL,
+    width    = NULL,
+    height   = NULL,
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @description Initialise a new SVG document
@@ -39,8 +38,8 @@ SVGDocument <- R6::R6Class(
                           xmlns = 'http://www.w3.org/2000/svg',
                           xmlns_xlink = 'http://www.w3.org/1999/xlink') {
 
-      self$width  <- width
-      self$height <- height
+      self$width    <- width
+      self$height   <- height
       if (is.null(viewBox)) {
         viewBox <- glue("0 0 {width} {height}")
       }
@@ -117,17 +116,7 @@ SVGDocument <- R6::R6Class(
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     print = function(include_declaration = TRUE, ...) {
       cat(self$as_character(include_declaration = include_declaration, ...))
-    },
-
-    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    #' @description Set the URL to an external CSS style sheet
-    #' @param css_url URL to style sheet. e.g. \code{css/local.css}
-    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    external_css_url = function(css_url) {
-      self$css_url <- css_url
-      invisible(self)
     }
-
 
   )
 )

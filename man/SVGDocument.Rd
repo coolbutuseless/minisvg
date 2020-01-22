@@ -31,6 +31,8 @@ Has only been tested with MacOS and Rstudio
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
 \item{\code{width, height}}{dimensions of document}
+
+\item{\code{css_url}}{External CSS file link. Default: NULL}
 }
 \if{html}{\out{</div>}}
 }
@@ -42,7 +44,6 @@ Has only been tested with MacOS and Rstudio
 \item \href{#method-show}{\code{SVGDocument$show()}}
 \item \href{#method-inline_css}{\code{SVGDocument$inline_css()}}
 \item \href{#method-print}{\code{SVGDocument$print()}}
-\item \href{#method-external_css_url}{\code{SVGDocument$external_css_url()}}
 \item \href{#method-clone}{\code{SVGDocument$clone()}}
 }
 }
@@ -51,6 +52,8 @@ Has only been tested with MacOS and Rstudio
 \itemize{
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="a">}\href{../../minisvg/html/SVGElement.html#method-a}{\code{minisvg::SVGElement$a()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="add">}\href{../../minisvg/html/SVGElement.html#method-add}{\code{minisvg::SVGElement$add()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="add_css">}\href{../../minisvg/html/SVGElement.html#method-add_css}{\code{minisvg::SVGElement$add_css()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="add_css_url">}\href{../../minisvg/html/SVGElement.html#method-add_css_url}{\code{minisvg::SVGElement$add_css_url()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="animate">}\href{../../minisvg/html/SVGElement.html#method-animate}{\code{minisvg::SVGElement$animate()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="animateMotion">}\href{../../minisvg/html/SVGElement.html#method-animateMotion}{\code{minisvg::SVGElement$animateMotion()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="animateTransform">}\href{../../minisvg/html/SVGElement.html#method-animateTransform}{\code{minisvg::SVGElement$animateTransform()}}\out{</span>}
@@ -88,6 +91,9 @@ Has only been tested with MacOS and Rstudio
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="filter">}\href{../../minisvg/html/SVGElement.html#method-filter}{\code{minisvg::SVGElement$filter()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="foreignObject">}\href{../../minisvg/html/SVGElement.html#method-foreignObject}{\code{minisvg::SVGElement$foreignObject()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="g">}\href{../../minisvg/html/SVGElement.html#method-g}{\code{minisvg::SVGElement$g()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_css_decls">}\href{../../minisvg/html/SVGElement.html#method-get_css_decls}{\code{minisvg::SVGElement$get_css_decls()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_css_style">}\href{../../minisvg/html/SVGElement.html#method-get_css_style}{\code{minisvg::SVGElement$get_css_style()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_css_urls">}\href{../../minisvg/html/SVGElement.html#method-get_css_urls}{\code{minisvg::SVGElement$get_css_urls()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="image">}\href{../../minisvg/html/SVGElement.html#method-image}{\code{minisvg::SVGElement$image()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="line">}\href{../../minisvg/html/SVGElement.html#method-line}{\code{minisvg::SVGElement$line()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="linearGradient">}\href{../../minisvg/html/SVGElement.html#method-linearGradient}{\code{minisvg::SVGElement$linearGradient()}}\out{</span>}
@@ -216,22 +222,6 @@ Print the SVGDocument object
 \item{\code{include_declaration}}{Include the XML declaration? default: TRUE}
 
 \item{\code{...}}{other arguments passed to \code{$as_character()}}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-external_css_url"></a>}}
-\subsection{Method \code{external_css_url()}}{
-Set the URL to an external CSS style sheet
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGDocument$external_css_url(css_url)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{css_url}}{URL to style sheet. e.g. \code{css/local.css}}
 }
 \if{html}{\out{</div>}}
 }
