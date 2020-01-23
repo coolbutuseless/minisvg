@@ -17,6 +17,14 @@ A class representing a single SVG element.
 \item{\code{attribs}}{named list of attributes for this node}
 
 \item{\code{children}}{list of direct child nodes}
+
+\item{\code{css_decls}}{character vector of css declaration text for this node}
+
+\item{\code{css_urls}}{character vector of css urls for this node}
+
+\item{\code{js_code}}{character vector of javascript code for this node}
+
+\item{\code{js_urls}}{character vector of javascript urls for this node}
 }
 \if{html}{\out{</div>}}
 }
@@ -93,9 +101,14 @@ A class representing a single SVG element.
 \item \href{#method-reset_transform}{\code{SVGElement$reset_transform()}}
 \item \href{#method-add_css_url}{\code{SVGElement$add_css_url()}}
 \item \href{#method-add_css}{\code{SVGElement$add_css()}}
+\item \href{#method-add_js_code}{\code{SVGElement$add_js_code()}}
+\item \href{#method-add_js_url}{\code{SVGElement$add_js_url()}}
 \item \href{#method-get_css_decls}{\code{SVGElement$get_css_decls()}}
 \item \href{#method-get_css_urls}{\code{SVGElement$get_css_urls()}}
+\item \href{#method-get_js_code}{\code{SVGElement$get_js_code()}}
+\item \href{#method-get_js_urls}{\code{SVGElement$get_js_urls()}}
 \item \href{#method-get_css_style}{\code{SVGElement$get_css_style()}}
+\item \href{#method-get_js_style}{\code{SVGElement$get_js_style()}}
 \item \href{#method-as_character_inner}{\code{SVGElement$as_character_inner()}}
 \item \href{#method-as_character}{\code{SVGElement$as_character()}}
 \item \href{#method-print}{\code{SVGElement$print()}}
@@ -952,7 +965,7 @@ Add a URL to a CSS style sheet
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{css_url}}{URL to style sheet. e.g. \code{"$add_css_url("css/local.css")}}
+\item{\code{css_url}}{URL to style sheet. e.g. \code{$add_css_url("css/local.css")}}
 }
 \if{html}{\out{</div>}}
 }
@@ -970,6 +983,38 @@ Add a CSS declaration for this element.
 \describe{
 \item{\code{css_dec}}{CSS string, or object which can be coerced to character.
 e.g. \code{$add_dec("#thing {font-size: 27px}")}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_js_code"></a>}}
+\subsection{Method \code{add_js_code()}}{
+Add javascript code for this element
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$add_js_code(js_code)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{js_code}}{character string containing javascript code.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_js_url"></a>}}
+\subsection{Method \code{add_js_url()}}{
+Add a javaxcript URL to load within the SVG
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$add_js_url(js_url)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{js_url}}{URL to javascript code. e.g. \code{$add_js_url("example.org/eg.js")}}
 }
 \if{html}{\out{</div>}}
 }
@@ -1002,12 +1047,48 @@ this includes all CSS URLs for all child elements
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_js_code"></a>}}
+\subsection{Method \code{get_js_code()}}{
+Create a character vector of JS code for this node and
+             all child nodes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_js_code()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_js_urls"></a>}}
+\subsection{Method \code{get_js_urls()}}{
+Create a vector of external JS urls
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_js_urls()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+this includes all CSS URLs for all child elements
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_css_style"></a>}}
 \subsection{Method \code{get_css_style()}}{
 Create a complete CSS <style> tag using the declarations
              and URLs of the current element, and all child elements.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_css_style()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+character string
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_js_style"></a>}}
+\subsection{Method \code{get_js_style()}}{
+Create a complete CSS style tag using the declarations
+             and URLs of the current element, and all child elements.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_js_style()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

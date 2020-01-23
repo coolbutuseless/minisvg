@@ -1,0 +1,22 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg2">
+  <rect id="myrect2" fill="blue" x="10" y="10" width="180" height="180" />
+<script xlink:href='https://d3js.org/d3.v5.min.js'></script>
+<script language='javascript'>
+<![CDATA[
+
+console.log('start {minisvg}');
+var rect = d3.select('#myrect2');
+rect.attr('fill', 'red');
+var doc = d3.select('#svg2');
+doc.append('rect')
+  .attr('x', 0)
+  .attr('y', 0)
+  .attr('width', 50)
+  .attr('height', 50)
+  .attr('fill', 'blue')
+  .attr('stroke', 'black');
+console.log('end {minisvg}');
+
+]]>
+</script>
+</svg>

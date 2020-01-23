@@ -1,5 +1,12 @@
 
 
+# minisvg 0.1.6  2020-01-23
+
+* Added javascript handling functions (similar to the CSS handling functions)
+    * `$add_js_url`
+    * `$add_js_code`
+    * Added vignette as an example
+
 # minisvg 0.1.5  2020-01-22
 
 * Refactored how CSS is handled. 

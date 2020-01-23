@@ -48,6 +48,8 @@
     pattern](https://coolbutuseless.github.io/package/minisvg/articles/wallpaper-01.html)
   - [Some examples of filter
     usage](https://coolbutuseless.github.io/package/minisvg/articles/filter-effects)
+  - [Adding javascript to an
+    SVG](https://coolbutuseless.github.io/package/minisvg/articles/javascript-in-svg)
 
 ## Installation
 

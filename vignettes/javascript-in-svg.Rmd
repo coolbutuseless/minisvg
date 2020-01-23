@@ -1,0 +1,112 @@
+---
+title: "javascript-in-svg"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{javascript-in-svg}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = " "
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+## Add Javascript code for a `<script>` block
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create a document with a single blue rectangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = 200, height = 200)
+doc$rect(
+  id     = "myrect", 
+  x      = 10, 
+  y      = 10, 
+  width  = 180, 
+  height = 180, 
+  fill   = 'blue'
+)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add javascript to edit the DOM and change the fill colour to blue
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$add_js_code("
+var element = document.getElementById('myrect');
+element.setAttributeNS(null, 'fill', 'green');
+console.log('hi {minisvg}');
+")
+
+doc$save("svg/javascript-01.svg")
+```
+
+```{r echo=FALSE}
+print(doc)
+```
+
+
+```{r, echo=FALSE}
+htmltools::includeHTML("svg/javascript-01.svg")
+```
+
+
+
+## Link to external Javascript
+
+```{r}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create a document with a single blue rectangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc2 <- svg_doc(width = 200, height = 200, id='svg2')
+doc2$rect(
+  id     = "myrect2", 
+  x      = 10, 
+  y      = 10, 
+  width  = 180, 
+  height = 180, 
+  fill   = 'blue'
+)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Link to the D3.js library
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc2$add_js_url("https://d3js.org/d3.v5.min.js")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add d3.js code to change the fill colour to red 
+# and add a new rectangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc2$add_js_code("
+console.log('start {minisvg}');
+var rect = d3.select('#myrect2');
+rect.attr('fill', 'red');
+var doc = d3.select('#svg2');
+doc.append('rect')
+  .attr('x', 0)
+  .attr('y', 0)
+  .attr('width', 50)
+  .attr('height', 50)
+  .attr('fill', 'blue')
+  .attr('stroke', 'black');
+console.log('end {minisvg}');
+")
+
+doc2$save("svg/javascript-02.svg")
+```
+
+```{r echo=FALSE}
+print(doc2)
+```
+
+
+```{r, echo=FALSE}
+htmltools::includeHTML("svg/javascript-02.svg")
+```
+
+

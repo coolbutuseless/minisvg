@@ -30,6 +30,10 @@ SVGElement <- R6::R6Class(
     #' @field name Tag name for this node e.g. "circle"
     #' @field attribs named list of attributes for this node
     #' @field children list of direct child nodes
+    #' @field css_decls character vector of css declaration text for this node
+    #' @field css_urls character vector of css urls for this node
+    #' @field js_code character vector of javascript code for this node
+    #' @field js_urls character vector of javascript urls for this node
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     name     = NULL,
     attribs  = NULL,
@@ -37,6 +41,8 @@ SVGElement <- R6::R6Class(
 
     css_decls = NULL,
     css_urls  = NULL,
+    js_code   = NULL,
+    js_urls   = NULL,
 
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,6 +58,8 @@ SVGElement <- R6::R6Class(
 
       self$css_urls  <- c()
       self$css_decls <- c()
+      self$js_code   <- c()
+      self$js_urls   <- c()
 
       self$update(...)
 
@@ -254,7 +262,7 @@ SVGElement <- R6::R6Class(
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @description Add a URL to a CSS style sheet
-    #' @param css_url URL to style sheet. e.g. \code{"$add_css_url("css/local.css")}
+    #' @param css_url URL to style sheet. e.g. \code{$add_css_url("css/local.css")}
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     add_css_url = function(css_url) {
       self$css_urls <- c(self$css_urls, css_url)
@@ -268,6 +276,24 @@ SVGElement <- R6::R6Class(
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     add_css = function(css_decl) {
       self$css_decls <- c(self$css_decls, css_decl)
+      invisible(self)
+    },
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Add javascript code for this element
+    #' @param js_code character string containing javascript code.
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    add_js_code = function(js_code) {
+      self$js_code <- c(self$js_code, js_code)
+      invisible(self)
+    },
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Add a javaxcript URL to load within the SVG
+    #' @param js_url URL to javascript code. e.g. \code{$add_js_url("example.org/eg.js")}
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    add_js_url = function(js_url) {
+      self$js_urls <- c(self$js_urls, js_url)
       invisible(self)
     },
 
@@ -306,6 +332,40 @@ SVGElement <- R6::R6Class(
       c(self$css_urls, urls)
     },
 
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Create a character vector of JS code for this node and
+    #'              all child nodes.
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    get_js_code = function() {
+      js_code <- lapply(self$children, function(x) {
+        if (inherits(x, "SVGElement")) {
+          x$get_js_code()
+        } else {
+          NULL
+        }})
+
+      js_code <- unlist(js_code)
+      js_code <- as.character(js_code)
+      c(self$js_code, js_code)
+    },
+
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Create a vector of external JS urls
+    #' @details this includes all CSS URLs for all child elements
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    get_js_urls = function() {
+      urls <- lapply(self$children, function(x) {
+        if (inherits(x, "SVGElement")) {
+          x$get_js_urls()
+        } else {
+          NULL
+        }})
+      urls <- unlist(urls)
+      urls <- as.character(urls)
+      c(self$js_urls, urls)
+    },
+
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @description Create a complete CSS <style> tag using the declarations
@@ -321,14 +381,36 @@ SVGElement <- R6::R6Class(
       }
 
       paste0(c(
-        "<style type='text/css'><![CDATA[",
-        glue::glue("@import url({urls});"),
-        paste(decls, collapse = "\n"),
+        "<style type='text/css'>\n<![CDATA[",
+        glue::glue("@import url({unique(urls)});"),
+        paste(unique(decls), collapse = "\n"),
         "]]>\n</style>"
       ), collapse = "\n")
-
-
     },
+
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Create a complete CSS style tag using the declarations
+    #'              and URLs of the current element, and all child elements.
+    #' @return character string
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    get_js_style = function() {
+      code <- self$get_js_code()
+      urls <- self$get_js_urls()
+
+      if (length(code) == 0 && length(urls) == 0) {
+        return(NULL)
+      }
+
+      paste0(c(
+        glue::glue("<script xlink:href='{unique(urls)}'></script>"),
+        "<script language='javascript'>\n<![CDATA[",
+        paste(unique(code), collapse = "\n"),
+        "]]>\n</script>"
+      ), collapse = "\n")
+    },
+
+
 
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -405,7 +487,8 @@ SVGElement <- R6::R6Class(
 
       if (depth == 0 && 'SVGDocument' %in% class(self)) {
         css_style <- self$get_css_style()
-        c(open, css_style, children, close)
+        js_style  <- self$get_js_style()
+        c(open, css_style, children, js_style, close)
       } else {
         c(open, children, close)
       }
