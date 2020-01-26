@@ -22,11 +22,7 @@ library(minisvg)
 
 
 
-# minisvg   <div style="float: right; width: 230px; height: 230px;">
-```{r echo=FALSE}
-htmltools::includeHTML("man/figures/logo.svg")
-```
-</div>
+# minisvg   <img src="man/figures/logo.png" align="right" height=230>
 
 
 
@@ -257,6 +253,8 @@ cat(
 
 ## Creating the logo for this package
 
+Note: Because github sanitizes SVG files it makes the SVG produced in this section
+unviewable.  Instead, the SVG was first saved, and then rendered to PNG
 
 ```{r}
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -337,11 +335,7 @@ cat(
 ```
 
 
-<div style="width: 400px;">
-```{r echo=FALSE}
-as.character(logo)
-```
-</div>
+<img src="man/figures/logo.png" width=400>
 
 
 ## References

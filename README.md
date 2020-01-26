@@ -1,37 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-\# minisvg
-
-<div style="float: right; width: 230px; height: 230px;">
-
-<!--html_preserve-->
-
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-<style type='text/css'>
-<![CDATA[
-@import url(https://fonts.googleapis.com/css?family=Abril%20Fatface);
-
-.mainfont {
-  font-size: 40px;
-  font-family: 'Abril Fatface', sans-serif;
-  fill: #223344;
-}
-
-]]>
-</style>
-
-<rect fill="white" x="0" y="0" width="100%" height="100%" />
-<image x="25" y="30" width="130" href="https://coolbutuseless.github.io/2020/mini-cooper-s.gif" />
-<polygon points="100,195 17.73,147.5 17.73,52.5 100,5 182.27,52.5 182.27,147.5 100,195" id="hex" stroke="#223344" fill-opacity="0" stroke-width="3" />
-<text x="72" y="160" class="mainfont"> svg </text>
-
-</svg>
-
-<!--/html_preserve-->
-
-</div>
+# minisvg <img src="man/figures/logo.png" align="right" height=230>
 
 <!-- badges: start -->
 
@@ -287,6 +257,10 @@ doc$save("man/figures/README-wallpaper.svg")
 
 ## Creating the logo for this package
 
+Note: Because github sanitizes SVG files it makes the SVG produced in
+this section unviewable. Instead, the SVG was first saved, and then
+rendered to PNG
+
 ``` r
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Building an SVG logo with an animated stripe
@@ -376,37 +350,7 @@ logo$save("man/figures/logo.svg")
   &lt;/text&gt;
 &lt;/svg&gt;</details></pre>
 
-<div style="width: 400px;">
-
-<!--html_preserve-->
-
-<?xml version="1.0" encoding="UTF-8"?>
-
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-<style type='text/css'>
-<![CDATA[
-@import url(https://fonts.googleapis.com/css?family=Abril%20Fatface);
-
-.mainfont {
-  font-size: 40px;
-  font-family: 'Abril Fatface', sans-serif;
-  fill: #223344;
-}
-
-]]>
-</style>
-
-<rect fill="white" x="0" y="0" width="100%" height="100%" />
-<image x="25" y="30" width="130" href="https://coolbutuseless.github.io/2020/mini-cooper-s.gif" />
-<polygon points="100,195 17.73,147.5 17.73,52.5 100,5 182.27,52.5 182.27,147.5 100,195" id="hex" stroke="#223344" fill-opacity="0" stroke-width="3" />
-<text x="72" y="160" class="mainfont"> svg </text>
-
-</svg>
-
-<!--/html_preserve-->
-
-</div>
+<img src="man/figures/logo.png" width=400>
 
 ## References
 
