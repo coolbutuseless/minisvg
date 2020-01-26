@@ -17,44 +17,18 @@ library(minisvg)
 
 
 ```{r echo = FALSE, eval = FALSE}
-# Quick logo generation. Borrowed heavily from Nick Tierney's Syn logo process
-library(magick)
-library(showtext)
-font_add_google("Abril Fatface", "gf")
-
-
 # pkgdown::build_site(override = list(destination = "../coolbutuseless.github.io/package/minisvg"))
 ```
 
 
-```{r echo = FALSE, eval = FALSE}
-img <- image_read("man/figures/mini-cooper-s.gif") %>%
-  image_transparent(color = "#f9fafb", fuzz = 10) %>%
-  image_trim() %>%
-  image_threshold()
 
-
-hexSticker::sticker(subplot  = img,
-                    s_x      = 0.92,
-                    s_y      = 1.2,
-                    s_width  = 1.5,
-                    s_height = 0.95,
-                    package  = "svg",
-                    p_x      = 1,
-                    p_y      = 0.5,
-                    p_color  = "#223344",
-                    p_family = "gf",
-                    p_size   = 11,
-                    h_size   = 1.2,
-                    h_fill   = "#ffffff",
-                    h_color  = "#223344",
-                    filename = "man/figures/logo.png")
-
-image_read("man/figures/logo.png")
+# minisvg   <div style="float: right; width: 230px; height: 230px;">
+```{r echo=FALSE}
+htmltools::includeHTML("man/figures/logo.svg")
 ```
+</div>
 
 
-# minisvg   <img src="man/figures/logo.png" align="right" height=230/>
 
 <!-- badges: start -->
 ![](http://img.shields.io/badge/cool-useless-green.svg)
@@ -187,22 +161,23 @@ mytext$animateTransform(
   dur           = 5,
   repeatCount   = 'indefinite'
 )
+
+# doc$show()
+doc$save("man/figures/README-helloworld.svg")
 ```
 
 
 
 
-```{r echo=FALSE, results='hold'}
-print(doc)
+```{r echo=FALSE, results='asis'}
+cat(
+  "<pre>",
+  "<details><summary style='color: #4169E1;'> Show/hide SVG text </summary>",
+  htmltools::htmlEscape(as.character(doc)),
+  "</details>",
+  "</pre>", sep='')
 ```
 
-
-```{r echo = FALSE}
-if (interactive()) {
-  doc$show()
-  doc$save("man/figures/README-helloworld.svg")
-} 
-```
 
 <img src="man/figures/README-helloworld.svg" />
 
@@ -260,114 +235,113 @@ patg$circle(cx=200, cy=400, r=90, fill= 'none', stroke = '#4a3322', stroke_width
 doc$append(pat)
 
 doc$rect(x=0, y=0, width="100%", height="100%", fill=pat) 
+# doc$show()
+doc$save("man/figures/README-wallpaper.svg")
 ```
 
 
-```{r echo=FALSE, results='hold'}
-print(doc)
+
+
+```{r echo=FALSE, results='asis'}
+cat(
+  "<pre>",
+  "<details><summary style='color: #4169E1;'> Show/hide SVG text </summary>",
+  htmltools::htmlEscape(as.character(doc)),
+  "</details>",
+  "</pre>", sep='')
 ```
 
-```{r echo = FALSE}
-if (interactive()) {
-  doc$show()
-  doc$save("man/figures/README-wallpaper.svg")
-} 
-```
 
 <img src="man/figures/README-wallpaper.svg" />
 
 
+## Creating the logo for this package
 
-## Example `SVGPattern` class 
-
-One of my main uses for `minisvg` will be for pattern creation for use in plotting,
-so there is a specific `SVGPattern` class for manipulating and displaying them.
-
-Key differences from `SVGElement` class:
-
-* `SVGPattern$as_full_svg()` embeds the pattern within a template of a full SVG
-  document and applies the pattern to a rectangle which covers the entire page.
-* `SVGPattern$save_full_svg()` saves the output of `as_full_svg()`
-* Lets the user define `SVGPattern$filter_dev` as a filter that is applied to 
-  the pattern.
-
-```{r}
-pat <- SVGPattern$new(
-  id           = "test1", 
-  width        = 100, 
-  height       = 50,
-  patternUnits = 'userSpaceOnUse'
-)
-
-pat$circle(cx = 20, cy = 20, r = 10)
-
-# pat$show()
-```
-
-
-```{r echo=FALSE, results='hold'}
-print(pat)
-```
-
-```{r echo = FALSE}
-if (interactive()) {
-  pat$show()
-  pat$save_full_svg("man/figures/README-svgpattern.svg", width=250, height = 100)
-} 
-```
-
-<img src="man/figures/README-svgpattern.svg" />
-
-
-## Example Adding a filter to an `SVGPattern` class 
 
 ```{r}
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Define a filter that uses turbulence to drive displacement
+# Building an SVG logo with an animated stripe
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-displacement_filter <- stag$filter(
-  id = "test-dispfilter",
-  x = "-30%", y = "-30%", width="160%", height="160%",
-  stag$feTurbulence(
-    type          = "turbulence",
-    baseFrequency = 0.05,
-    numOctaves    = 4,
-    seed          = 1,
-    result        = "turbulence-image"),
-  stag$feDisplacementMap(
-    in_              = "SourceGraphic",
-    in2              = "turbulence-image",
-    scale            = 20,
-    yChannelSelector = 'G'
-  )
+logo <- svg_doc(width = 200, height = 200)$
+  update(width=NULL, height=NULL)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Background White Rect
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+logo$rect(x=0, y=0, width="100%", height="100%", fill='white')
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Include an image of a Mini Cooper S
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+image <- stag$image(
+  href = "https://coolbutuseless.github.io/2020/mini-cooper-s.gif",
+  width = 130,
+  x = 25, 
+  y = 30
 )
 
+logo$append(image)
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Add the filter to the pattern
+# Create a hexagon filled, and add it to the document
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-pat$filter_def <- displacement_filter
+len     <- 95
+angles  <- (seq(0, 360, 60) + 90) * pi/180
+xs      <- round(len * cos(angles) + 100, 2)
+ys      <- round(len * sin(angles) + 100, 2)
+hex     <- stag$polygon(id = 'hex', xs = xs, ys = ys)
+hex$update(stroke = '#223344', fill_opacity=0, stroke_width = 3)
+logo$append(hex)
 
-# pat$show()
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Text label
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+text <- stag$text(
+  "svg",
+  class = "mainfont",
+  x = 72, y = 160
+)
+
+logo$append(text)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Load CSS for google font and specify styling for 'mainfont'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+logo$add_css_url("https://fonts.googleapis.com/css?family=Abril%20Fatface")
+logo$add_css("
+.mainfont {
+  font-size: 40px;
+  font-family: 'Abril Fatface', sans-serif;
+  fill: #223344;
+}
+")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# output
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# logo$show()
+logo$save("man/figures/logo.svg")
 ```
 
 
-```{r echo=FALSE, results='hold'}
-print(pat)
+
+```{r echo=FALSE, results='asis'}
+cat(
+  "<pre>",
+  "<details><summary style='color: #4169E1;'> Show/hide SVG text </summary>",
+  htmltools::htmlEscape(as.character(logo)),
+  "</details>",
+  "</pre>", sep='')
 ```
 
-```{r echo = FALSE}
-if (interactive()) {
-  pat$show()
-  pat$save_full_svg("man/figures/README-svgpattern-filter.svg", width=250, height = 100)
-} 
+
+<div style="width: 400px;">
+```{r echo=FALSE}
+as.character(logo)
 ```
-
-<img src="man/figures/README-svgpattern-filter.svg" />
-
-
-
-
-
+</div>
 
 
 ## References

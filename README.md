@@ -1,7 +1,37 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# minisvg <img src="man/figures/logo.png" align="right" height=230/>
+\# minisvg
+
+<div style="float: right; width: 230px; height: 230px;">
+
+<!--html_preserve-->
+
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<style type='text/css'>
+<![CDATA[
+@import url(https://fonts.googleapis.com/css?family=Abril%20Fatface);
+
+.mainfont {
+  font-size: 40px;
+  font-family: 'Abril Fatface', sans-serif;
+  fill: #223344;
+}
+
+]]>
+</style>
+
+<rect fill="white" x="0" y="0" width="100%" height="100%" />
+<image x="25" y="30" width="130" href="https://coolbutuseless.github.io/2020/mini-cooper-s.gif" />
+<polygon points="100,195 17.73,147.5 17.73,52.5 100,5 182.27,52.5 182.27,147.5 100,195" id="hex" stroke="#223344" fill-opacity="0" stroke-width="3" />
+<text x="72" y="160" class="mainfont"> svg </text>
+
+</svg>
+
+<!--/html_preserve-->
+
+</div>
 
 <!-- badges: start -->
 
@@ -148,19 +178,20 @@ mytext$animateTransform(
   dur           = 5,
   repeatCount   = 'indefinite'
 )
+
+# doc$show()
+doc$save("man/figures/README-helloworld.svg")
 ```
 
-``` 
-   <?xml version="1.0" encoding="UTF-8"?>
-   <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-     <circle fill="yellow" cx="200" cy="200" r="100" />
-     <rect stroke-width="12" x="0" y="0" width="400" height="400" fill="none" stroke="black" />
-     <text size="30" x="160" y="210">
-       Hello world
-       <animateTransform attributeName="transform" from="0 200 200" to="360 200 200" type="rotate" dur="5" repeatCount="indefinite" />
-     </text>
-   </svg>
-```
+<pre><details><summary style='color: #4169E1;'> Show/hide SVG text </summary>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+  &lt;circle fill="yellow" cx="200" cy="200" r="100" /&gt;
+  &lt;rect stroke-width="12" x="0" y="0" width="400" height="400" fill="none" stroke="black" /&gt;
+  &lt;text size="30" x="160" y="210"&gt;
+    Hello world
+    &lt;animateTransform attributeName="transform" from="0 200 200" to="360 200 200" type="rotate" dur="5" repeatCount="indefinite" /&gt;
+  &lt;/text&gt;
+&lt;/svg&gt;</details></pre>
 
 <img src="man/figures/README-helloworld.svg" />
 
@@ -224,116 +255,158 @@ patg$circle(cx=200, cy=400, r=90, fill= 'none', stroke = '#4a3322', stroke_width
 doc$append(pat)
 
 doc$rect(x=0, y=0, width="100%", height="100%", fill=pat) 
+# doc$show()
+doc$save("man/figures/README-wallpaper.svg")
 ```
 
-``` 
-   <?xml version="1.0" encoding="UTF-8"?>
-   <svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-     <rect fill="#9B8A54" x="0" y="0" width="100%" height="100%" />
-     <pattern id="motif" width="400" height="400" patternUnits="userSpaceOnUse">
-       <g>
-         <circle fill="white" cx="0" cy="0" r="138" />
-         <circle fill="white" cx="0" cy="400" r="138" />
-         <circle fill="white" cx="400" cy="0" r="138" />
-         <circle fill="white" cx="400" cy="400" r="138" />
-         <circle fill="white" cx="200" cy="200" r="138" />
-         <circle fill="none" stroke="#4a3322" stroke-width="35" cx="0" cy="0" r="90" />
-         <circle fill="none" stroke="#4a3322" stroke-width="35" cx="0" cy="400" r="90" />
-         <circle fill="none" stroke="#4a3322" stroke-width="35" cx="400" cy="0" r="90" />
-         <circle fill="none" stroke="#4a3322" stroke-width="35" cx="400" cy="400" r="90" />
-         <circle fill="none" stroke="#4a3322" stroke-width="35" cx="200" cy="200" r="90" />
-         <circle fill="none" stroke="#4a3322" stroke-width="10" cx="200" cy="0" r="90" />
-         <circle fill="none" stroke="#4a3322" stroke-width="10" cx="0" cy="200" r="90" />
-         <circle fill="none" stroke="#4a3322" stroke-width="10" cx="400" cy="200" r="90" />
-         <circle fill="none" stroke="#4a3322" stroke-width="10" cx="200" cy="400" r="90" />
-       </g>
-     </pattern>
-     <rect fill="url('#motif')" x="0" y="0" width="100%" height="100%" />
-   </svg>
-```
+<pre><details><summary style='color: #4169E1;'> Show/hide SVG text </summary>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+  &lt;rect fill="#9B8A54" x="0" y="0" width="100%" height="100%" /&gt;
+  &lt;pattern id="motif" width="400" height="400" patternUnits="userSpaceOnUse"&gt;
+    &lt;g&gt;
+      &lt;circle fill="white" cx="0" cy="0" r="138" /&gt;
+      &lt;circle fill="white" cx="0" cy="400" r="138" /&gt;
+      &lt;circle fill="white" cx="400" cy="0" r="138" /&gt;
+      &lt;circle fill="white" cx="400" cy="400" r="138" /&gt;
+      &lt;circle fill="white" cx="200" cy="200" r="138" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="35" cx="0" cy="0" r="90" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="35" cx="0" cy="400" r="90" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="35" cx="400" cy="0" r="90" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="35" cx="400" cy="400" r="90" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="35" cx="200" cy="200" r="90" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="10" cx="200" cy="0" r="90" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="10" cx="0" cy="200" r="90" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="10" cx="400" cy="200" r="90" /&gt;
+      &lt;circle fill="none" stroke="#4a3322" stroke-width="10" cx="200" cy="400" r="90" /&gt;
+    &lt;/g&gt;
+  &lt;/pattern&gt;
+  &lt;rect fill="url('#motif')" x="0" y="0" width="100%" height="100%" /&gt;
+&lt;/svg&gt;</details></pre>
 
 <img src="man/figures/README-wallpaper.svg" />
 
-## Example `SVGPattern` class
-
-One of my main uses for `minisvg` will be for pattern creation for use
-in plotting, so there is a specific `SVGPattern` class for manipulating
-and displaying them.
-
-Key differences from `SVGElement` class:
-
-  - `SVGPattern$as_full_svg()` embeds the pattern within a template of a
-    full SVG document and applies the pattern to a rectangle which
-    covers the entire page.
-  - `SVGPattern$save_full_svg()` saves the output of `as_full_svg()`
-  - Lets the user define `SVGPattern$filter_dev` as a filter that is
-    applied to the pattern.
-
-<!-- end list -->
-
-``` r
-pat <- SVGPattern$new(
-  id           = "test1", 
-  width        = 100, 
-  height       = 50,
-  patternUnits = 'userSpaceOnUse'
-)
-
-pat$circle(cx = 20, cy = 20, r = 10)
-
-# pat$show()
-```
-
-``` 
-   <pattern id="test1" width="100" height="50" patternUnits="userSpaceOnUse">
-     <circle cx="20" cy="20" r="10" />
-   </pattern>
-```
-
-<img src="man/figures/README-svgpattern.svg" />
-
-## Example Adding a filter to an `SVGPattern` class
+## Creating the logo for this package
 
 ``` r
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Define a filter that uses turbulence to drive displacement
+# Building an SVG logo with an animated stripe
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-displacement_filter <- stag$filter(
-  id = "test-dispfilter",
-  x = "-30%", y = "-30%", width="160%", height="160%",
-  stag$feTurbulence(
-    type          = "turbulence",
-    baseFrequency = 0.05,
-    numOctaves    = 4,
-    seed          = 1,
-    result        = "turbulence-image"),
-  stag$feDisplacementMap(
-    in_              = "SourceGraphic",
-    in2              = "turbulence-image",
-    scale            = 20,
-    yChannelSelector = 'G'
-  )
+logo <- svg_doc(width = 200, height = 200)$
+  update(width=NULL, height=NULL)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Background White Rect
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+logo$rect(x=0, y=0, width="100%", height="100%", fill='white')
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Include an image of a Mini Cooper S
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+image <- stag$image(
+  href = "https://coolbutuseless.github.io/2020/mini-cooper-s.gif",
+  width = 130,
+  x = 25, 
+  y = 30
 )
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Add the filter to the pattern
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-pat$filter_def <- displacement_filter
+logo$append(image)
 
-# pat$show()
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create a hexagon filled, and add it to the document
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+len     <- 95
+angles  <- (seq(0, 360, 60) + 90) * pi/180
+xs      <- round(len * cos(angles) + 100, 2)
+ys      <- round(len * sin(angles) + 100, 2)
+hex     <- stag$polygon(id = 'hex', xs = xs, ys = ys)
+hex$update(stroke = '#223344', fill_opacity=0, stroke_width = 3)
+logo$append(hex)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Text label
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+text <- stag$text(
+  "svg",
+  class = "mainfont",
+  x = 72, y = 160
+)
+
+logo$append(text)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Load CSS for google font and specify styling for 'mainfont'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+logo$add_css_url("https://fonts.googleapis.com/css?family=Abril%20Fatface")
+logo$add_css("
+.mainfont {
+  font-size: 40px;
+  font-family: 'Abril Fatface', sans-serif;
+  fill: #223344;
+}
+")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# output
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# logo$show()
+logo$save("man/figures/logo.svg")
 ```
 
-``` 
-   <filter id="test-dispfilter" x="-30%" y="-30%" width="160%" height="160%">
-     <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="4" seed="1" result="turbulence-image" />
-     <feDisplacementMap in="SourceGraphic" in2="turbulence-image" scale="20" yChannelSelector="G" />
-   </filter>
-   <pattern id="test1" width="100" height="50" patternUnits="userSpaceOnUse">
-     <circle cx="20" cy="20" r="10" />
-   </pattern>
-```
+<pre><details><summary style='color: #4169E1;'> Show/hide SVG text </summary>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;style type='text/css'&gt;
+&lt;![CDATA[
+@import url(https://fonts.googleapis.com/css?family=Abril%20Fatface);
 
-<img src="man/figures/README-svgpattern-filter.svg" />
+.mainfont {
+  font-size: 40px;
+  font-family: 'Abril Fatface', sans-serif;
+  fill: #223344;
+}
+
+]]&gt;
+&lt;/style&gt;
+  &lt;rect fill="white" x="0" y="0" width="100%" height="100%" /&gt;
+  &lt;image x="25" y="30" width="130" href="https://coolbutuseless.github.io/2020/mini-cooper-s.gif" /&gt;
+  &lt;polygon points="100,195 17.73,147.5 17.73,52.5 100,5 182.27,52.5 182.27,147.5 100,195" id="hex" stroke="#223344" fill-opacity="0" stroke-width="3" /&gt;
+  &lt;text x="72" y="160" class="mainfont"&gt;
+    svg
+  &lt;/text&gt;
+&lt;/svg&gt;</details></pre>
+
+<div style="width: 400px;">
+
+<!--html_preserve-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<style type='text/css'>
+<![CDATA[
+@import url(https://fonts.googleapis.com/css?family=Abril%20Fatface);
+
+.mainfont {
+  font-size: 40px;
+  font-family: 'Abril Fatface', sans-serif;
+  fill: #223344;
+}
+
+]]>
+</style>
+
+<rect fill="white" x="0" y="0" width="100%" height="100%" />
+<image x="25" y="30" width="130" href="https://coolbutuseless.github.io/2020/mini-cooper-s.gif" />
+<polygon points="100,195 17.73,147.5 17.73,52.5 100,5 182.27,52.5 182.27,147.5 100,195" id="hex" stroke="#223344" fill-opacity="0" stroke-width="3" />
+<text x="72" y="160" class="mainfont"> svg </text>
+
+</svg>
+
+<!--/html_preserve-->
+
+</div>
 
 ## References
 
