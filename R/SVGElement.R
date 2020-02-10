@@ -162,7 +162,6 @@ SVGElement <- R6::R6Class(
       # For 'feColorMatrix' values is collapsed with a space separator.
       # Ref: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/values
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
       if (self$name %in% c('animate', 'animateMotion', 'animateColor', 'animateTransform')) {
         if ('values' %in% names(attribs)) {
           idx <- which(names(attribs) == 'values')
@@ -187,6 +186,31 @@ SVGElement <- R6::R6Class(
           }
         }
       }
+
+
+      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # If colour/fill supplied as attribute.
+      # - if colour starts with '#' then just pass it through.
+      # - if colour is in 'css_colours' then pass it through
+      # - if colour is not in 'grDevices::colours' then pass it through -
+      #   and SVG will probably render it as black. Let the user cope with this.
+      # - otherwise (it is in grDevices::colors) so convert it to a hexcolour
+      #   and give it to SVG
+      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      colour_attrib_names <- c('fill', 'stroke', 'flood-color', 'lighting-color',
+                               'stop-color')
+      col_idx <- which(names(attribs) %in% colour_attrib_names)
+
+      if (length(col_idx) > 0L) {
+        colour_strings <- unlist(attribs[col_idx])
+        pass_through   <- startsWith(colour_strings, '#') |
+          colour_strings %in% css_colour_names |
+          !(colour_strings %in% r_colour_names)
+
+        col_idx <- col_idx[!pass_through]
+        attribs[col_idx] <- rgb(t(col2rgb(colour_strings[!pass_through])), maxColorValue = 255)
+      }
+
 
 
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -237,7 +261,18 @@ SVGElement <- R6::R6Class(
       if (!is.character(name)) {
         stop("SVGElement$add(): 'name' must be a character string")
       }
-      new_elem <- SVGElement$new(name, ...)
+
+      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # Polygon and polyline have built in helpers to convert coords (xs, ys)
+      # to the required 'points' string. Defer to 'stag' to create the
+      # element
+      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      if (name %in% c('polygon', 'polyline')) {
+        new_elem <- stag[[name]](...)
+      } else {
+        new_elem <- SVGElement$new(name, ...)
+      }
+
       self$append(new_elem)
       invisible(new_elem)
     },

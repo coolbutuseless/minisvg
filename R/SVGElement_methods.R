@@ -123,9 +123,7 @@ SVGElement$set(
   function(xs = NULL, ys = NULL, points = NULL, ...) {
 
     if (is.null(points)) {
-      stopifnot(length(xs) == length(ys))
-      stopifnot(length(xs) > 0)
-      points <- paste(xs, ys, sep = ",", collapse = " ")
+      points <- convert_args_to_points(xs, ys)
     }
 
     elem <- SVGElement$new('polygon', points = points, ...)
@@ -144,9 +142,7 @@ SVGElement$set(
   function(xs = NULL, ys = NULL, points = NULL, ...) {
 
     if (is.null(points)) {
-      stopifnot(length(xs) == length(ys))
-      stopifnot(length(xs) > 0)
-      points <- paste(xs, ys, sep = ",", collapse = " ")
+      points <- convert_args_to_points(xs, ys)
     }
 
     elem <- SVGElement$new('polyline', points = points, ...)

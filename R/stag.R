@@ -46,13 +46,37 @@ for (i in seq_along(element_info)) {
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# SVG polygons and polylines actually need a 'points' argument as a single
+# string of "x0,y0 x1,y1 x2,y2 ...".  Since this isn't really convenient,
+# let the user specify 'xs' and 'ys' vectors of coords which this funciton
+# will collapse to the correct format.
+#
+# If 'xs' is a data.frame then assume that 'x' and 'y' columns contain data.
+# If 'xs' is matrix, then assume first 2 columns are 'x' and 'y' data.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+convert_args_to_points <- function(xs, ys) {
+  if (is.matrix(xs)) {
+    ys <- xs[,2]
+    xs <- xs[,1]
+  } else if (is.data.frame(xs)) {
+    if (!all(c('x', 'y') %in% names(xs))) {
+      stop("polygon/polyline data.frame argument must contain 'x' and 'y'")
+    }
+    ys <- xs[['y']]
+    xs <- xs[['x']]
+  }
+  stopifnot(length(xs) == length(ys))
+  stopifnot(length(xs) > 0)
+  paste(xs, ys, sep = ",", collapse = " ")
+}
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Custom stag function for polygon and polyline to be more R/vector friendly
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 stag$polygon <- function(..., xs, ys, points=NULL) {
   if (is.null(points)) {
-    stopifnot(length(xs) == length(ys))
-    stopifnot(length(xs) > 0)
-    points <- paste(xs, ys, sep = ",", collapse = " ")
+    points <- convert_args_to_points(xs, ys)
   }
 
   SVGElement$new('polygon', points = points, ...)
@@ -64,9 +88,7 @@ stag$polygon <- function(..., xs, ys, points=NULL) {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 stag$polyline <- function(..., xs, ys, points) {
   if (is.null(points)) {
-    stopifnot(length(xs) == length(ys))
-    stopifnot(length(xs) > 0)
-    points <- paste(xs, ys, sep = ",", collapse = " ")
+    points <- convert_args_to_points(xs, ys)
   }
 
   SVGElement$new('polyline', points = points, ...)

@@ -50,6 +50,8 @@
     usage](https://coolbutuseless.github.io/package/minisvg/articles/filter-effects)
   - [Adding javascript to an
     SVG](https://coolbutuseless.github.io/package/minisvg/articles/javascript-in-svg)
+  - [Specifying coordinates for polygons and
+    polylines](https://coolbutuseless.github.io/package/minisvg/articles/specifying-coords-for-polygons-and-polylines)
 
 ## Installation
 

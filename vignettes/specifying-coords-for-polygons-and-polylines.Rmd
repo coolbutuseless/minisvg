@@ -1,0 +1,148 @@
+---
+title: "specifying-coords-for-polygons-and-polylines"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{specifying-coords-for-polygons-and-polylines}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+
+# Introduction
+
+The SVG tags for `<polygon>` and `<polyline>` require a `points` argument which 
+represents the coordinates of the vertices as a single string e.g. "0,0 0,1 1,1 1,0".
+
+This is a little awkward to do from R, so the creation of polygons and polylines
+have some alternate methods for specifying vertices.
+
+# How to create a polygon or polyline
+
+1. Using `stag`. E.g. `stag$polygon(...)`
+2. Using `SVGElement$new('polygon', ...)`
+3. Adding to an exisint element with `elem$add('polygon', ...)`
+
+
+# Using `points`
+
+The actual SVG `points` argument for `<polygon>` and `<polyline>` is a single
+string of the form `x0,y0 x1,y1 x2,y2 ...`
+
+```{r}
+doc <- svg_doc(width=150, height=150)
+doc$add('polygon', points = "0,0 100,0 100,100 0,100", fill = 'blue')
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r}
+doc
+```
+
+
+# Using `xs` and `ys` 
+
+Can use `xs` and `ys` numeric vectors which contain the coordinates.
+
+```{r}
+xs <- c(0, 100, 100, 0)
+ys <- c(0, 0, 100, 100)
+
+doc <- svg_doc(width=150, height=150)
+doc$add('polygon', xs = xs, ys = ys, fill = 'green')
+```
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r}
+doc
+```
+
+# Using `xs` as a data.frame
+
+`xs` can be a data.frame with `x` and `y` numeric columns representing the coorindates.
+
+
+```{r}
+coords_df <- data.frame(
+  x = c(0, 100, 100, 0),
+  y = c(0, 0, 100, 100)
+)
+
+doc <- svg_doc(width=150, height=150)
+doc$add('polygon', xs = coords_df, fill = 'pink')
+```
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r}
+doc
+```
+
+
+
+
+# Using `xs` as a matrix
+
+`xs` can be a matrix with the first 2 columns representing the coorindates.
+
+```{r}
+coords_mat <- matrix(c(
+  0, 100, 100, 0,  
+  0, 0, 100, 100),
+  ncol = 2
+)
+
+doc <- svg_doc(width=150, height=150)
+doc$add('polygon', xs = coords_df, fill = 'orange')
+```
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r}
+doc
+```
+
+
+
+
+
+
+
+
+
+
+

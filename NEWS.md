@@ -1,5 +1,17 @@
 
 
+# minisvg 0.1.7  2020-02-10
+
+* Closes Issue #3. For colours which are specified for 'fill', 'stroke' etc, handle the case where
+  the colour name is valid in R but not in CSS e.g. 'violetred' by converting
+  such cases to a hexcolour. 
+* Closes Issue #1. Polygon/Polyline creation can now take arguments in a number of forms i.e.
+    * `points` the actual argument as specified in SVG standard
+    * `xs` and `ys` as 2 numeric vectors of equal length representing the coordinates
+      of the polygon
+    * `xs` as a matrix with the first 2 columns representing the coordinates.
+    * `xs` as a data.frame with numeric columns `x` and `y`.
+
 # minisvg 0.1.6  2020-01-23
 
 * Added javascript handling functions (similar to the CSS handling functions)
