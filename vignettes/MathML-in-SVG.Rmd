@@ -1,0 +1,99 @@
+---
+title: "MathML-in-SVG"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MathML-in-SVG}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+
+# Introduction
+
+Literal SVG and HTML strings can be included using the `SVGLiteral` R6 class.
+
+This may be useful when:
+
+* You have a character string containing SVG text from an external source to 
+  include directly into your document.
+* You have literal HTML that you'd like to include as a `<foreignObject>` within
+  the SVG
+* You have an object which can be coerced to a character string e.g. a 
+[`minihtml`](https://github.com/coolbutuseless/minihtml) document
+  
+
+# MathML
+
+[MathML](https://en.wikipedia.org/wiki/MathML) is an markup language for 
+describing mathematical notation.
+
+```{r}
+mathml <- '
+<math xmlns = "http://www.w3.org/1998/Math/MathML">
+   <mrow>
+      <mi>A</mi>
+      <mo>=</mo>
+
+      <mfenced open = "[" close="]">
+
+         <mtable>
+            <mtr>
+               <mtd><mi>x</mi></mtd>
+               <mtd><mi>y</mi></mtd>
+            </mtr>
+
+            <mtr>
+               <mtd><mi>z</mi></mtd>
+               <mtd><mi>w</mi></mtd>
+            </mtr>
+         </mtable>
+
+      </mfenced>
+   </mrow>
+</math>'
+```
+
+
+# Inserting literal HTML into an SVG
+
+* Create a `<foreignObject>` 
+* Add an `SVGLiteral` node to the `<foreignObject>` 
+
+```{r}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create an SVG document with a grey rectangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc()
+doc$rect(x = "10%", y = "10%", width = "80%", height = "80%", fill = "silver")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create a literal node with the mathml
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lit <- SVGLiteral$new(mathml)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create a foreign object and add the literal object to it.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+fo <- stag$foreignObject(x = 50, y = 50, width = 100, height = 100)
+fo$append(lit)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# append the foreign object to the document
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$append(fo)
+
+doc
+```
+

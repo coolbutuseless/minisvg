@@ -1,4 +1,11 @@
 
+# minisvg 0.1.8  2020-02-11
+
+* Add `SVGLiteral` class to contain literal strings to include in an SVG document.
+  `SVGLiteral` can only contain a single object which is either a
+  character string or convertible with a call to  `as.character(x)`.  A key use
+  for this node is for including SVG or HTML from another source into the 
+  current document.
 
 # minisvg 0.1.7  2020-02-10
 

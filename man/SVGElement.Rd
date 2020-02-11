@@ -9,6 +9,9 @@ A class representing a single SVG element.
 
 A class representing a single SVG element.
 }
+\section{Super class}{
+\code{\link[minisvg:SVGNode]{minisvg::SVGNode}} -> \code{SVGElement}
+}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
@@ -17,14 +20,6 @@ A class representing a single SVG element.
 \item{\code{attribs}}{named list of attributes for this node}
 
 \item{\code{children}}{list of direct child nodes}
-
-\item{\code{css_decls}}{character vector of css declaration text for this node}
-
-\item{\code{css_urls}}{character vector of css urls for this node}
-
-\item{\code{js_code}}{character vector of javascript code for this node}
-
-\item{\code{js_urls}}{character vector of javascript urls for this node}
 }
 \if{html}{\out{</div>}}
 }
@@ -99,23 +94,29 @@ A class representing a single SVG element.
 \item \href{#method-add}{\code{SVGElement$add()}}
 \item \href{#method-remove}{\code{SVGElement$remove()}}
 \item \href{#method-reset_transform}{\code{SVGElement$reset_transform()}}
-\item \href{#method-add_css_url}{\code{SVGElement$add_css_url()}}
-\item \href{#method-add_css}{\code{SVGElement$add_css()}}
-\item \href{#method-add_js_code}{\code{SVGElement$add_js_code()}}
-\item \href{#method-add_js_url}{\code{SVGElement$add_js_url()}}
-\item \href{#method-get_css_decls}{\code{SVGElement$get_css_decls()}}
-\item \href{#method-get_css_urls}{\code{SVGElement$get_css_urls()}}
-\item \href{#method-get_js_code}{\code{SVGElement$get_js_code()}}
-\item \href{#method-get_js_urls}{\code{SVGElement$get_js_urls()}}
-\item \href{#method-get_css_style}{\code{SVGElement$get_css_style()}}
-\item \href{#method-get_js_style}{\code{SVGElement$get_js_style()}}
 \item \href{#method-as_character_inner}{\code{SVGElement$as_character_inner()}}
 \item \href{#method-as_character}{\code{SVGElement$as_character()}}
-\item \href{#method-print}{\code{SVGElement$print()}}
 \item \href{#method-save}{\code{SVGElement$save()}}
-\item \href{#method-copy}{\code{SVGElement$copy()}}
 \item \href{#method-clone}{\code{SVGElement$clone()}}
 }
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_css">}\href{../../minisvg/html/SVGNode.html#method-add_css}{\code{minisvg::SVGNode$add_css()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_css_url">}\href{../../minisvg/html/SVGNode.html#method-add_css_url}{\code{minisvg::SVGNode$add_css_url()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_code">}\href{../../minisvg/html/SVGNode.html#method-add_js_code}{\code{minisvg::SVGNode$add_js_code()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_url">}\href{../../minisvg/html/SVGNode.html#method-add_js_url}{\code{minisvg::SVGNode$add_js_url()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="copy">}\href{../../minisvg/html/SVGNode.html#method-copy}{\code{minisvg::SVGNode$copy()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_decls">}\href{../../minisvg/html/SVGNode.html#method-get_css_decls}{\code{minisvg::SVGNode$get_css_decls()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_style">}\href{../../minisvg/html/SVGNode.html#method-get_css_style}{\code{minisvg::SVGNode$get_css_style()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_urls">}\href{../../minisvg/html/SVGNode.html#method-get_css_urls}{\code{minisvg::SVGNode$get_css_urls()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_js_code">}\href{../../minisvg/html/SVGNode.html#method-get_js_code}{\code{minisvg::SVGNode$get_js_code()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_js_style">}\href{../../minisvg/html/SVGNode.html#method-get_js_style}{\code{minisvg::SVGNode$get_js_style()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_js_urls">}\href{../../minisvg/html/SVGNode.html#method-get_js_urls}{\code{minisvg::SVGNode$get_js_urls()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="print">}\href{../../minisvg/html/SVGNode.html#method-print}{\code{minisvg::SVGNode$print()}}\out{</span>}
+}
+\out{</details>}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-a"></a>}}
@@ -932,15 +933,15 @@ the newly created element, \emph{not} the document
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-remove"></a>}}
 \subsection{Method \code{remove()}}{
-Remove child objects at the given indicies
+Remove child objects at the given indices
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$remove(indicies)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$remove(indices)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{indicies}}{indicies of the children to remove}
+\item{\code{indicies}}{indices of the children to remove}
 }
 \if{html}{\out{</div>}}
 }
@@ -953,147 +954,6 @@ Remove any transform attributes from this node
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$reset_transform()}\if{html}{\out{</div>}}
 }
 
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_css_url"></a>}}
-\subsection{Method \code{add_css_url()}}{
-Add a URL to a CSS style sheet
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$add_css_url(css_url)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{css_url}}{URL to style sheet. e.g. \code{$add_css_url("css/local.css")}}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_css"></a>}}
-\subsection{Method \code{add_css()}}{
-Add a CSS declaration for this element.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$add_css(css_decl)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{css_dec}}{CSS string, or object which can be coerced to character.
-e.g. \code{$add_dec("#thing {font-size: 27px}")}}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_js_code"></a>}}
-\subsection{Method \code{add_js_code()}}{
-Add javascript code for this element
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$add_js_code(js_code)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{js_code}}{character string containing javascript code.}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_js_url"></a>}}
-\subsection{Method \code{add_js_url()}}{
-Add a javaxcript URL to load within the SVG
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$add_js_url(js_url)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{js_url}}{URL to javascript code. e.g. \code{$add_js_url("example.org/eg.js")}}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_css_decls"></a>}}
-\subsection{Method \code{get_css_decls()}}{
-Create a CSS declaration string for inclusion in the
-             character output for this element.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_css_decls()}\if{html}{\out{</div>}}
-}
-
-\subsection{Details}{
-this includes all css for all child elements
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_css_urls"></a>}}
-\subsection{Method \code{get_css_urls()}}{
-Create a vector or urls for CSS inclustion
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_css_urls()}\if{html}{\out{</div>}}
-}
-
-\subsection{Details}{
-this includes all CSS URLs for all child elements
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_js_code"></a>}}
-\subsection{Method \code{get_js_code()}}{
-Create a character vector of JS code for this node and
-             all child nodes.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_js_code()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_js_urls"></a>}}
-\subsection{Method \code{get_js_urls()}}{
-Create a vector of external JS urls
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_js_urls()}\if{html}{\out{</div>}}
-}
-
-\subsection{Details}{
-this includes all CSS URLs for all child elements
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_css_style"></a>}}
-\subsection{Method \code{get_css_style()}}{
-Create a complete CSS <style> tag using the declarations
-             and URLs of the current element, and all child elements.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_css_style()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-character string
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_js_style"></a>}}
-\subsection{Method \code{get_js_style()}}{
-Create a complete CSS style tag using the declarations
-             and URLs of the current element, and all child elements.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$get_js_style()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-character string
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_character_inner"></a>}}
@@ -1140,24 +1000,6 @@ single character string
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\subsection{Method \code{print()}}{
-Print the SVG string to the terminal
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$print(include_declaration = FALSE, ...)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{include_declaration}}{Include the leading XML declaration? default: FALSE}
-
-\item{\code{...}}{Extra arguments passed to \code{SVGElement$as_character()}}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
 \subsection{Method \code{save()}}{
 Save the text representation of this node and its children
@@ -1176,15 +1018,6 @@ Save the text representation of this node and its children
 }
 \if{html}{\out{</div>}}
 }
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-copy"></a>}}
-\subsection{Method \code{copy()}}{
-Make a deep copy of this node and its children
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SVGElement$copy()}\if{html}{\out{</div>}}
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

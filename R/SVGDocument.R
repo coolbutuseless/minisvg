@@ -20,7 +20,6 @@ SVGDocument <- R6::R6Class(
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @field width,height dimensions of document
-    #' @field css_url External CSS file link. Default: NULL
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     width    = NULL,
     height   = NULL,

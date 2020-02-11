@@ -23,8 +23,15 @@ a$filter_def <- f
 }
 
 }
-\section{Super class}{
-\code{\link[minisvg:SVGElement]{minisvg::SVGElement}} -> \code{SVGPattern}
+\section{Super classes}{
+\code{\link[minisvg:SVGNode]{minisvg::SVGNode}} -> \code{\link[minisvg:SVGElement]{minisvg::SVGElement}} -> \code{SVGPattern}
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{filter_def}}{A filter definition to accompany this pattern}
+}
+\if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -40,12 +47,20 @@ a$filter_def <- f
 \if{html}{
 \out{<details ><summary>Inherited methods</summary>}
 \itemize{
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_css">}\href{../../minisvg/html/SVGNode.html#method-add_css}{\code{minisvg::SVGNode$add_css()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_css_url">}\href{../../minisvg/html/SVGNode.html#method-add_css_url}{\code{minisvg::SVGNode$add_css_url()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_code">}\href{../../minisvg/html/SVGNode.html#method-add_js_code}{\code{minisvg::SVGNode$add_js_code()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_url">}\href{../../minisvg/html/SVGNode.html#method-add_js_url}{\code{minisvg::SVGNode$add_js_url()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="copy">}\href{../../minisvg/html/SVGNode.html#method-copy}{\code{minisvg::SVGNode$copy()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_decls">}\href{../../minisvg/html/SVGNode.html#method-get_css_decls}{\code{minisvg::SVGNode$get_css_decls()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_style">}\href{../../minisvg/html/SVGNode.html#method-get_css_style}{\code{minisvg::SVGNode$get_css_style()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_urls">}\href{../../minisvg/html/SVGNode.html#method-get_css_urls}{\code{minisvg::SVGNode$get_css_urls()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_js_code">}\href{../../minisvg/html/SVGNode.html#method-get_js_code}{\code{minisvg::SVGNode$get_js_code()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_js_style">}\href{../../minisvg/html/SVGNode.html#method-get_js_style}{\code{minisvg::SVGNode$get_js_style()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_js_urls">}\href{../../minisvg/html/SVGNode.html#method-get_js_urls}{\code{minisvg::SVGNode$get_js_urls()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="print">}\href{../../minisvg/html/SVGNode.html#method-print}{\code{minisvg::SVGNode$print()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="a">}\href{../../minisvg/html/SVGElement.html#method-a}{\code{minisvg::SVGElement$a()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="add">}\href{../../minisvg/html/SVGElement.html#method-add}{\code{minisvg::SVGElement$add()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="add_css">}\href{../../minisvg/html/SVGElement.html#method-add_css}{\code{minisvg::SVGElement$add_css()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="add_css_url">}\href{../../minisvg/html/SVGElement.html#method-add_css_url}{\code{minisvg::SVGElement$add_css_url()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="add_js_code">}\href{../../minisvg/html/SVGElement.html#method-add_js_code}{\code{minisvg::SVGElement$add_js_code()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="add_js_url">}\href{../../minisvg/html/SVGElement.html#method-add_js_url}{\code{minisvg::SVGElement$add_js_url()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="animate">}\href{../../minisvg/html/SVGElement.html#method-animate}{\code{minisvg::SVGElement$animate()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="animateMotion">}\href{../../minisvg/html/SVGElement.html#method-animateMotion}{\code{minisvg::SVGElement$animateMotion()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="animateTransform">}\href{../../minisvg/html/SVGElement.html#method-animateTransform}{\code{minisvg::SVGElement$animateTransform()}}\out{</span>}
@@ -53,7 +68,6 @@ a$filter_def <- f
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="as_character_inner">}\href{../../minisvg/html/SVGElement.html#method-as_character_inner}{\code{minisvg::SVGElement$as_character_inner()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="circle">}\href{../../minisvg/html/SVGElement.html#method-circle}{\code{minisvg::SVGElement$circle()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="clipPath">}\href{../../minisvg/html/SVGElement.html#method-clipPath}{\code{minisvg::SVGElement$clipPath()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="copy">}\href{../../minisvg/html/SVGElement.html#method-copy}{\code{minisvg::SVGElement$copy()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="defs">}\href{../../minisvg/html/SVGElement.html#method-defs}{\code{minisvg::SVGElement$defs()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="desc">}\href{../../minisvg/html/SVGElement.html#method-desc}{\code{minisvg::SVGElement$desc()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="discard">}\href{../../minisvg/html/SVGElement.html#method-discard}{\code{minisvg::SVGElement$discard()}}\out{</span>}
@@ -82,12 +96,6 @@ a$filter_def <- f
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="filter">}\href{../../minisvg/html/SVGElement.html#method-filter}{\code{minisvg::SVGElement$filter()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="foreignObject">}\href{../../minisvg/html/SVGElement.html#method-foreignObject}{\code{minisvg::SVGElement$foreignObject()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="g">}\href{../../minisvg/html/SVGElement.html#method-g}{\code{minisvg::SVGElement$g()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_css_decls">}\href{../../minisvg/html/SVGElement.html#method-get_css_decls}{\code{minisvg::SVGElement$get_css_decls()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_css_style">}\href{../../minisvg/html/SVGElement.html#method-get_css_style}{\code{minisvg::SVGElement$get_css_style()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_css_urls">}\href{../../minisvg/html/SVGElement.html#method-get_css_urls}{\code{minisvg::SVGElement$get_css_urls()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_js_code">}\href{../../minisvg/html/SVGElement.html#method-get_js_code}{\code{minisvg::SVGElement$get_js_code()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_js_style">}\href{../../minisvg/html/SVGElement.html#method-get_js_style}{\code{minisvg::SVGElement$get_js_style()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="get_js_urls">}\href{../../minisvg/html/SVGElement.html#method-get_js_urls}{\code{minisvg::SVGElement$get_js_urls()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="image">}\href{../../minisvg/html/SVGElement.html#method-image}{\code{minisvg::SVGElement$image()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="line">}\href{../../minisvg/html/SVGElement.html#method-line}{\code{minisvg::SVGElement$line()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="linearGradient">}\href{../../minisvg/html/SVGElement.html#method-linearGradient}{\code{minisvg::SVGElement$linearGradient()}}\out{</span>}
@@ -99,7 +107,6 @@ a$filter_def <- f
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="pattern">}\href{../../minisvg/html/SVGElement.html#method-pattern}{\code{minisvg::SVGElement$pattern()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="polygon">}\href{../../minisvg/html/SVGElement.html#method-polygon}{\code{minisvg::SVGElement$polygon()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="polyline">}\href{../../minisvg/html/SVGElement.html#method-polyline}{\code{minisvg::SVGElement$polyline()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="print">}\href{../../minisvg/html/SVGElement.html#method-print}{\code{minisvg::SVGElement$print()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="radialGradient">}\href{../../minisvg/html/SVGElement.html#method-radialGradient}{\code{minisvg::SVGElement$radialGradient()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="rect">}\href{../../minisvg/html/SVGElement.html#method-rect}{\code{minisvg::SVGElement$rect()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="remove">}\href{../../minisvg/html/SVGElement.html#method-remove}{\code{minisvg::SVGElement$remove()}}\out{</span>}
