@@ -117,7 +117,7 @@ SVGElement <- R6::R6Class(
         if (inherits(attrib, 'SVGElement')) {
           id <- attrib$attribs$id %||% "REFERENCE_ELEMENT_HAS_NO_ID"
           # paste0("#", id)
-          paste0("url('#", id, "')")
+          paste0("url(#", id, ")")
         } else {
           attrib
         }})

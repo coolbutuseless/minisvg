@@ -1,4 +1,10 @@
 
+# minisvg 0.1.9  2020-02-13
+
+* Closes Issue #4. When an attribute refers to an SVGElement object, the url
+  is now represented as `url(#id)` rather than `url('#id')`.
+
+
 # minisvg 0.1.8  2020-02-11
 
 * Add `SVGLiteral` class to contain literal strings to include in an SVG document.

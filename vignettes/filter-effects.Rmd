@@ -95,7 +95,7 @@ Example from [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Element
 
 ```{r}
 doc <- svg_doc(
-  width="40%", height="40%", viewBox="0 0 150 360",
+  width="40%", height="40%", viewBox="0 0 150 250",
   preserveAspectRatio = "xMidYMid meet",
   
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,7 +128,7 @@ doc <- svg_doc(
       values = "0 0 0 0 0   1 1 1 1 0   0 0 0 0 0   0 0 0 1 0"
     )
   ),
-  stag$use(href='#circles', transform="translate(0 35)", filter="url(#colorMeMatrix)"),
+  stag$use(href='#circles', transform="translate(0 70)", filter="url(#colorMeMatrix)"),
   stag$text(x=70, y=120, "Matrix"),
   
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,7 +142,7 @@ doc <- svg_doc(
       values = "0.2"
     )
   ),
-  stag$use(href='#circles', transform="translate(0 70)", filter="url(#colorMeSaturate)"),
+  stag$use(href='#circles', transform="translate(0 140)", filter="url(#colorMeSaturate)"),
   stag$text(x=70, y=190, "Saturate")
 )
 ```

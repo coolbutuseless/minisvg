@@ -254,7 +254,7 @@ doc$save("man/figures/README-wallpaper.svg")
       &lt;circle fill="none" stroke="#4a3322" stroke-width="10" cx="200" cy="400" r="90" /&gt;
     &lt;/g&gt;
   &lt;/pattern&gt;
-  &lt;rect fill="url('#motif')" x="0" y="0" width="100%" height="100%" /&gt;
+  &lt;rect fill="url(#motif)" x="0" y="0" width="100%" height="100%" /&gt;
 &lt;/svg&gt;</details></pre>
 
 <img src="man/figures/README-wallpaper.svg" />

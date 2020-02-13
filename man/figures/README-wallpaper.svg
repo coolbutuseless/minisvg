@@ -18,5 +18,5 @@
       <circle fill="none" stroke="#4a3322" stroke-width="10" cx="200" cy="400" r="90" />
     </g>
   </pattern>
-  <rect fill="url('#motif')" x="0" y="0" width="100%" height="100%" />
+  <rect fill="url(#motif)" x="0" y="0" width="100%" height="100%" />
 </svg>
