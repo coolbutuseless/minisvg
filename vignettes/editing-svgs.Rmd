@@ -40,8 +40,11 @@ a list of attributes (`$attrib`).
 Once an external SVG is parsed into {minisvg} format, you can then directly manipulate the individual 
 objects. 
 
-In the following example, an SVG document containing a single rectangle is read into {minisvg}.  
-The rectangle is identified, and its attributes are update to change the `fill` colour.
+In the following example
+
+* an SVG document containing a single rectangle is read into {minisvg} 
+* the first child of the root node is selected (i.e. the rectangle)
+* the attributes of the first child are updated to change the `fill` colour
 
 
 
