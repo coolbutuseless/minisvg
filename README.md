@@ -54,6 +54,8 @@
     polylines](https://coolbutuseless.github.io/package/minisvg/articles/specifying-coords-for-polygons-and-polylines)
   - [Inserting literal HTML into an SVG: MathML in an
     SVG](https://coolbutuseless.github.io/package/minisvg/articles/MathML-in-SVG)
+  - [Editing an
+    SVG](https://coolbutuseless.github.io/package/minisvg/articles/editing-svgs)
 
 ## Installation
 
