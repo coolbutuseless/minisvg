@@ -15,6 +15,7 @@ Imports:
     glue
 Suggests: 
     knitr,
+    details,
     rmarkdown,
     xml2,
     purrr,
