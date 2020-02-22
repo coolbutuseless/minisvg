@@ -34,6 +34,7 @@ SVGElement <- R6::R6Class(
     name     = NULL,
     attribs  = NULL,
     children = NULL,
+    child    = NULL,
 
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,6 +47,7 @@ SVGElement <- R6::R6Class(
       self$name     <- name
       self$attribs  <- list()
       self$children <- list()
+      self$child    <- list()
 
       self$update(...)
 
@@ -232,8 +234,34 @@ SVGElement <- R6::R6Class(
         self$children <- append(self$children, child_objects, after = position - 1)
       }
 
+      # update $child
+      lapply(child_objects, self$update_child_list)
+
       invisible(self)
     },
+
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Update the list of child nodes by tag name
+    #' @param new_elem the element being added
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    update_child_list = function(new_elem) {
+
+      if (!inherits(new_elem, 'SVGNode')) {
+        return(invisible(self))
+      }
+
+      tagname <- new_elem$name %||% 'unknown'
+
+      if (!tagname %in% names(self$child)) {
+        self$child[[tagname]] <- list()
+      }
+
+      self$child[[tagname]] <- append(self$child[[tagname]], new_elem)
+
+      invisible(self)
+    },
+
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @description Simultaneous create an SVG element and add it as a child node

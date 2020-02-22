@@ -127,6 +127,7 @@ a$filter_def <- f
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="title">}\href{../../minisvg/html/SVGElement.html#method-title}{\code{minisvg::SVGElement$title()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="translate">}\href{../../minisvg/html/SVGElement.html#method-translate}{\code{minisvg::SVGElement$translate()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="update">}\href{../../minisvg/html/SVGElement.html#method-update}{\code{minisvg::SVGElement$update()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="update_child_list">}\href{../../minisvg/html/SVGElement.html#method-update_child_list}{\code{minisvg::SVGElement$update_child_list()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="use">}\href{../../minisvg/html/SVGElement.html#method-use}{\code{minisvg::SVGElement$use()}}\out{</span>}
 }
 \out{</details>}

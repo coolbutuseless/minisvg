@@ -91,6 +91,7 @@ A class representing a single SVG element.
 \item \href{#method-new}{\code{SVGElement$new()}}
 \item \href{#method-update}{\code{SVGElement$update()}}
 \item \href{#method-append}{\code{SVGElement$append()}}
+\item \href{#method-update_child_list}{\code{SVGElement$update_child_list()}}
 \item \href{#method-add}{\code{SVGElement$add()}}
 \item \href{#method-remove}{\code{SVGElement$remove()}}
 \item \href{#method-reset_transform}{\code{SVGElement$reset_transform()}}
@@ -904,6 +905,22 @@ Append child nodes at the specified position.
 
 \item{\code{position}}{by default at the end of the list of children nodes
 but 'position' argument can be used to set location by index}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-update_child_list"></a>}}
+\subsection{Method \code{update_child_list()}}{
+Update the list of child nodes by tag name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$update_child_list(new_elem)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{new_elem}}{the element being added}
 }
 \if{html}{\out{</div>}}
 }

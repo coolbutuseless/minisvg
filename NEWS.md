@@ -1,4 +1,8 @@
 
+# minisvg 0.1.10  2020-02-22
+
+* Add new `$child` list which tracks the child elements of a node by tag name.
+
 # minisvg 0.1.9  2020-02-13
 
 * Closes Issue #4. When an attribute refers to an SVGElement object, the url

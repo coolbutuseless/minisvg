@@ -1,7 +1,7 @@
 Package: minisvg
 Type: Package
 Title: SVG Document Builder
-Version: 0.1.9
+Version: 0.1.10
 Author: mikefc
 Maintainer: mikefc <mikefc@coolbutuseless.com>
 Description: Build SVG documents with R.
@@ -18,5 +18,6 @@ Suggests:
     rmarkdown,
     xml2,
     base64enc,
-    htmltools
+    htmltools,
+    testthat (>= 2.1.0)
 VignetteBuilder: knitr
