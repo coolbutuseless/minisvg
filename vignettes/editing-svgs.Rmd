@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup, message=FALSE}
 library(minisvg)
 library(purrr)
+library(details)
 ```
 
 # Manipulating/Editing an Existing SVG
@@ -58,12 +59,9 @@ svg_text <- '
 doc_orig <- minisvg::parse_svg_doc(svg_text)
 ```
 
-<details closed>
-<summary> Show SVG text (click to open) </summary>
-```{r echo=FALSE}
-print(doc_orig)
+```{details, echo=FALSE, details.summary = 'Show SVG text (click to open)'}
+doc_orig
 ```
-</details> <br />
 
 ```{r echo = FALSE}
 if (interactive()) {
