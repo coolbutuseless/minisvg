@@ -29,7 +29,8 @@ SVGElement <- R6::R6Class(
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @field name Tag name for this node e.g. "circle"
     #' @field attribs named list of attributes for this node
-    #' @field children list of direct child nodes
+    #' @field children ordered list of direct child nodes (kept in insertion order)
+    #' @field child lists of child nodes indexed by tag name.
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     name     = NULL,
     attribs  = NULL,
@@ -264,6 +265,22 @@ SVGElement <- R6::R6Class(
 
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description URebuild the list of child nodes by tag name
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    rebuild_child_list = function() {
+      self$child <- list()
+      for (elem in self$children) {
+        self$update_child_list(elem)
+        if (inherits(elem, 'SVGElement')) {
+          elem$rebuild_child_list()
+        }
+      }
+      invisible(self)
+    },
+
+
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @description Simultaneous create an SVG element and add it as a child node
     #'
     #' @param name name of node to create
@@ -295,7 +312,7 @@ SVGElement <- R6::R6Class(
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @description Remove child objects at the given indices
     #'
-    #' @param indicies indices of the children to remove
+    #' @param indices indices of the children to remove
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     remove = function(indices) {
       self$children[indices] <- NULL
@@ -423,6 +440,69 @@ SVGElement <- R6::R6Class(
 
       writeLines(svg_string, filename)
       invisible(self)
+    },
+
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description test if this element has all of the named attributes
+    #'
+    #' @param named list of attributes
+    #'
+    #' @return logical.  Note: if \code{length(attribs) == 0}, this method returns
+    #' TRUE
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    has_attribs = function(attribs) {
+      if (length(attribs) == 0) {
+        return(TRUE)
+      }
+
+      if (!all(names(attribs) %in% names(self$attribs))) {
+        return(FALSE)
+      }
+
+      for (attrib_name in names(attribs)) {
+        if (!isTRUE(self$attribs[[attrib_name]] %in% attribs[[attrib_name]])) {
+          return(FALSE)
+        }
+      }
+
+      TRUE
+    },
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Find elements which match the given tag names and attributes.
+    #'
+    #' @param tag character vector of tags to find. default: c()
+    #' @param attribs named list of attributes to match. default: list().
+    #'        Note that attribute matching is matched using \code{in}
+    #'
+    #' @examples
+    #' \dontrun{
+    #' doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
+    #' }
+    #'
+    #' @return List of R6 reference objects
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    find = function(tag=c(), attribs=list()) {
+      matching_children_of_this_node <- Filter(function(x) {
+        (length(tag) == 0 || isTRUE(x$name %in% tag)) &&
+        x$has_attribs(attribs)
+      }, self$children)
+
+      matching_children_of_sub_nodes <- lapply(self$children, function(x) {
+        x$find(tag=tag, attribs=attribs)
+      })
+
+      c(matching_children_of_this_node, unlist(matching_children_of_sub_nodes))
+    },
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Make a deep copy of this node and its children
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    copy = function() {
+      new_elem <- self$clone(deep = TRUE)
+      new_elem$rebuild_child_list()
+      invisible(new_elem)
     }
   ), # End 'public'
 
@@ -430,7 +510,7 @@ SVGElement <- R6::R6Class(
   private = list(
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # When called with `$clone(deep = TRUE)`, the 'deep_clone' function is
-    # called for every name/value pari in the object.
+    # called for every name/value pair in the object.
     # Need special handling for:
     #   - 'children' is a list of R6 objects
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

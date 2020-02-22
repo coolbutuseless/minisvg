@@ -255,6 +255,19 @@ SVGNode <- R6::R6Class(
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     copy = function() {
       self$clone(deep = TRUE)
+    },
+
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #' @description Find elements which match the given tags
+    #'
+    #' @param tags character vector of tags to accept
+    #'
+    #' @return minisvg objects which inherit from SVGNode will return NULL
+    #'         unless this method is overridden.
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    find = function(tags) {
+      NULL
     }
   )
 )

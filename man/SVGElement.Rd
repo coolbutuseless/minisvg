@@ -9,6 +9,17 @@ A class representing a single SVG element.
 
 A class representing a single SVG element.
 }
+\examples{
+
+## ------------------------------------------------
+## Method `SVGElement$find`
+## ------------------------------------------------
+
+\dontrun{
+doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
+}
+
+}
 \section{Super class}{
 \code{\link[minisvg:SVGNode]{minisvg::SVGNode}} -> \code{SVGElement}
 }
@@ -19,7 +30,9 @@ A class representing a single SVG element.
 
 \item{\code{attribs}}{named list of attributes for this node}
 
-\item{\code{children}}{list of direct child nodes}
+\item{\code{children}}{ordered list of direct child nodes (kept in insertion order)}
+
+\item{\code{child}}{lists of child nodes indexed by tag name.}
 }
 \if{html}{\out{</div>}}
 }
@@ -92,12 +105,16 @@ A class representing a single SVG element.
 \item \href{#method-update}{\code{SVGElement$update()}}
 \item \href{#method-append}{\code{SVGElement$append()}}
 \item \href{#method-update_child_list}{\code{SVGElement$update_child_list()}}
+\item \href{#method-rebuild_child_list}{\code{SVGElement$rebuild_child_list()}}
 \item \href{#method-add}{\code{SVGElement$add()}}
 \item \href{#method-remove}{\code{SVGElement$remove()}}
 \item \href{#method-reset_transform}{\code{SVGElement$reset_transform()}}
 \item \href{#method-as_character_inner}{\code{SVGElement$as_character_inner()}}
 \item \href{#method-as_character}{\code{SVGElement$as_character()}}
 \item \href{#method-save}{\code{SVGElement$save()}}
+\item \href{#method-has_attribs}{\code{SVGElement$has_attribs()}}
+\item \href{#method-find}{\code{SVGElement$find()}}
+\item \href{#method-copy}{\code{SVGElement$copy()}}
 \item \href{#method-clone}{\code{SVGElement$clone()}}
 }
 }
@@ -108,7 +125,6 @@ A class representing a single SVG element.
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_css_url">}\href{../../minisvg/html/SVGNode.html#method-add_css_url}{\code{minisvg::SVGNode$add_css_url()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_code">}\href{../../minisvg/html/SVGNode.html#method-add_js_code}{\code{minisvg::SVGNode$add_js_code()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_url">}\href{../../minisvg/html/SVGNode.html#method-add_js_url}{\code{minisvg::SVGNode$add_js_url()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="copy">}\href{../../minisvg/html/SVGNode.html#method-copy}{\code{minisvg::SVGNode$copy()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_decls">}\href{../../minisvg/html/SVGNode.html#method-get_css_decls}{\code{minisvg::SVGNode$get_css_decls()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_style">}\href{../../minisvg/html/SVGNode.html#method-get_css_style}{\code{minisvg::SVGNode$get_css_style()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_urls">}\href{../../minisvg/html/SVGNode.html#method-get_css_urls}{\code{minisvg::SVGNode$get_css_urls()}}\out{</span>}
@@ -926,6 +942,15 @@ Update the list of child nodes by tag name
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-rebuild_child_list"></a>}}
+\subsection{Method \code{rebuild_child_list()}}{
+URebuild the list of child nodes by tag name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$rebuild_child_list()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add"></a>}}
 \subsection{Method \code{add()}}{
 Simultaneous create an SVG element and add it as a child node
@@ -958,7 +983,7 @@ Remove child objects at the given indices
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{indicies}}{indices of the children to remove}
+\item{\code{indices}}{indices of the children to remove}
 }
 \if{html}{\out{</div>}}
 }
@@ -1035,6 +1060,68 @@ Save the text representation of this node and its children
 }
 \if{html}{\out{</div>}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-has_attribs"></a>}}
+\subsection{Method \code{has_attribs()}}{
+test if this element has all of the named attributes
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$has_attribs(attribs)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{named}}{list of attributes}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+logical.  Note: if \code{length(attribs) == 0}, this method returns
+TRUE
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-find"></a>}}
+\subsection{Method \code{find()}}{
+Find elements which match the given tag names and attributes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$find(tag = c(), attribs = list())}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{tag}}{character vector of tags to find. default: c()}
+
+\item{\code{attribs}}{named list of attributes to match. default: list().
+Note that attribute matching is matched using \code{in}}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+List of R6 reference objects
+}
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{\dontrun{
+doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
+}
+
+}
+\if{html}{\out{</div>}}
+
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-copy"></a>}}
+\subsection{Method \code{copy()}}{
+Make a deep copy of this node and its children
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGElement$copy()}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

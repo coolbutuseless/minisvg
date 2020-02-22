@@ -10,73 +10,236 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "  "
 )
 ```
 
-```{r setup}
+```{r setup, message=FALSE}
 library(minisvg)
+library(purrr)
 ```
 
-# Editing an Existing SVG
+# Manipulating/Editing an Existing SVG
 
-It is possible for {minisvg} to pull in external SVG and edit it.
+Editing SVG can be tricky because they are nested structures.
 
-However, the capabilities are not very advanced.  This is mostly because my 
-focus in writing {minisvg} was in **creating** SVG documents in R.
-
-Since SVG documents are just XML documents, you can just use [xml2](https://github.com/r-lib/xml2) to 
-manipulate the nodes.  However, this will require a conversion from {minisvg} to {xml2} using `xml2::read_xml(as.character(svg_doc))`.
-
-This vignette will evolve as I add more SVG manipulation methods.  
+`{minisvg}` contains *some* tools for interogating/manipulating existing SVG, but 
+the current focus in {minisvg} is really **creating** SVG documents in R.
 
 
-# Basic editing.
+# Overview of the structure of a {minisvg} document
 
 A {minisvg} SVG document is just a tree of R6 objects, where each object represents
-a single SVG tag (e.g. `<rect>` or `<pattern>`).  Each object has a list of children (`$childen`) and
+a single SVG tag (e.g. `<rect>` or `<pattern>`).  
+
+
+Each object has a list of children (`$childen`) and
 a list of attributes (`$attrib`).
 
-Once an external SVG is parsed into {minisvg} format, you can then directly manipulate the individual 
-objects. 
+There is also an alternate representation of the child elements of a node in the 
+member `$child`. E.g. All the children of the current element which are `<rect>` tags
+are stored in the list `$child$rect`
 
-In the following example
-
-* an SVG document containing a single rectangle is read into {minisvg} 
-* the first child of the root node is selected (i.e. the rectangle)
-* the attributes of the first child are updated to change the `fill` colour
-
-
+# Example SVG for this vignette
 
 ```{r}
-library(minisvg)
-foreign_svg <- '
+svg_text <- '
 <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <rect fill="black" x="10%" y="10%" width="80%" height="80%" />
+  <g>
+    <circle fill="lightgrey" cx="50%" cy="50%" r = "45%" id="bgcircle" stroke="black" stroke-width="4" />
+  </g>
+  <rect fill="red"    x="40%" y="10%" width="20%" height="20%" />
+  <rect fill="yellow" x="40%" y="40%" width="20%" height="20%" />
+  <g>
+    <rect fill="green"  x="40%" y="70%" width="20%" height="20%" id="gogogo" stroke="black" stroke-width="4" />
+  </g>
 </svg>'
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Parse the text as SVG into {minisvg} format. Underneath the hood, this
-# actually uses `xml2::parse_xml()`
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-my_svg <- minisvg::parse_svg_doc(foreign_svg)
-
-my_svg
+doc_orig <- minisvg::parse_svg_doc(svg_text)
 ```
 
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc_orig)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc_orig$show()
+} else {
+  doc_orig
+}
+```
+
+
+# Selecting and editing an element by its index in `$children`
+
+If the structure of an SVG document is known, the element may be selected by its 
+index in the `$children` list of all child nodes.
+
+In this example, the second child of the root document is selected (i.e. the red square) and its 
+fill attribute is updated.
 
 ```{r}
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Extract the first rectangle and change its fill attribute
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-first_rect <- my_svg$children[[1]]
-first_rect$attribs$fill <- 'green'
+doc         <- doc_orig$copy()
+first_child <- doc$children[[2]]
 
-my_svg
+first_child$attribs$fill <- 'pink'
 ```
 
-```{r echo=FALSE, comment=" "}
-print(my_svg)
+
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
 ```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+# Selecting and editing all direct child elements by type
+
+Each SVG element node keeps both a `$children` list of nodes (which is arranged by 
+insertion order), and a `$child` list which is grouped by tag names.
+
+All direct child elements with a particular tag name, e.g. `circle`, may be accessed using
+`$child[['circle']]`.
+
+In the following example, the **two** direct child rectangles have their `fill` attribute updated.
+Note that the small green rectangle is not updated as it is not a direct child of the root document.
+
+
+
+```{r}
+doc   <- doc_orig$copy()
+rects <- doc$child$rect
+
+purrr::walk(rects, ~.x$update(fill = 'blue'))
+```
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+# Selecting and editing a nested child element by type
+
+In the following example, the green rectangle is updated. It is accessed as the first child rectangle
+of the second child `g` tag.
+
+
+```{r}
+doc        <- doc_orig$copy()
+small_rect <- doc$child$g[[2]]$child$rect[[1]]
+
+small_rect$update(fill = 'lightblue')
+```
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+# Finding any nested child element by attribute
+
+In the following example, all elements with with green or light grey fill are found and updated
+
+
+```{r}
+doc      <- doc_orig$copy()
+rg_elems <- doc$find(attribs = list(fill=c('lightgrey', 'green')))
+
+purrr::walk(rg_elems, ~.x$update(fill = 'blue'))
+```
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+# Finding any nested child element by attribute and tag name.
+
+In the following example, all rectangles with a black outline (stroke) are found and updated
+
+
+```{r}
+doc        <- doc_orig$copy()
+rect_elems <- doc$find(tag = 'rect', attribs = list(stroke = 'black'))
+
+purrr::walk(rect_elems, ~.x$update(fill = 'black', stroke = 'green'))
+```
+
+<details closed>
+<summary> Show SVG text (click to open) </summary>
+```{r echo=FALSE}
+print(doc)
+```
+</details> <br />
+
+```{r echo = FALSE}
+if (interactive()) {
+  doc$show()
+} else {
+  doc
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 

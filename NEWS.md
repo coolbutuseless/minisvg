@@ -1,7 +1,9 @@
 
 # minisvg 0.1.10  2020-02-22
 
-* Add new `$child` list which tracks the child elements of a node by tag name.
+* Added new `$child` list which tracks the direct child elements by tag name.
+* Added new `$find(tag, attribs)` which will return a list of all child nodes matching the 
+  given tag names and attributes.
 
 # minisvg 0.1.9  2020-02-13
 

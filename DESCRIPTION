@@ -17,6 +17,7 @@ Suggests:
     knitr,
     rmarkdown,
     xml2,
+    purrr,
     base64enc,
     htmltools,
     testthat (>= 2.1.0)

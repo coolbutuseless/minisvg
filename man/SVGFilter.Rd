@@ -39,7 +39,6 @@ f <- SVGFilter$new(id = "turbulence-filter", stag$feTurbulence(...))
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_css_url">}\href{../../minisvg/html/SVGNode.html#method-add_css_url}{\code{minisvg::SVGNode$add_css_url()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_code">}\href{../../minisvg/html/SVGNode.html#method-add_js_code}{\code{minisvg::SVGNode$add_js_code()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_url">}\href{../../minisvg/html/SVGNode.html#method-add_js_url}{\code{minisvg::SVGNode$add_js_url()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="copy">}\href{../../minisvg/html/SVGNode.html#method-copy}{\code{minisvg::SVGNode$copy()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_decls">}\href{../../minisvg/html/SVGNode.html#method-get_css_decls}{\code{minisvg::SVGNode$get_css_decls()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_style">}\href{../../minisvg/html/SVGNode.html#method-get_css_style}{\code{minisvg::SVGNode$get_css_style()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_urls">}\href{../../minisvg/html/SVGNode.html#method-get_css_urls}{\code{minisvg::SVGNode$get_css_urls()}}\out{</span>}
@@ -57,6 +56,7 @@ f <- SVGFilter$new(id = "turbulence-filter", stag$feTurbulence(...))
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="as_character_inner">}\href{../../minisvg/html/SVGElement.html#method-as_character_inner}{\code{minisvg::SVGElement$as_character_inner()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="circle">}\href{../../minisvg/html/SVGElement.html#method-circle}{\code{minisvg::SVGElement$circle()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="clipPath">}\href{../../minisvg/html/SVGElement.html#method-clipPath}{\code{minisvg::SVGElement$clipPath()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="copy">}\href{../../minisvg/html/SVGElement.html#method-copy}{\code{minisvg::SVGElement$copy()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="defs">}\href{../../minisvg/html/SVGElement.html#method-defs}{\code{minisvg::SVGElement$defs()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="desc">}\href{../../minisvg/html/SVGElement.html#method-desc}{\code{minisvg::SVGElement$desc()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="discard">}\href{../../minisvg/html/SVGElement.html#method-discard}{\code{minisvg::SVGElement$discard()}}\out{</span>}
@@ -83,8 +83,10 @@ f <- SVGFilter$new(id = "turbulence-filter", stag$feTurbulence(...))
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feTile">}\href{../../minisvg/html/SVGElement.html#method-feTile}{\code{minisvg::SVGElement$feTile()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="feTurbulence">}\href{../../minisvg/html/SVGElement.html#method-feTurbulence}{\code{minisvg::SVGElement$feTurbulence()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="filter">}\href{../../minisvg/html/SVGElement.html#method-filter}{\code{minisvg::SVGElement$filter()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="find">}\href{../../minisvg/html/SVGElement.html#method-find}{\code{minisvg::SVGElement$find()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="foreignObject">}\href{../../minisvg/html/SVGElement.html#method-foreignObject}{\code{minisvg::SVGElement$foreignObject()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="g">}\href{../../minisvg/html/SVGElement.html#method-g}{\code{minisvg::SVGElement$g()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="has_attribs">}\href{../../minisvg/html/SVGElement.html#method-has_attribs}{\code{minisvg::SVGElement$has_attribs()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="image">}\href{../../minisvg/html/SVGElement.html#method-image}{\code{minisvg::SVGElement$image()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="line">}\href{../../minisvg/html/SVGElement.html#method-line}{\code{minisvg::SVGElement$line()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="linearGradient">}\href{../../minisvg/html/SVGElement.html#method-linearGradient}{\code{minisvg::SVGElement$linearGradient()}}\out{</span>}
@@ -97,6 +99,7 @@ f <- SVGFilter$new(id = "turbulence-filter", stag$feTurbulence(...))
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="polygon">}\href{../../minisvg/html/SVGElement.html#method-polygon}{\code{minisvg::SVGElement$polygon()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="polyline">}\href{../../minisvg/html/SVGElement.html#method-polyline}{\code{minisvg::SVGElement$polyline()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="radialGradient">}\href{../../minisvg/html/SVGElement.html#method-radialGradient}{\code{minisvg::SVGElement$radialGradient()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="rebuild_child_list">}\href{../../minisvg/html/SVGElement.html#method-rebuild_child_list}{\code{minisvg::SVGElement$rebuild_child_list()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="rect">}\href{../../minisvg/html/SVGElement.html#method-rect}{\code{minisvg::SVGElement$rect()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="remove">}\href{../../minisvg/html/SVGElement.html#method-remove}{\code{minisvg::SVGElement$remove()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGElement" data-id="reset_transform">}\href{../../minisvg/html/SVGElement.html#method-reset_transform}{\code{minisvg::SVGElement$reset_transform()}}\out{</span>}

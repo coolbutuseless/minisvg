@@ -41,6 +41,7 @@ A class representing a single SVG element.
 \item \href{#method-print}{\code{SVGNode$print()}}
 \item \href{#method-save}{\code{SVGNode$save()}}
 \item \href{#method-copy}{\code{SVGNode$copy()}}
+\item \href{#method-find}{\code{SVGNode$find()}}
 \item \href{#method-clone}{\code{SVGNode$clone()}}
 }
 }
@@ -291,6 +292,26 @@ Make a deep copy of this node and its children
 \if{html}{\out{<div class="r">}}\preformatted{SVGNode$copy()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-find"></a>}}
+\subsection{Method \code{find()}}{
+Find elements which match the given tags
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SVGNode$find(tags)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{tags}}{character vector of tags to accept}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+minisvg objects which inherit from SVGNode will return NULL
+        unless this method is overridden.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

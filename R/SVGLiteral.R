@@ -13,6 +13,8 @@ SVGLiteral <- R6::R6Class(
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #' @field x literal contents. Must be coercible to string via 'as.character(x)'
+    #' @field name kept only for compatibility with other SVGNode objects. This
+    #'        should be set to 'literal'
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     x    = NULL,
     name = "literal",

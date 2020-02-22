@@ -16,6 +16,9 @@ A class representing a literal SVG element.
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{x}}{literal contents. Must be coercible to string via 'as.character(x)'}
+
+\item{\code{name}}{kept only for compatibility with other SVGNode objects. This
+should be set to 'literal'}
 }
 \if{html}{\out{</div>}}
 }
@@ -37,6 +40,7 @@ A class representing a literal SVG element.
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_code">}\href{../../minisvg/html/SVGNode.html#method-add_js_code}{\code{minisvg::SVGNode$add_js_code()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="add_js_url">}\href{../../minisvg/html/SVGNode.html#method-add_js_url}{\code{minisvg::SVGNode$add_js_url()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="copy">}\href{../../minisvg/html/SVGNode.html#method-copy}{\code{minisvg::SVGNode$copy()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="find">}\href{../../minisvg/html/SVGNode.html#method-find}{\code{minisvg::SVGNode$find()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_decls">}\href{../../minisvg/html/SVGNode.html#method-get_css_decls}{\code{minisvg::SVGNode$get_css_decls()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_style">}\href{../../minisvg/html/SVGNode.html#method-get_css_style}{\code{minisvg::SVGNode$get_css_style()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="minisvg" data-topic="SVGNode" data-id="get_css_urls">}\href{../../minisvg/html/SVGNode.html#method-get_css_urls}{\code{minisvg::SVGNode$get_css_urls()}}\out{</span>}
