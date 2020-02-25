@@ -1,0 +1,106 @@
+---
+title: "Patterns from Album Anatomy by Duane Dalton"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{AlbumAnatomy}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = FALSE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(minisvg)
+```
+
+
+## Introduction
+
+These examples are attempting to reproduce some of the patterns used in [Album Anatomy series of posters produced by Duane Dalton](https://duanedalton.com/). Not only are these patterns extremely well designed, they are also useful to illustrate important concepts in use of various `stags` in `minisvg`, as well as application of transformations, filters and masks.
+
+## Bon Iver 3925
+
+This example is reproducing "Bon Iver 3925" poster from ["Album Anatomy 2" poster collection](https://bldgwlf.com/album-anatomy-2/)
+* The main shape (triangle) is defined only once. It is later reused (scaled and shifted), both original and the transformed triangles are grouped and reused again (with a different fill) to complete a pattern. This is done with `use` and `xlink:href`.
+* Even though it would be possible to just overlay a circle colored in background color,
+in this example, `mask` is used to demonstrate compositing objects. Black objects will become holes and white objects will become opaque areas.
+* Even though it would be possible to achieve somewhat similar results by manipulating
+transparency of the objects, this example demonstrates the use of `feBlend` to combine
+opaque objects. Multiplication of brown triangle with the pattern produces color combination
+very close to original artwork by Duane Dalton.
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the size of canvas and main design element: the triangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+w <- 540; h <- 480
+big_trg <- stag$polygon(id="big_3angl", xs = c(0,0,w/9,0), ys = c(0,h/4,h/4,0))
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define BW mask that will be used to punch a hole in a big triangle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+holeMask <- stag$mask(id="myMask",
+                  stag$rect(x=0,y=0, width="100%", height = "100%", fill="white"),
+                  stag$circle(cx=w/9/3, cy=w/4-w/15, r=9, fill='black'))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define pattern group: big triangle (punched) and small triangle (shifted and scaled)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+trgs <- stag$g(id='triangles', stroke = 'none',
+               stag$use(`xlink:href` = "#big_3angl", mask="url(#myMask)"),
+               stag$use(`xlink:href` = "#big_3angl", 
+                        transform=glue::glue("translate({w/9/2}) scale(0.5 0.5)")))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define pattern: it uses pattern group twice (original and shifted) with different fill
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pat <- stag$pattern(width=w/9*2, height=h/4, id = 'motif', patternUnits = 'userSpaceOnUse')
+
+pat$use(`xlink:href` = "#triangles", fill="#007360")
+pat$use(`xlink:href` = "#triangles", fill="#a1d1b9", svg_prop$transform$translate(w/9))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define filter for overlaying pattern over brown triangle in "multiply" mode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mutiFilter <- stag$filter(id="multiplyMe", stag$feBlend(mode="multiply",
+                          in_="SourceGraphic", in2 = "BackgroundImage"))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define document with white-ish background and add all above objects to "defs"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = w, height = h,
+               stag$rect(x=0, y=0, width='100%', height='100%', fill='#faf6f2'))
+
+doc$add('defs', holeMask, big_trg, trgs, pat, mutiFilter)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define brown triangle and overlay it with a pattern multiplying these layers
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$add('polygon', xs=c(0, w/9*2,0,0), ys=c(0, h/2, h, 0), fill="#c55b48", fill_opacity=1)
+doc$add('rect', x=0, y=0, width='100%', height='100%', fill=pat, filter="url(#multiplyMe)")
+```
+
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc$save("svg/boniver3925.svg")
+rsvg::rsvg_png("svg/boniver3925.svg", "images/boniver3925.png")
+knitr::include_graphics("images/boniver3925.png")
+```
+
+Please, note that `feBlend` may not be properly rendered by [your browser](https://stackoverflow.com/questions/4797803/svg-feblend-in-pattern) (that is the case when all pattern triangles look the same dark color). Try convering `svg` image to `png` using `rsvg::rsvg_png()` or rendering it in Chrome.
+
+
+
+
+
+
+

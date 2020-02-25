@@ -1,0 +1,23 @@
+<svg width="540" height="480" viewBox="0 0 540 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect x="0" y="0" width="100%" height="100%" fill="#faf6f2" />
+  <defs>
+    <mask id="myMask">
+      <rect x="0" y="0" width="100%" height="100%" fill="white" />
+      <circle cx="20" cy="99" r="9" fill="black" />
+    </mask>
+    <polygon points="0,0 0,120 60,120 0,0" id="big_3angl" />
+    <g id="triangles" stroke="none">
+      <use xlink:href="#big_3angl" mask="url(#myMask)" />
+      <use xlink:href="#big_3angl" transform="translate(30) scale(0.5 0.5)" />
+    </g>
+    <pattern id="motif" width="120" height="120" patternUnits="userSpaceOnUse">
+      <use xlink:href="#triangles" fill="#007360" />
+      <use xlink:href="#triangles" fill="#a1d1b9" transform="translate(60)" />
+    </pattern>
+    <filter id="multiplyMe">
+      <feBlend in="SourceGraphic" in2="BackgroundImage" mode="multiply" />
+    </filter>
+  </defs>
+  <polygon points="0,0 120,240 0,480 0,0" fill="#c55b48" fill-opacity="1" />
+  <rect x="0" y="0" width="100%" height="100%" fill="url(#motif)" filter="url(#multiplyMe)" />
+</svg>
