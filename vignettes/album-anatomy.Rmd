@@ -1,5 +1,6 @@
 ---
 title: "Patterns from Album Anatomy by Duane Dalton"
+author: "Dmytro Perepolkin"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{AlbumAnatomy}
@@ -14,18 +15,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(minisvg)
-```
-
-
 ## Introduction
 
 These examples are attempting to reproduce some of the patterns used in [Album Anatomy series of posters produced by Duane Dalton](https://duanedalton.com/). Not only are these patterns extremely well designed, they are also useful to illustrate important concepts in use of various `stags` in `minisvg`, as well as application of transformations, filters and masks.
 
+```{r setup}
+library(minisvg)
+```
+
 ## Bon Iver 3925
 
-This example is reproducing "Bon Iver 3925" poster from ["Album Anatomy 2" poster collection](https://bldgwlf.com/album-anatomy-2/)
+This example is reproducing "Bon Iver 3925" poster from ["Album Anatomy" poster collection](https://bldgwlf.com/album-anatomy-2/)
+
 * The main shape (triangle) is defined only once. It is later reused (scaled and shifted), both original and the transformed triangles are grouped and reused again (with a different fill) to complete a pattern. This is done with `use` and `xlink:href`.
 * Even though it would be possible to just overlay a circle colored in background color,
 in this example, `mask` is used to demonstrate compositing objects. Black objects will become holes and white objects will become opaque areas.
@@ -98,9 +99,78 @@ knitr::include_graphics("images/boniver3925.png")
 
 Please, note that `feBlend` may not be properly rendered by [your browser](https://stackoverflow.com/questions/4797803/svg-feblend-in-pattern) (that is the case when all pattern triangles look the same dark color). Try convering `svg` image to `png` using `rsvg::rsvg_png()` or rendering it in Chrome.
 
+## Palma Violets 4218
+
+This example is reproducing "Palma Violets 4218" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy)
+
+* This pattern consists of a quarter circle segment, which can be achieved by drawing full circle and clipping it to size
+* Row 3 contains "inverted pattern". This can be achieved by reusing the pattern as a mask and
+"cutting" plain square with it. Note that we store away custom made cell ("negCrescent")
+* Identifying the repeating pattern in the rows, we then compose a pattern in the first column
+and apply it across
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the size of cell and clip path of this size to contain each cell element
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+s <- 100;
+clipsq <- stag$clipPath(id="clipSquare",
+                        stag$rect(x=0, y=0, width = s, height = s))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the main geometry: a circle clipped to cell size by `clip-path`
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g <- stag$circle(id="crescent", cx=s, cy=s, r=s, fill="#faf6f2", `clip-path`="url(#clipSquare)")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# define a mask for "inverted" cell in row 3. Deep copy circle and update its fill
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gmsk <- stag$mask(id="crescentMask",
+                  stag$rect(x=0, y=0, width = '100%', height ='100%', fill="white"),
+                  g$copy()$update(fill="black"))#, svg_prop$transform$rotate(180, s/2,s/2)))
+
+ig <- stag$rect(id="negCrescent", x=0, y=0, width='100%', height='100%', fill="#faf6f2", 
+                mask="url(#crescentMask)", `clip-path`="url(#clipSquare)")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Compose a pattern as a single column. Translate and rotate main cell as needed
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pat <- stag$pattern(width=s, height=s*5, id = 'motif', patternUnits = 'userSpaceOnUse')
+pat$use(`xlink:href`="#crescent")
+pat$use(`xlink:href`="#crescent", 
+        transform=glue::glue("translate(0 {s*1}) rotate(90 {s/2} {s/2})"))
+pat$use(`xlink:href`="#negCrescent",
+        transform=glue::glue("translate(0 {s*2}) rotate(180 {s/2} {s/2})"))
+        #svg_prop$transform$translate(0, s*2))
+pat$use(`xlink:href`="#crescent", 
+        transform=glue::glue("translate(0 {s*3}) rotate(90 {s/2} {s/2})"))
+pat$use(`xlink:href`="#crescent", 
+        transform=glue::glue("translate(0 {s*4}) rotate(-90 {s/2} {s/2})"))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the document, add all above elements to `defs` and roll out the pattern
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width = s*5, height = s*5, 
+               stag$rect(x=0, y=0, width='100%', height='100%', fill="grey20"))
+doc$add('defs', clipsq, g, ig, gmsk, pat)
+doc$add('rect', x=0, y=0, width='100%', height='100%', fill=pat)
+
+```
 
 
 
 
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc
+#doc$save("svg/palmaviolets4218.svg")
+#rsvg::rsvg_png("svg/palmaviolets4218.svg", "images/palmaviolets4218.svg")
+#knitr::include_graphics("images/palmaviolets4218.svg")
+```
 
 
