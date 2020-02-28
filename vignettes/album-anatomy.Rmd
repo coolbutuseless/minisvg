@@ -173,4 +173,207 @@ doc
 #knitr::include_graphics("images/palmaviolets4218.svg")
 ```
 
+## Crystal Castles 5155
 
+
+This example is reproducing "Crystal Castles 5155" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy)
+
+* This pattern consists of a hex (6 triangles), two half-hexes below it and small wedges
+above the main hex to cover the fact that pattern can only be rectangular.
+* Same constructed hex elements are then reused to create a mask - top few hexes are "hidden"
+under it to create the narrow tower head. Also note that mask elements are created in the list
+and dumped into the group to be transposed where they need to go. It is a good idea to leave 
+transformations to the group and not define them on the children. Then same children can be 
+reused in several places, wrapped into custom groups.
+* Same hexagon is then reused third time to create a window.
+* There's a trick how to create a pattern which starts from the corner of the object, not from point 0,0 of the screen. Read more about coordinate system and transformations [here](http://tavmjong.free.fr/SVG/publish/coords.html).
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define service functions for updating children lists and calculate hex vertices
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+update_children <- function(obj, ...){
+  obj$update_child_list(
+    lapply(obj$children, function(x) x$update(...)))
+}
+
+len     <- 40
+shift0 <- function(x) x - min(x)
+get_hex_coords <- function(len, f, angles) shift0(round(len * f(angles) + len, 2))
+
+angles <- (seq(0, 360, 60) + 90) * pi/180
+xs    <- get_hex_coords(len, cos, angles)
+ys    <- get_hex_coords(len, sin, angles)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define color to be used in the pattern. Cache dimensions of hex and centroids
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+colrs <- c( "#906a83", "#a68796","#754a68", "#a68796","#c5b2b8", "#7c5570")
+
+min_xs <- min(xs); max_xs <- max(xs)
+min_ys <- min(ys); max_ys <-max(ys)
+xsC <- c(min_xs, mean(range(xs)), max_xs)
+ysC <- c(max_ys+len/2, mean(range(ys)), max_ys+len/2)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define pattern. Note pattern units - pattern starts from 0 and spreads indefinitely.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pat  <- stag$pattern(width=max_xs, height=max_ys+len, #this means 3x4.5 patterns
+                     id = 'motif', 
+                     patternContentUnits = "userSpaceOnUse",
+                     patternUnits="userSpaceOnUse")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# This loop creates a hex. Adds to the group created for storing whole hex
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g_hex <-  stag$g(id="hex")
+for (i in head(seq_along(xs), -1)){
+  g_hex$polygon(xs=c(xsC[2], xs[i], xs[i+1], xsC[2]),
+            ys=c(ysC[2], ys[i], ys[i+1], ysC[2]), fill=colrs[i], 
+            stroke="none")
+}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define half-hex for right- and left side and small upper segments. Add all to pattern
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g_ohex_right <- stag$g(id="ohex_right")
+g_ohex_uright <- stag$g(id="ohex_uright")
+# lower and upper right pennants (segment 1 split)
+g_ohex_right$polygon(xs=c(max_xs,xsC[2],max_xs, max_xs),
+               ys=c(max_ys+len, max_ys+len, ysC[3], max_ys+len), fill=colrs[1])
+g_ohex_uright$polygon(xs=c(max_xs,xsC[2],max_xs, max_xs),
+               ys=c(min_ys+len/2, min_ys, min_ys, min_ys+len/2), fill=colrs[1])
+# segments 2 and 3 on the right
+g_ohex_right$polygon(xs=c(max_xs,xsC[2],xsC[2], max_xs),
+               ys=c(ysC[3], max_ys+len, max_ys, ysC[3]), fill=colrs[2])
+g_ohex_right$polygon(xs=c(max_xs,xsC[2],max_xs, max_xs),
+               ys=c(ysC[3], max_ys, max_ys-len/2, ysC[3]), fill=colrs[3])
+
+g_ohex_left <- stag$g(id="ohex_left")
+g_ohex_uleft <- stag$g(id="ohex_uleft")
+## lower and upper left pennants (segment 6 split)
+g_ohex_left$polygon(xs=c(min_xs,xsC[2],min_xs, min_xs),
+               ys=c(max_ys+len, max_ys+len, ysC[1], max_ys+len), fill=colrs[6])
+g_ohex_uleft$polygon(xs=c(min_xs,xsC[2],min_xs, min_xs),
+               ys=c(min_ys+len/2, min_ys, min_ys, min_ys+len/2), fill=colrs[6])
+# segments 5 and 4 on the right
+g_ohex_left$polygon(xs=c(min_xs,xsC[2],xsC[2], min_xs),
+               ys=c(ysC[1], max_ys+len, max_ys, ysC[1]), fill=colrs[5])
+g_ohex_left$polygon(xs=c(min_xs,xsC[2],min_xs, min_xs),
+               ys=c(ysC[1], max_ys, max_ys-len/2, ysC[1]), fill=colrs[4])
+
+pat$append(g_hex, g_ohex_right, g_ohex_uright, g_ohex_left, g_ohex_uleft)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Copy hexes. These will become masks.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g1_hex <- update_children(g_hex$copy(), fill="black", stroke="black")$update(id="hex1")
+g1_ohex_right <- update_children(g_ohex_right$copy(),  fill="black", stroke="black")$update(id="ohex1_right")
+g1_ohex_uright <- update_children(g_ohex_uright$copy(),  fill="black", stroke="black")$update(id="ohex1_uright")
+g1_ohex_left <- update_children(g_ohex_left$copy(),  fill="black", stroke="black")$update(id="ohex1_left")
+g1_ohex_uleft <- update_children(g_ohex_uleft$copy(),  fill="black", stroke="black")$update(id="ohex1_uleft")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define a list that will store mask elements for covering the tops of "towers".
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mask_lst <- list(
+  stag$rect(x='0%', y='0%', width = '100%', height = '100%', fill="white"),
+  stag$g(svg_prop$transform$translate(0, 0),
+         stag$use(`xlink:href`="#hex1"),
+         stag$use(`xlink:href`="#ohex1_uleft"),
+         stag$use(`xlink:href`="#ohex1_left"),
+         stag$use(`xlink:href`="#ohex1_uright")
+  ),
+  stag$g(svg_prop$transform$translate(max_xs, 0),
+         stag$use(`xlink:href`="#ohex1_uleft"),
+         stag$use(`xlink:href`="#ohex1_uright")
+  ),
+  stag$g(svg_prop$transform$translate(2*max_xs, 0),
+         stag$use(`xlink:href`="#hex1"),
+         stag$use(`xlink:href`="#ohex1_uleft"),
+         stag$use(`xlink:href`="#ohex1_right"),
+         stag$use(`xlink:href`="#ohex1_uright")
+  ),
+  stag$g(svg_prop$transform$translate(0, max_ys+len), 
+         stag$use(`xlink:href`="#ohex1_uleft")
+  ),
+  stag$g(svg_prop$transform$translate(0+2*max_xs, 0+max_ys+len), 
+         stag$use(`xlink:href`="#ohex1_uright")
+  ))
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define a first mask. Not that mask is wrapped into translated group.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+header_mask1_g <- stag$g(svg_prop$transform$translate(35,220))
+invisible(sapply(mask_lst, function(x) header_mask1_g$append(x)))
+
+header_mask1 <- stag$mask(id='header_mask1', x='0%', y='0%', width='100%', height='100%', 
+                             maskUnits="objectBoundingBox", 
+                             maskContentUnits = "userSpaceOnUse",
+                             header_mask1_g)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define a second mask. Not that mask is wrapped into translated group.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+header_mask2_g <- stag$g(svg_prop$transform$translate(381,100))
+invisible(sapply(mask_lst, function(x) header_mask2_g$append(x)))
+
+header_mask2 <- stag$mask(id='header_mask2', x='0%', y='0%', width='100%', height='100%', #this means 3x4.5 patterns
+                          maskUnits="objectBoundingBox", #objectBoundingBox
+                          maskContentUnits = "userSpaceOnUse",
+                          header_mask2_g)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define a pattern for striped background behind 2 tower
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pat_lines  <- stag$pattern(width=300, height=10, #this means 3x4.5 patterns
+                           id = 'motif_lines', 
+                           patternContentUnits = "userSpaceOnUse",
+                           patternUnits="userSpaceOnUse",
+                           stag$g(
+                           stag$line(x1 = 0, x2=300, y1=8, y2=8), 
+                                stroke="#754a68", stroke_width=2))
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Copy the hex to be used as "white window" on towers.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g2_hex <- update_children(g_hex$copy(), fill="white", stroke="white")$update(id="hex2")
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define document, add all service elements to 'defs'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width=800, height=600)
+doc$add('defs',pat, pat_lines, header_mask1, header_mask2, g1_hex, g1_ohex_right, 
+        g1_ohex_uright, g1_ohex_left, g1_ohex_uleft, g2_hex)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 2 rectangles filled with patterns and masks - towers, one rectangle for stripes.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$add('rect', x=35, y=220, width=max_xs*3, height=4.5*(max_ys+len), 
+        fill=pat, mask="url(#header_mask1)")
+doc$add('rect', x=310, y=0, width=350, height="100%", fill=pat_lines, stroke=colrs[1], stroke_width=3)
+doc$add('rect', x=381, y=100, width=max_xs*3, height=4.5*(max_ys+len), 
+        fill=pat, mask="url(#header_mask2)")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Place windows where they need to be
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$use(`xlink:href`="#hex2", svg_prop$transform$translate(x=105, 300))
+doc$use(`xlink:href`="#hex2", svg_prop$transform$translate(x=451, 180))
+
+```
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+#doc
+doc$save("svg/crystalcastles5155.svg")
+rsvg::rsvg_png("svg/crystalcastles5155.svg", "images/crystalcastles5155.png")
+knitr::include_graphics("images/crystalcastles5155.png")
+```
+Please, note that if some of the elements do not get properly rendered by your browser, try convering `svg` images to `png` using `rsvg::rsvg_png()` or rendering them in Chrome.
