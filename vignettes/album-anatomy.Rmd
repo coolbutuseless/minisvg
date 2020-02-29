@@ -200,7 +200,8 @@ holeMask <- stag$mask(id="myMask",
 trgs <- stag$g(id='triangles', stroke = 'none',
                stag$use(`xlink:href` = "#big_3angl", mask="url(#myMask)"),
                stag$use(`xlink:href` = "#big_3angl", 
-                        transform=glue::glue("translate({w/9/2}) scale(0.5 0.5)")))
+                        svg_prop$transform$translate(w/9/2),
+                        svg_prop$transform$scale(0.5, 0.5)))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Define pattern: it uses pattern group twice (original and shifted) with different fill
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -281,14 +282,17 @@ ig <- stag$rect(id="negCrescent", x=0, y=0, width='100%', height='100%', fill="#
 pat <- stag$pattern(width=s, height=s*5, id = 'motif', patternUnits = 'userSpaceOnUse')
 pat$use(`xlink:href`="#crescent")
 pat$use(`xlink:href`="#crescent", 
-        transform=glue::glue("translate(0 {s*1}) rotate(90 {s/2} {s/2})"))
+        svg_prop$transform$translate(0, s*1),
+        svg_prop$transform$rotate(90, s/2, s/2))
 pat$use(`xlink:href`="#negCrescent",
-        transform=glue::glue("translate(0 {s*2}) rotate(180 {s/2} {s/2})"))
-        #svg_prop$transform$translate(0, s*2))
+        svg_prop$transform$translate(0, s*2),
+        svg_prop$transform$rotate(180, s/2, s/2))
 pat$use(`xlink:href`="#crescent", 
-        transform=glue::glue("translate(0 {s*3}) rotate(90 {s/2} {s/2})"))
+        svg_prop$transform$translate(0, s*3),
+        svg_prop$transform$rotate(90, s/2, s/2))
 pat$use(`xlink:href`="#crescent", 
-        transform=glue::glue("translate(0 {s*4}) rotate(-90 {s/2} {s/2})"))
+        svg_prop$transform$translate(0, s*4),
+        svg_prop$transform$rotate(-90, s/2, s/2))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Define the document, add all above elements to `defs` and roll out the pattern
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
