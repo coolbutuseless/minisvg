@@ -23,6 +23,61 @@ These examples are attempting to reproduce some of the patterns used in [Album A
 library(minisvg)
 ```
 
+## Hurts 4802
+
+This example is reproducing "Hurts 4802" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
+
+* The main design element defined in a separate group and included in defs to be reused in mask
+and in design itself.
+* Transform is happening at the reuse of the graphical element. Use tag does not pull in original element, so it can be independently modified by the transform.
+
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the document with white background and a main design element as a "loose" group
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width=300, height = 400,
+               stag$rect(width = '100%', height = '100%', fill="white",stroke="grey50", stroke_width=1))
+
+stripeg <- stag$g(id="stripe",  
+  stag$circle(cx=225, cy=150, r=75),
+  stag$rect(x=225-75, y=150, width=151, height  = 400-133 )
+)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Reuse the same element inside mask, specifying fill and transform
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stripeg_mask <- stag$mask(id="stripe_mask", height = 400, width = 150,
+                          stag$g(
+                            stag$rect(x='0%',y='0%',width = '50%', height = '100%', fill="white"),
+                            stag$use(`xlink:href`="#stripe", fill="black", 
+                                     svg_prop$transform$rotate(180, 150, 200))
+                          )
+                      )
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Put both element and a mask into defs. Use element and the mask
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$add('defs', stripeg_mask, stripeg)
+doc$use(`xlink:href`="#stripe", fill="grey30")
+doc$rect(x=0,y=0, width='100%', height = '100%', mask=stripeg_mask, fill="grey30")  
+```
+
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc
+```
+
+
+
 ## Bon Iver 3925
 
 This example is reproducing "Bon Iver 3925" poster from ["Album Anatomy" poster collection](https://bldgwlf.com/album-anatomy-2/)
