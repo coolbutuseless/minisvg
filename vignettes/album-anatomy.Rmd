@@ -77,6 +77,96 @@ print(doc)
 doc
 ```
 
+## The Horrors 5636
+
+This example is reproducing "The Horrors 5636" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
+
+* The main design elements are designed and saved away in the `defs` section.
+* Filter for mixing colors is defined using `feBlend()`. Note that it may require its
+own definition of `filterUnits`.
+* The stipes are added in the loop transposing and rescaling at the same time. Multiple transforms can be enumerated in the same `stag`. They will have combined effect, although the order matters. 
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the document. Update viewbox for referencing elements
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+w<-300
+
+doc <- svg_doc(width=w, height = w*4/3)
+doc$update(viewBox = glue::glue("0 0 1 {4/3}"))
+doc$rect(width = '100%', height = '100%', fill="white")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define generic line and genertic circle that will be used later
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+line_stag <- stag$rect(id="lineMe", width=1, height = 0.01, x=0, y=0)
+
+cir <- stag$circle(id="blob",cx=0.5, cy=0.5*4/3, r=0.3*4/3)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define filter for mixing layers. Add all of it ot "defs" section
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mutiFilter <- stag$filter(id="multiplyMe", filterUnits = "userSpaceOnUse",
+                          stag$feBlend(mode="multiply",
+                           in_="SourceGraphic", in2 = "BackgroundImage"))
+
+
+doc$add('defs', line_stag, cir, mutiFilter)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define a group of reducing thickness lines and add lines by iterating
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+linesg <- doc$g() 
+
+for(i in seq_len(8)){
+  linesg$use(`xlink:href`="#lineMe", fill="#00b086", 
+             svg_prop$transform$translate(0, 0.95/10*(i-1)+0.03),
+             svg_prop$transform$scale(1, (8-i)*0.7+3))
+}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add header and footer lines
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+linesg$append(
+  stag$use(`xlink:href`="#lineMe", fill="#00b086", 
+           svg_prop$transform$translate(0, 0),
+           svg_prop$transform$scale(1, 3*4/3)),
+  stag$use(`xlink:href`="#lineMe", fill="#55bcec", 
+           svg_prop$transform$translate(0, 0.6*4/3),
+           svg_prop$transform$scale(1, 20*4/3)),
+  stag$use(`xlink:href`="#lineMe", fill="#005288", 
+           svg_prop$transform$translate(0, 0.8*4/3),
+           svg_prop$transform$scale(1, 20*4/3)
+           )
+)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Reuse circles pulling them apart
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$use(`xlink:href`="#blob", fill="#da0023",
+        svg_prop$transform$translate(-0.5,0),
+        filter="url(#multiplyMe)"
+        )
+doc$use(`xlink:href`="#blob", fill="#da0023", 
+        svg_prop$transform$translate(+0.5,0),
+        filter="url(#multiplyMe)")
+```
+
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc$save("svg/thehorrors5636.svg")
+rsvg::rsvg_png("svg/thehorrors5636.svg", "images/thehorrors5636.png")
+magick::image_read("images/thehorrors5636.png") 
+```
 
 
 ## Bon Iver 3925

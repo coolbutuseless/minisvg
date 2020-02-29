@@ -8,7 +8,7 @@
     <polygon points="0,0 0,120 60,120 0,0" id="big_3angl" />
     <g id="triangles" stroke="none">
       <use xlink:href="#big_3angl" mask="url(#myMask)" />
-      <use xlink:href="#big_3angl" transform="translate(30) scale(0.5 0.5)" />
+      <use xlink:href="#big_3angl" transform="translate(30) scale(0.5 0.5) translate(30) scale(0.5 0.5)" />
     </g>
     <pattern id="motif" width="120" height="120" patternUnits="userSpaceOnUse">
       <use xlink:href="#triangles" fill="#007360" />
