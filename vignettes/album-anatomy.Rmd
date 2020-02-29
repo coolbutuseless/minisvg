@@ -37,7 +37,8 @@ and in design itself.
 # Define the document with white background and a main design element as a "loose" group
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 doc <- svg_doc(width=300, height = 400,
-               stag$rect(width = '100%', height = '100%', fill="white",stroke="grey50", stroke_width=1))
+               stag$rect(width = '100%', height = '100%', fill="white",
+                         stroke="grey50", stroke_width=1))
 
 stripeg <- stag$g(id="stripe",  
   stag$circle(cx=225, cy=150, r=75),
@@ -396,7 +397,8 @@ g2_hex <- update_children(g_hex$copy(), fill="white", stroke="white")$update(id=
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Define document, add all service elements to 'defs'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-doc <- svg_doc(width=800, height=600)
+doc <- svg_doc(width=800, height=600,
+               stag$rect(x=0, y=0, width='100%', height = '100%', fill="white"))
 doc$add('defs',pat, pat_lines, header_mask1, header_mask2, g1_hex, g1_ohex_right, 
         g1_ohex_uright, g1_ohex_left, g1_ohex_uleft, g2_hex)
 
