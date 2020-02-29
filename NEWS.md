@@ -1,4 +1,8 @@
 
+# minisvg 0.1.11  2020-02-29
+
+* Bug fix: multiple transforms are now cumulative (again!).  (Fixes Issue #7)
+
 # minisvg 0.1.10  2020-02-22
 
 * Added new `$child` list which tracks the direct child elements by tag name.

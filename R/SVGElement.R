@@ -105,14 +105,6 @@ SVGElement <- R6::R6Class(
       do.call(self$append, children)
 
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      # If duplicate named attributes are given, keep only the last one
-      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      dups <- rev(duplicated(rev(names(attribs))))
-      if (any(dups)) {
-        attribs <- attribs[!dups]
-      }
-
-      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # If one of the values for an attribute is an SVGElement, convert it
       # into an ID
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -143,6 +135,15 @@ SVGElement <- R6::R6Class(
       trans <- attribs[names(attribs) == 'transform']
       attribs[names(attribs) == 'transform'] <- NULL
 
+      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # If duplicate named attributes are given, keep only the last one.
+      # Make sure to do this *AFTER* all the 'transform' attributes have been
+      # selected as we want to keep all the transforms and concatenate them.
+      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      dups <- rev(duplicated(rev(names(attribs))))
+      if (any(dups)) {
+        attribs <- attribs[!dups]
+      }
 
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # If element is animate, animateColor, animateMotion, animateTransform
