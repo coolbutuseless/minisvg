@@ -603,3 +603,92 @@ print(doc)
 doc
 ```
 
+## Frank Ocean 5548
+
+
+This example is reproducing "Frank Ocean 5548" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
+
+* The main design element is a triangle and a circle. They are repeated twice and shown together using mask (mask covers half of the page).
+* LExternal CSS is used for styling of text.
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the document with white background
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc <- svg_doc(width=300, height = 400)
+doc$rect(x=0, y=0, width = '100%', height='100%', fill="white")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define main elements: triangle and circle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+len <- 200
+fg <- "#eb7225"
+xs<-c(0, 0+len, len/2, 0)+50
+ys <- c(len*sqrt(3)/2, len*sqrt(3)/2, 0, len*sqrt(3)/2)+127
+tri <- stag$polygon(id="triang", xs=xs, ys=ys, stroke_width=15)
+cir <- stag$circle(id="round", cx=150, cy=200, r=100, stroke_width=15)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define mask spanning exatly half a page. Add all service elements to defs
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+msk <- stag$mask(id="halfscreen", maskUnits="userSpaceOnUse", #objectBoundingBox
+                 maskContentUnits = "userSpaceOnUse",
+                 #x=0, y=150, width=300, height=200,
+                 stag$rect(x=0, y=0, width='100%', height='100%', fill="white"),
+                 stag$rect(x=0, y=200, width='100%', height='50%', fill="black"))
+
+doc$add('defs', tri, cir, msk)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# The circle and triangle underneath are orange on white. 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$use(`xlink:href`="#round", stroke=fg, fill='none')
+doc$use(`xlink:href`="#triang", stroke=fg, fill='none')
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# The circle and triangle over them are filled with orange. Trinagle stroke is white. 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$use(`xlink:href`="#round", stroke=fg, fill=fg, mask=msk)
+doc$use(`xlink:href`="#triang", stroke='white', fill="none", mask=msk)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add text and define CSS class to be used with it
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$text(x = 0, y = 20, class = "mainfont", "Frank Ocean")
+doc$text(x = 250, y = 20, class = "mainfont", "5548")
+doc$text(x = 0, y = 360, class = "smallfont", "Channel")
+doc$text(x = 0, y = 372, class = "smallfont", "Orange")
+doc$text(x = 0, y = 384, class = "smallfont", "2012")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Load CSS for google font and specify styling
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$add_css_url("https://fonts.googleapis.com/css?family=Roboto")
+doc$add_css("
+.mainfont {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #eb7225;
+}
+.smallfont {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #eb7225;
+}")
+
+```
+
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc
+```
+
+
