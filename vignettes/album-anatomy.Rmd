@@ -67,7 +67,7 @@ doc$rect(x=0,y=0, width='100%', height = '100%', mask=stripeg_mask, fill="#99999
 doc$text(x = 10, y = 30, class = "mainfont1", "Hurts")
 doc$text(x = 250, y = 30, class = "mainfont1", "4802")
 doc$text(x = 10, y = 360, class = "smallfont1", "Happiness")
-doc$text(x = 10, y = 384, class = "smallfont1", "2010")
+doc$text(x = 10, y = 376, class = "smallfont1", "2010")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Load CSS for google font and specify styling
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -600,17 +600,18 @@ for(i in seq(6)-1){
   circ_g$circle(cx=100,cy=198, r=190-30*i, stroke="white", stroke_width=15, fill='none', mask=msk)
 }
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Reuse part of pattern for lines running across
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-doc$rect(x=300/20,y=0, width = 105, height = 550, fill=f, svg_prop$transform$rotate(60, 140, 300))
-doc$rect(x=300/20,y=0, width = 120, height = 550, fill=pats, svg_prop$transform$rotate(60, 140, 300))
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Reuse part of pattern for horizontal lines. They extend precisely to the centroid of circles
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 doc$rect(x=300/20,y=0, width = 195, height = 120, fill=f, svg_prop$transform$rotate(90, 56, 41))
 doc$rect(x=300/20,y=0, width = 195, height = 120, fill=pats, svg_prop$transform$rotate(90,56, 41))
-  
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Reuse part of pattern for lines running across
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$rect(x=300/20,y=0, width = 105, height = 550, fill=f, svg_prop$transform$rotate(60, 140, 300))
+doc$rect(x=300/20,y=0, width = 120, height = 550, fill=pats, svg_prop$transform$rotate(60, 140, 300))  
 ```
 
 
@@ -629,11 +630,10 @@ doc
 
 ## Frank Ocean 5548
 
-
 This example is reproducing "Frank Ocean 5548" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
 
 * The main design element is a triangle and a circle. They are repeated twice and shown together using mask (mask covers half of the page).
-* LExternal CSS is used for styling of text.
+* External CSS is used for styling of text.
 
 ```{r comment=''}
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -715,4 +715,120 @@ print(doc)
 doc
 ```
 
+
+## Hot Chip 5654
+
+This example is reproducing "Hot Chip 5654" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
+
+* Three different patterns are designed separately. Observe that 45deg patterns are pairs of parallel shifted diagonal stripes.
+* Pattern is cast over the whole central rectangle, but only required parts are visible, due to polygon mask.
+* All patterns and masks are designed with units equal `objectBoundingBox`.
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the document with white background
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+library(minisvg)
+fg <- "#0b3250"
+# Hot Chip
+doc_hc <- svg_doc(width=300, height=420)
+doc_hc$rect(width='100%', height='100%', fill="white", stroke="black")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define patterns: one grid with circles, and two grids with diagonal lines
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pat1_hc <- stag$pattern(id="pat_grid_hc", x=0, y=0, height=1/14, width=1/12,
+                       patternUnits="objectBoundingBox",
+                       stag$g(stroke=fg, stroke_width=2, fill="white",
+                         stag$rect(x=0, y=0, width = 300/13, height=300/13),
+                         stag$circle(cx=300/13/2, cy=300/13/2, r=300/13/5, fill=fg))
+                       ) 
+pat2_hc <- stag$pattern(id="pat_up_hc", x=0, y=0, height=1/14, width=1/12,
+                       patternUnits="objectBoundingBox",
+                       stag$g(stroke=fg, stroke_width=2, fill="white",
+                              stag$rect(x=0, y=0, width = 300/13, height=300/13),
+                              stag$line(x1=0, y1=300/13, x2=300/13, y2=0))
+                      )
+pat3_hc <- stag$pattern(id="pat_dwn_hc", x=0, y=0, height=1/14, width=1/12,
+                        patternUnits="objectBoundingBox",
+                        stag$g(stroke=fg, stroke_width=2, fill="white",
+                               stag$rect(x=0, y=0, width = 300/13, height=300/13),
+                               stag$line(x1=0, y1=0, x2=300/13, y2=300/13))
+                       )
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define polygon mask to be placed over patterns. Note polygon is used, not copied
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mskg_hc <- stag$g(id="mskg_hc",
+             stag$polygon(xs=c(0,6/12,6/12,0,0),
+                          ys=c(7/14,1/14,7/14,13/14,7/14), fill="white"))
+
+msk1_hc <- stag$mask(id="msk_poly_hc", x=0, y=0, height='100%', width = '100%',
+                     maskUnits = "objectBoundingBox",
+                     maskContentUnits = "objectBoundingBox",
+                     stag$g(
+                       stag$use(`xlink:href`="#mskg_hc"),
+                       stag$use(`xlink:href`="#mskg_hc", 
+                              svg_prop$transform$translate(0.5))
+                     ))
+
+msk2_hc <- stag$mask(id="msk_poly2_hc", x=0, y=0, height='100%', width = '100%',
+                     maskUnits = "objectBoundingBox",
+                     maskContentUnits = "objectBoundingBox",
+                     stag$g(
+                       stag$use(`xlink:href`="#mskg_hc", 
+                                svg_prop$transform$matrix(1, 0, 0, -1, 0, 1)
+                       ),
+                       stag$use(`xlink:href`="#mskg_hc", 
+                                svg_prop$transform$matrix(1, 0, 0, -1, 0, 1),
+                                svg_prop$transform$translate(0.5)
+                       )
+                     ))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Perform layering
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_hc$add('defs', pat1_hc, pat2_hc, pat3_hc, mskg_hc, msk1_hc, msk2_hc)
+doc_hc$rect(x=10, y=50, width=12*300/13, height=14*300/13, fill=pat1_hc)
+doc_hc$rect(x=10, y=50, width=12*300/13, height=14*300/13, fill=pat3_hc, mask=msk2_hc)
+doc_hc$rect(x=10, y=50, width=12*300/13, height=14*300/13, fill=pat2_hc, mask=msk1_hc)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add text and define CSS class to be used with it
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_hc$text(x = 10, y = 40, class = "mainfont_hc", "Hot Chip")
+doc_hc$text(x = 245, y = 40, class = "mainfont_hc", "5654")
+doc_hc$text(x = 10, y = 390, class = "smallfont_hc", "In Our Heads")
+doc_hc$text(x = 10, y = 400, class = "smallfont_hc", "2012")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Load CSS for google font and specify styling
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_hc$add_css_url("https://fonts.googleapis.com/css?family=Roboto")
+doc_hc$add_css("
+.mainfont_hc {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #0b3250;
+}
+.smallfont_hc {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #0b3250;
+}")
+
+```
+
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc_hc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc_hc
+```
 
