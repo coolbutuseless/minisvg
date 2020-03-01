@@ -266,13 +266,13 @@ clipsq <- stag$clipPath(id="clipSquare",
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Define the main geometry: a circle clipped to cell size by `clip-path`
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-g <- stag$circle(id="crescent", cx=s, cy=s, r=s, fill="#faf6f2", `clip-path`="url(#clipSquare)")
+gcir <- stag$circle(id="crescent", cx=s, cy=s, r=s, fill="#faf6f2", `clip-path`="url(#clipSquare)")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # define a mask for "inverted" cell in row 3. Deep copy circle and update its fill
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 gmsk <- stag$mask(id="crescentMask",
                   stag$rect(x=0, y=0, width = '100%', height ='100%', fill="white"),
-                  g$copy()$update(fill="black"))#, svg_prop$transform$rotate(180, s/2,s/2)))
+                  gcir$copy()$update(fill="black"))#, svg_prop$transform$rotate(180, s/2,s/2)))
 
 ig <- stag$rect(id="negCrescent", x=0, y=0, width='100%', height='100%', fill="#faf6f2", 
                 mask="url(#crescentMask)", `clip-path`="url(#clipSquare)")
@@ -298,14 +298,10 @@ pat$use(`xlink:href`="#crescent",
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 doc <- svg_doc(width = s*5, height = s*5, 
                stag$rect(x=0, y=0, width='100%', height='100%', fill="grey20"))
-doc$add('defs', clipsq, g, ig, gmsk, pat)
+doc$add('defs', clipsq, gcir, ig, gmsk, pat)
 doc$add('rect', x=0, y=0, width='100%', height='100%', fill=pat)
 
 ```
-
-
-
-
 
 <!-- Raw HTML output. hidden by default -->
 <details closed>
@@ -528,3 +524,82 @@ rsvg::rsvg_png("svg/crystalcastles5155.svg", "images/crystalcastles5155.png")
 knitr::include_graphics("images/crystalcastles5155.png")
 ```
 Please, note that if some of the elements do not get properly rendered by your browser, try convering `svg` images to `png` using `rsvg::rsvg_png()` or rendering them in Chrome.
+
+## Beach House 4910
+
+This example is reproducing "Beach House 4910" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
+
+* The main design element is a single stripe with an empty space to the left of it.
+* Layer sequence defines visible effect. First vertical pattern is drawn. Then circles are overlayed on top (partially obifuscated by the mask). Finally horizontal stripes and lines running across are added.
+
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the document with sand background
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+f <- "#dcceac"
+
+doc <- svg_doc(width=300, height=380)
+doc$rect(x=0, y=0, width='100%', height = '100%', fill=f)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define pattern with single line. Note the line extends beyond visible area for rotation
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lines_g <- stag$rect( x=300/20, y=-100, width = 300/20, height = 550, fill="white")
+pats  <- stag$pattern(width=300/10, height=500, 
+                     id = 'stripes_beach', 
+                     patternContentUnits = "userSpaceOnUse",
+                     patternUnits="userSpaceOnUse",
+                     lines_g)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define masking rectangle. It will cover lover part of circle. Add all building elements to defs
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+msk <- stag$mask(id="r_msk",x='0%', y='0%', width='100%', height='100%', 
+                            maskUnits="userSpaceOnUse",
+                            maskContentUnits = "userSpaceOnUse",
+                 stag$rect(x=0, y=0, width = '100%', height = 195, fill="white"))
+
+doc$add('defs', lines_g, pats, msk)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build underlying pattern: vertical stripes
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$rect(x=0,y=0, width = 300, height = 380, fill=pats)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Draw concentrical circles. Apply mask, so that only top part shows
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+circ_g <- doc$g()
+circ_g$circle(cx=100,cy=198, r=190-30*0, stroke="none", stroke_width=0, fill=f, mask=msk)
+for(i in seq(6)-1){
+  circ_g$circle(cx=100,cy=198, r=190-30*i, stroke="white", stroke_width=15, fill='none', mask=msk)
+}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Reuse part of pattern for lines running across
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$rect(x=300/20,y=0, width = 105, height = 550, fill=f, svg_prop$transform$rotate(60, 140, 300))
+doc$rect(x=300/20,y=0, width = 120, height = 550, fill=pats, svg_prop$transform$rotate(60, 140, 300))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Reuse part of pattern for horizontal lines. They extend precisely to the centroid of circles
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$rect(x=300/20,y=0, width = 195, height = 120, fill=f, svg_prop$transform$rotate(90, 56, 41))
+doc$rect(x=300/20,y=0, width = 195, height = 120, fill=pats, svg_prop$transform$rotate(90,56, 41))
+  
+```
+
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc
+```
+
