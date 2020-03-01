@@ -59,8 +59,32 @@ stripeg_mask <- stag$mask(id="stripe_mask", height = 400, width = 150,
 # Put both element and a mask into defs. Use element and the mask
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 doc$add('defs', stripeg_mask, stripeg)
-doc$use(`xlink:href`="#stripe", fill="grey30")
-doc$rect(x=0,y=0, width='100%', height = '100%', mask=stripeg_mask, fill="grey30")  
+doc$use(`xlink:href`="#stripe", fill="#999999")
+doc$rect(x=0,y=0, width='100%', height = '100%', mask=stripeg_mask, fill="#999999")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add text and define CSS class to be used with it
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$text(x = 10, y = 30, class = "mainfont1", "Hurts")
+doc$text(x = 250, y = 30, class = "mainfont1", "4802")
+doc$text(x = 10, y = 360, class = "smallfont1", "Happiness")
+doc$text(x = 10, y = 384, class = "smallfont1", "2010")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Load CSS for google font and specify styling
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc$add_css_url("https://fonts.googleapis.com/css?family=Roboto")
+doc$add_css("
+.mainfont1 {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #999999;
+}
+.smallfont1 {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #ffffff;
+}")
 ```
 
 
