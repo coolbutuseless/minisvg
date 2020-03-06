@@ -472,7 +472,7 @@ mask_lst <- list(
   ))
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Define a first mask. Not that mask is wrapped into translated group.
+# Define a first mask. Note that mask is wrapped into translated group.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 header_mask1_g <- stag$g(svg_prop$transform$translate(35,220))
 invisible(sapply(mask_lst, function(x) header_mask1_g$append(x)))
@@ -482,7 +482,7 @@ header_mask1 <- stag$mask(id='header_mask1', x='0%', y='0%', width='100%', heigh
                              maskContentUnits = "userSpaceOnUse",
                              header_mask1_g)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Define a second mask. Not that mask is wrapped into translated group.
+# Define a second mask. Note that mask is wrapped into translated group.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 header_mask2_g <- stag$g(svg_prop$transform$translate(381,100))
 invisible(sapply(mask_lst, function(x) header_mask2_g$append(x)))
@@ -511,7 +511,7 @@ g2_hex <- update_children(g_hex$copy(), fill="white", stroke="white")$update(id=
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Define document, add all service elements to 'defs'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-doc <- svg_doc(width=800, height=600,
+doc <- svg_doc(width=700, height=600,
                stag$rect(x=0, y=0, width='100%', height = '100%', fill="white"))
 doc$add('defs',pat, pat_lines, header_mask1, header_mask2, g1_hex, g1_ohex_right, 
         g1_ohex_uright, g1_ohex_left, g1_ohex_uleft, g2_hex)
@@ -547,6 +547,7 @@ doc$save("svg/crystalcastles5155.svg")
 rsvg::rsvg_png("svg/crystalcastles5155.svg", "images/crystalcastles5155.png")
 knitr::include_graphics("images/crystalcastles5155.png")
 ```
+
 Please, note that if some of the elements do not get properly rendered by your browser, try convering `svg` images to `png` using `rsvg::rsvg_png()` or rendering them in Chrome.
 
 ## Beach House 4910
@@ -830,5 +831,95 @@ print(doc_hc)
 
 ```{r echo = FALSE}
 doc_hc
+```
+
+
+## Velvel Revolver 5648
+
+This example is reproducing "Velvet Revolver 5648" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
+
+* Simple pattern is defined with two half-triangles and a circle.
+* Pattern then is filled into three indpendent (oversized) rectanges, shifted to the left until requisite part of the pattern is visible.
+
+```{r comment=''}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define the document with white background
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+len <- 300/1.8/2
+
+doc_vr <- svg_doc(width=300, height = 450)
+doc_vr$rect(x=0, y=0, width = '100%', height='100%', fill="white", stroke="gray50")
+
+xs1<-c(0, 0+len/2, 0, 0)
+xs2<-c(0, 0+len/2, len/2, 0)
+ys <- c(0, 0, len*sqrt(3)/2, 0)
+tri1 <- stag$polygon(id="triang1", xs=xs1, ys=ys, fill="black")
+cir <- stag$circle(id="circ", cx=0+len/2+len*0.4, cy=0+len*0.45, r=len*0.45, fill="#a02c31")
+tri2 <- stag$polygon(id="triang2", xs=xs2+len/2+len*0.8, ys=ys, fill="black")
+
+patg <- stag$g(tri1, tri2, cir)
+pat <- stag$pattern(width=len+len*0.8, height=len+5, 
+                      id = 'velvet_pattern', 
+                      patternContentUnits = "userSpaceOnUse",
+                      patternUnits="userSpaceOnUse",
+                      patg)
+
+doc_vr$add('defs', pat)
+
+doc_vr$rect(x=0, y=0, height=len, width = 300+len*2, fill=pat, svg_prop$transform$translate(-len*0.9, 100+len*0))
+doc_vr$rect(x=0, y=0, height=len, width = 300+len*2, fill=pat, svg_prop$transform$translate(0, 100+len*1))
+doc_vr$rect(x=0, y=0, height=len, width = 300+len*2, fill=pat, svg_prop$transform$translate(-len*0.9, 100+len*2))
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add text and define CSS class to be used with it
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_vr$text(x = 10, y = 30, class = "mainfont_red_vr", "Velvet Revolver")
+doc_vr$text(x = 245, y = 30, class = "mainfont_blk_vr", "5648")
+doc_vr$text(x = 10, y = 375, class = "smallfont_red_vr", "Contraband")
+doc_vr$text(x = 10, y = 388, class = "smallfont_blk_vr", "2004")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Load CSS for google font and specify styling
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_vr$add_css_url("https://fonts.googleapis.com/css?family=Roboto")
+doc_vr$add_css("
+.mainfont_red_vr {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #a02c31;
+}
+.mainfont_blk_vr {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #000000;
+}
+.smallfont_red_vr {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #a02c31;
+}
+.smallfont_blk_vr {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #000000;
+}")
+
+```
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc_vr)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc_vr
 ```
 
