@@ -791,7 +791,6 @@ doc_hc$rect(x=10, y=50, width=12*300/13, height=14*300/13, fill=pat1_hc)
 doc_hc$rect(x=10, y=50, width=12*300/13, height=14*300/13, fill=pat3_hc, mask=msk2_hc)
 doc_hc$rect(x=10, y=50, width=12*300/13, height=14*300/13, fill=pat2_hc, mask=msk1_hc)
 
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Add text and define CSS class to be used with it
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -923,3 +922,106 @@ print(doc_vr)
 doc_vr
 ```
 
+
+## Kasabian 5038
+
+This example is reproducing "Kasabian 5038" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
+
+* Simple horizontal pattern is a single triangle, rotated and reflected.
+* Pattern is filled down and a red rotated square added on top (with multiplicative filter).
+
+```{r comment=''}
+len <- 300/4
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define svg document with grey background
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+doc_k <- svg_doc(width=300, height = 450)
+doc_k$rect(x=0, y=0, width = 300, height=450, fill="#414143")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define main element - a triangle. Rotate it and then reflect vertically to form pattern
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tre <- stag$polygon(id="trian",xs=c(0,len,0,0), ys=c(0,0,len, 0), fill="white")
+
+
+pate <- stag$g(id="pat_e",
+  stag$use(`xlink:href` = "#trian"),
+  stag$use(`xlink:href` = "#trian", 
+           svg_prop$transform$rotate(-90,len, 0))
+)
+
+patg <- stag$g(
+  stag$use(`xlink:href`="#pat_e"),
+  stag$use(`xlink:href`="#pat_e", 
+           svg_prop$transform$translate(len*4,0), 
+           svg_prop$transform$scale(-1,1)) # this will mirror the elements in the group
+)
+
+pat <- stag$pattern(id="motif_k",x=0, y=0, width = '100%', height = len+1, 
+                    patternUnits = "userSpaceOnUse", 
+                    patternContentUnits="userSpaceOnUse", patg)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define filter for overlaying pattern over brown triangle in "multiply" mode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mutiFilter <- stag$filter(id="multiplyMe", stag$feBlend(mode="multiply",
+                                                        in_="SourceGraphic", in2 = "BackgroundImage"))
+
+doc_k$add('defs', tre, pate, patg, pat, mutiFilter)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add rectrangle with pattern as well as rotated red square over the moddle
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_k$rect(x=0, y=300/4+1, width = 300, height = 300, fill=pat)
+doc_k$rect(x=0, y=0, width=sqrt(300^2/2), height = sqrt(300^2/2),
+           fill="#a61e2c",
+           svg_prop$transform$translate(150, 300/4), 
+           svg_prop$transform$rotate(45, 0,0),
+           filter=mutiFilter)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add text and define CSS class to be used with it
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_k$text(x = 10, y = 30, class = "mainfont_hc", "Kasabian")
+doc_k$text(x = 235, y = 30, class = "mainfont_hc", "5038")
+doc_k$text(x = 10, y = 400, class = "smallfont_hc", "Velociraptor!")
+doc_k$text(x = 10, y = 415, class = "smallfont_hc", "2011")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Load CSS for google font and specify styling
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_k$add_css_url("https://fonts.googleapis.com/css?family=Roboto")
+doc_k$add_css("
+.mainfont_hc {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #ffffff;
+}
+.smallfont_hc {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #ffffff;
+}")
+
+```
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc_k)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+#doc
+doc_k$save("svg/kasabian5038.svg")
+rsvg::rsvg_png("svg/kasabian5038.svg", "images/kasabian5038.png")
+knitr::include_graphics("images/kasabian5038.png")
+```
+
+Please, note that if some of the elements do not get properly rendered by your browser, try convering `svg` images to `png` using `rsvg::rsvg_png()` or rendering them in Chrome.
