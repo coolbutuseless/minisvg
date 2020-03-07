@@ -189,7 +189,7 @@ print(doc)
 ```{r echo = FALSE}
 doc$save("svg/thehorrors5636.svg")
 rsvg::rsvg_png("svg/thehorrors5636.svg", "images/thehorrors5636.png")
-magick::image_read("images/thehorrors5636.png") 
+knitr::include_graphics("images/thehorrors5636.png") 
 ```
 
 

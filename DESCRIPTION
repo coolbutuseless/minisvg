@@ -2,8 +2,9 @@ Package: minisvg
 Type: Package
 Title: SVG Document Builder
 Version: 0.1.11
-Author: mikefc
-Maintainer: mikefc <mikefc@coolbutuseless.com>
+Authors@R: c(
+    person("Mike", "FC", email = "mikefc@coolbutuseless.com", role = c('aut', 'cre')),
+    person("Dmytro", "Perepolkin", role = c('ctb')))
 Description: Build SVG documents with R.
 License: MIT + file LICENSE
 Encoding: UTF-8
