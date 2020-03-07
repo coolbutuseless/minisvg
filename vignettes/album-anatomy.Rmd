@@ -1058,6 +1058,8 @@ for (i in seq(0,17)){
 doc_pm$circle(cx=cx, cy=cy, r=30+15*i, stroke=fg_wh, 
               stroke_width=5-0.25*i, fill='none', `clip-path`="url(#clipRect)")
 }
+doc_pm$circle(cx=cx+40, cy=cy, r=30-5, stroke='none', 
+              stroke_width=0, fill=fg_wh, `clip-path`="url(#clipRect)")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Add text and define CSS class to be used with it
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
