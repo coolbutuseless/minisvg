@@ -1,0 +1,127 @@
+<svg width="700" height="600" viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect x="0" y="0" width="100%" height="100%" fill="white" />
+  <defs>
+    <pattern id="motif" width="69.28" height="120" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse">
+      <g id="hex">
+        <polygon points="34.64,40 34.64,80 0,60 34.64,40" fill="#906a83" stroke="none" />
+        <polygon points="34.64,40 0,60 0,20 34.64,40" fill="#a68796" stroke="none" />
+        <polygon points="34.64,40 0,20 34.64,0 34.64,40" fill="#754a68" stroke="none" />
+        <polygon points="34.64,40 34.64,0 69.28,20 34.64,40" fill="#a68796" stroke="none" />
+        <polygon points="34.64,40 69.28,20 69.28,60 34.64,40" fill="#c5b2b8" stroke="none" />
+        <polygon points="34.64,40 69.28,60 34.64,80 34.64,40" fill="#7c5570" stroke="none" />
+      </g>
+      <g id="ohex_right">
+        <polygon points="69.28,120 34.64,120 69.28,100 69.28,120" fill="#906a83" />
+        <polygon points="69.28,100 34.64,120 34.64,80 69.28,100" fill="#a68796" />
+        <polygon points="69.28,100 34.64,80 69.28,60 69.28,100" fill="#754a68" />
+      </g>
+      <g id="ohex_uright">
+        <polygon points="69.28,20 34.64,0 69.28,0 69.28,20" fill="#906a83" />
+      </g>
+      <g id="ohex_left">
+        <polygon points="0,120 34.64,120 0,100 0,120" fill="#7c5570" />
+        <polygon points="0,100 34.64,120 34.64,80 0,100" fill="#c5b2b8" />
+        <polygon points="0,100 34.64,80 0,60 0,100" fill="#a68796" />
+      </g>
+      <g id="ohex_uleft">
+        <polygon points="0,20 34.64,0 0,0 0,20" fill="#7c5570" />
+      </g>
+    </pattern>
+    <pattern id="motif_lines" width="300" height="10" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse">
+      <g stroke="#754a68" stroke-width="2">
+        <line x1="0" y1="8" x2="300" y2="8" />
+      </g>
+    </pattern>
+    <mask x="0%" y="0%" width="100%" height="100%" maskUnits="objectBoundingBox" maskContentUnits="userSpaceOnUse" id="header_mask1">
+      <g transform="translate(35 220)">
+        <rect x="0%" y="0%" width="100%" height="100%" fill="white" />
+        <g transform="translate(0 0)">
+          <use xlink:href="#hex1" />
+          <use xlink:href="#ohex1_uleft" />
+          <use xlink:href="#ohex1_left" />
+          <use xlink:href="#ohex1_uright" />
+        </g>
+        <g transform="translate(69.28 0)">
+          <use xlink:href="#ohex1_uleft" />
+          <use xlink:href="#ohex1_uright" />
+        </g>
+        <g transform="translate(138.56 0)">
+          <use xlink:href="#hex1" />
+          <use xlink:href="#ohex1_uleft" />
+          <use xlink:href="#ohex1_right" />
+          <use xlink:href="#ohex1_uright" />
+        </g>
+        <g transform="translate(0 120)">
+          <use xlink:href="#ohex1_uleft" />
+        </g>
+        <g transform="translate(138.56 120)">
+          <use xlink:href="#ohex1_uright" />
+        </g>
+      </g>
+    </mask>
+    <mask x="0%" y="0%" width="100%" height="100%" maskUnits="objectBoundingBox" maskContentUnits="userSpaceOnUse" id="header_mask2">
+      <g transform="translate(381 100)">
+        <rect x="0%" y="0%" width="100%" height="100%" fill="white" />
+        <g transform="translate(0 0)">
+          <use xlink:href="#hex1" />
+          <use xlink:href="#ohex1_uleft" />
+          <use xlink:href="#ohex1_left" />
+          <use xlink:href="#ohex1_uright" />
+        </g>
+        <g transform="translate(69.28 0)">
+          <use xlink:href="#ohex1_uleft" />
+          <use xlink:href="#ohex1_uright" />
+        </g>
+        <g transform="translate(138.56 0)">
+          <use xlink:href="#hex1" />
+          <use xlink:href="#ohex1_uleft" />
+          <use xlink:href="#ohex1_right" />
+          <use xlink:href="#ohex1_uright" />
+        </g>
+        <g transform="translate(0 120)">
+          <use xlink:href="#ohex1_uleft" />
+        </g>
+        <g transform="translate(138.56 120)">
+          <use xlink:href="#ohex1_uright" />
+        </g>
+      </g>
+    </mask>
+    <g id="hex1">
+      <polygon points="34.64,40 34.64,80 0,60 34.64,40" fill="black" stroke="black" />
+      <polygon points="34.64,40 0,60 0,20 34.64,40" fill="black" stroke="black" />
+      <polygon points="34.64,40 0,20 34.64,0 34.64,40" fill="black" stroke="black" />
+      <polygon points="34.64,40 34.64,0 69.28,20 34.64,40" fill="black" stroke="black" />
+      <polygon points="34.64,40 69.28,20 69.28,60 34.64,40" fill="black" stroke="black" />
+      <polygon points="34.64,40 69.28,60 34.64,80 34.64,40" fill="black" stroke="black" />
+    </g>
+    <g id="ohex1_right">
+      <polygon points="69.28,120 34.64,120 69.28,100 69.28,120" fill="black" stroke="black" />
+      <polygon points="69.28,100 34.64,120 34.64,80 69.28,100" fill="black" stroke="black" />
+      <polygon points="69.28,100 34.64,80 69.28,60 69.28,100" fill="black" stroke="black" />
+    </g>
+    <g id="ohex1_uright">
+      <polygon points="69.28,20 34.64,0 69.28,0 69.28,20" fill="black" stroke="black" />
+    </g>
+    <g id="ohex1_left">
+      <polygon points="0,120 34.64,120 0,100 0,120" fill="black" stroke="black" />
+      <polygon points="0,100 34.64,120 34.64,80 0,100" fill="black" stroke="black" />
+      <polygon points="0,100 34.64,80 0,60 0,100" fill="black" stroke="black" />
+    </g>
+    <g id="ohex1_uleft">
+      <polygon points="0,20 34.64,0 0,0 0,20" fill="black" stroke="black" />
+    </g>
+    <g id="hex2">
+      <polygon points="34.64,40 34.64,80 0,60 34.64,40" fill="white" stroke="white" />
+      <polygon points="34.64,40 0,60 0,20 34.64,40" fill="white" stroke="white" />
+      <polygon points="34.64,40 0,20 34.64,0 34.64,40" fill="white" stroke="white" />
+      <polygon points="34.64,40 34.64,0 69.28,20 34.64,40" fill="white" stroke="white" />
+      <polygon points="34.64,40 69.28,20 69.28,60 34.64,40" fill="white" stroke="white" />
+      <polygon points="34.64,40 69.28,60 34.64,80 34.64,40" fill="white" stroke="white" />
+    </g>
+  </defs>
+  <rect x="35" y="220" width="207.84" height="540" fill="url(#motif)" mask="url(#header_mask1)" />
+  <rect x="310" y="0" width="350" height="100%" fill="url(#motif_lines)" stroke="#906a83" stroke-width="3" />
+  <rect x="381" y="100" width="207.84" height="540" fill="url(#motif)" mask="url(#header_mask2)" />
+  <use xlink:href="#hex2" transform="translate(105 300)" />
+  <use xlink:href="#hex2" transform="translate(451 180)" />
+</svg>

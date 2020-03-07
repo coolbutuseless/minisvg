@@ -1,0 +1,55 @@
+<svg width="300" height="450" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style type='text/css'>
+<![CDATA[
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+.mainfont_hc {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #ffffff;
+}
+.smallfont_hc {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #ffffff;
+}
+]]>
+</style>
+  <rect fill="#414143" x="0" y="0" width="300" height="450" />
+  <defs>
+    <polygon points="0,0 75,0 0,75 0,0" id="trian" fill="white" />
+    <g id="pat_e">
+      <use xlink:href="#trian" />
+      <use xlink:href="#trian" transform="rotate(-90 75 0)" />
+    </g>
+    <g>
+      <use xlink:href="#pat_e" />
+      <use xlink:href="#pat_e" transform="translate(300 0) scale(-1 1)" />
+    </g>
+    <pattern id="motif_k" x="0" y="0" width="100%" height="76" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse">
+      <g>
+        <use xlink:href="#pat_e" />
+        <use xlink:href="#pat_e" transform="translate(300 0) scale(-1 1)" />
+      </g>
+    </pattern>
+    <filter id="multiplyMe">
+      <feBlend in="SourceGraphic" in2="BackgroundImage" mode="multiply" />
+    </filter>
+  </defs>
+  <rect fill="url(#motif_k)" x="0" y="76" width="300" height="300" />
+  <rect fill="#a61e2c" filter="url(#multiplyMe)" x="0" y="0" width="212.132034355964" height="212.132034355964" transform="translate(150 75) rotate(45 0 0)" />
+  <text class="mainfont_hc" x="10" y="30">
+    Kasabian
+  </text>
+  <text class="mainfont_hc" x="235" y="30">
+    5038
+  </text>
+  <text class="smallfont_hc" x="10" y="400">
+    Velociraptor!
+  </text>
+  <text class="smallfont_hc" x="10" y="415">
+    2011
+  </text>
+</svg>
