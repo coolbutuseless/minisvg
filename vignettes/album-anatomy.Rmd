@@ -1025,3 +1025,79 @@ knitr::include_graphics("images/kasabian5038.png")
 ```
 
 Please, note that if some of the elements do not get properly rendered by your browser, try convering `svg` images to `png` using `rsvg::rsvg_png()` or rendering them in Chrome.
+
+
+
+## Paul McCartney & Wings 4417
+
+This example is reproducing "Paul McCartney & Wings 4417" poster from ["Album Anatomy" poster collection](https://www.behance.net/gallery/2770133/Album-Anatomy). 
+
+* Concentrical circles are generated in a loop with varying stroke width and increasing radius.
+* Circles are then clipped to the containing rectangle.
+
+```{r comment=''}
+fg_wh <- "#f7f1ec"
+fg_br <- "#684f2e"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define document with bright background
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_pm <- svg_doc(width = 300, height = 450)
+doc_pm$rect(x=0, y=0, width='100%', height='100%', fill=fg_wh)
+doc_pm$rect(x=10, y=40, width = 300-20, height = 350, fill=fg_br)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Define clipping path and add it to document defition
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+clipsq <- stag$clipPath(id="clipRect",
+                        stag$rect(x=10,y=40, width = 300-20, height = 350))
+doc_pm$add('defs',clipsq)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Implement a loop to add circles
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cx<-175; cy<-150
+for (i in seq(0,17)){
+doc_pm$circle(cx=cx, cy=cy, r=30+15*i, stroke=fg_wh, 
+              stroke_width=5-0.25*i, fill='none', `clip-path`="url(#clipRect)")
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Add text and define CSS class to be used with it
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_pm$text(x = 10, y = 25, class = "mainfont_hc", "Paul McCartney & Wings")
+doc_pm$text(x = 245, y = 25, class = "mainfont_hc", "4417")
+doc_pm$text(x = 10, y = 405, class = "smallfont_hc", "Band")
+doc_pm$text(x = 10, y = 415, class = "smallfont_hc", "on the Run")
+doc_pm$text(x = 10, y = 427, class = "smallfont_hc", "1973")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Load CSS for google font and specify styling
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doc_pm$add_css_url("https://fonts.googleapis.com/css?family=Roboto")
+doc_pm$add_css("
+.mainfont_hc {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #684f2e;
+}
+.smallfont_hc {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  fill: #684f2e;
+}")
+
+```
+
+<!-- Raw HTML output. hidden by default -->
+<details closed>
+<summary> <span title='Raw HTML'> Raw SVG Text (click to open) </span> </summary>
+```{r echo = FALSE, comment=""}
+print(doc_pm)
+```
+</details><br />
+
+
+```{r echo = FALSE}
+doc_pm
+```
+
+
+
