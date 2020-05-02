@@ -137,6 +137,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-a"></a>}}
+\if{latex}{\out{\hypertarget{method-a}{}}}
 \subsection{Method \code{a()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$a(..., href = NULL)}\if{html}{\out{</div>}}
@@ -145,6 +146,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-animate"></a>}}
+\if{latex}{\out{\hypertarget{method-animate}{}}}
 \subsection{Method \code{animate()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$animate(
@@ -168,6 +170,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-animateMotion"></a>}}
+\if{latex}{\out{\hypertarget{method-animateMotion}{}}}
 \subsection{Method \code{animateMotion()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$animateMotion(
@@ -183,6 +186,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-animateTransform"></a>}}
+\if{latex}{\out{\hypertarget{method-animateTransform}{}}}
 \subsection{Method \code{animateTransform()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$animateTransform(
@@ -201,6 +205,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-circle"></a>}}
+\if{latex}{\out{\hypertarget{method-circle}{}}}
 \subsection{Method \code{circle()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$circle(..., cx = NULL, cy = NULL, r = NULL)}\if{html}{\out{</div>}}
@@ -209,6 +214,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clipPath"></a>}}
+\if{latex}{\out{\hypertarget{method-clipPath}{}}}
 \subsection{Method \code{clipPath()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$clipPath(..., id = NULL)}\if{html}{\out{</div>}}
@@ -217,6 +223,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-defs"></a>}}
+\if{latex}{\out{\hypertarget{method-defs}{}}}
 \subsection{Method \code{defs()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$defs(...)}\if{html}{\out{</div>}}
@@ -225,6 +232,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-desc"></a>}}
+\if{latex}{\out{\hypertarget{method-desc}{}}}
 \subsection{Method \code{desc()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$desc(...)}\if{html}{\out{</div>}}
@@ -233,6 +241,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-discard"></a>}}
+\if{latex}{\out{\hypertarget{method-discard}{}}}
 \subsection{Method \code{discard()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$discard(..., begin = NULL, href = NULL)}\if{html}{\out{</div>}}
@@ -241,6 +250,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ellipse"></a>}}
+\if{latex}{\out{\hypertarget{method-ellipse}{}}}
 \subsection{Method \code{ellipse()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$ellipse(..., cx = NULL, cy = NULL, rx = NULL, ry = NULL)}\if{html}{\out{</div>}}
@@ -249,6 +259,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feBlend"></a>}}
+\if{latex}{\out{\hypertarget{method-feBlend}{}}}
 \subsection{Method \code{feBlend()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feBlend(..., in_ = NULL, in2 = NULL, mode = NULL, result = NULL)}\if{html}{\out{</div>}}
@@ -257,6 +268,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feColorMatrix"></a>}}
+\if{latex}{\out{\hypertarget{method-feColorMatrix}{}}}
 \subsection{Method \code{feColorMatrix()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feColorMatrix(
@@ -271,6 +283,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feComponentTransfer"></a>}}
+\if{latex}{\out{\hypertarget{method-feComponentTransfer}{}}}
 \subsection{Method \code{feComponentTransfer()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feComponentTransfer(..., in_ = NULL, result = NULL)}\if{html}{\out{</div>}}
@@ -279,6 +292,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feComposite"></a>}}
+\if{latex}{\out{\hypertarget{method-feComposite}{}}}
 \subsection{Method \code{feComposite()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feComposite(
@@ -297,6 +311,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feConvolveMatrix"></a>}}
+\if{latex}{\out{\hypertarget{method-feConvolveMatrix}{}}}
 \subsection{Method \code{feConvolveMatrix()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feConvolveMatrix(
@@ -318,6 +333,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feDiffuseLighting"></a>}}
+\if{latex}{\out{\hypertarget{method-feDiffuseLighting}{}}}
 \subsection{Method \code{feDiffuseLighting()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feDiffuseLighting(
@@ -333,6 +349,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feDisplacementMap"></a>}}
+\if{latex}{\out{\hypertarget{method-feDisplacementMap}{}}}
 \subsection{Method \code{feDisplacementMap()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feDisplacementMap(
@@ -349,6 +366,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feFlood"></a>}}
+\if{latex}{\out{\hypertarget{method-feFlood}{}}}
 \subsection{Method \code{feFlood()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFlood(
@@ -362,6 +380,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feFuncR"></a>}}
+\if{latex}{\out{\hypertarget{method-feFuncR}{}}}
 \subsection{Method \code{feFuncR()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFuncR(..., type = NULL, tableValues = NULL)}\if{html}{\out{</div>}}
@@ -370,6 +389,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feFuncG"></a>}}
+\if{latex}{\out{\hypertarget{method-feFuncG}{}}}
 \subsection{Method \code{feFuncG()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFuncG(..., type = NULL, tableValues = NULL)}\if{html}{\out{</div>}}
@@ -378,6 +398,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feFuncB"></a>}}
+\if{latex}{\out{\hypertarget{method-feFuncB}{}}}
 \subsection{Method \code{feFuncB()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFuncB(..., type = NULL, tableValues = NULL)}\if{html}{\out{</div>}}
@@ -386,6 +407,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feFuncA"></a>}}
+\if{latex}{\out{\hypertarget{method-feFuncA}{}}}
 \subsection{Method \code{feFuncA()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feFuncA(..., type = NULL, tableValues = NULL)}\if{html}{\out{</div>}}
@@ -394,6 +416,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feGaussianBlur"></a>}}
+\if{latex}{\out{\hypertarget{method-feGaussianBlur}{}}}
 \subsection{Method \code{feGaussianBlur()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feGaussianBlur(
@@ -408,6 +431,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feImage"></a>}}
+\if{latex}{\out{\hypertarget{method-feImage}{}}}
 \subsection{Method \code{feImage()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feImage(
@@ -421,6 +445,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feMerge"></a>}}
+\if{latex}{\out{\hypertarget{method-feMerge}{}}}
 \subsection{Method \code{feMerge()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMerge(..., result = NULL)}\if{html}{\out{</div>}}
@@ -429,6 +454,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feMergeNode"></a>}}
+\if{latex}{\out{\hypertarget{method-feMergeNode}{}}}
 \subsection{Method \code{feMergeNode()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMergeNode(..., in_ = NULL)}\if{html}{\out{</div>}}
@@ -437,6 +463,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feMorphology"></a>}}
+\if{latex}{\out{\hypertarget{method-feMorphology}{}}}
 \subsection{Method \code{feMorphology()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feMorphology(
@@ -451,6 +478,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feOffset"></a>}}
+\if{latex}{\out{\hypertarget{method-feOffset}{}}}
 \subsection{Method \code{feOffset()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feOffset(..., in_ = NULL, dx = NULL, dy = NULL, result = NULL)}\if{html}{\out{</div>}}
@@ -459,6 +487,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feSpecularLighting"></a>}}
+\if{latex}{\out{\hypertarget{method-feSpecularLighting}{}}}
 \subsection{Method \code{feSpecularLighting()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feSpecularLighting(
@@ -475,6 +504,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feTile"></a>}}
+\if{latex}{\out{\hypertarget{method-feTile}{}}}
 \subsection{Method \code{feTile()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feTile(..., in_ = NULL, result = NULL)}\if{html}{\out{</div>}}
@@ -483,6 +513,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-feTurbulence"></a>}}
+\if{latex}{\out{\hypertarget{method-feTurbulence}{}}}
 \subsection{Method \code{feTurbulence()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$feTurbulence(
@@ -499,6 +530,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-filter"></a>}}
+\if{latex}{\out{\hypertarget{method-filter}{}}}
 \subsection{Method \code{filter()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$filter(
@@ -518,6 +550,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-foreignObject"></a>}}
+\if{latex}{\out{\hypertarget{method-foreignObject}{}}}
 \subsection{Method \code{foreignObject()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$foreignObject(..., x = NULL, y = NULL, width = NULL, height = NULL)}\if{html}{\out{</div>}}
@@ -526,6 +559,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-g"></a>}}
+\if{latex}{\out{\hypertarget{method-g}{}}}
 \subsection{Method \code{g()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$g(..., id = NULL)}\if{html}{\out{</div>}}
@@ -534,6 +568,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-image"></a>}}
+\if{latex}{\out{\hypertarget{method-image}{}}}
 \subsection{Method \code{image()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$image(
@@ -550,6 +585,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-line"></a>}}
+\if{latex}{\out{\hypertarget{method-line}{}}}
 \subsection{Method \code{line()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$line(..., x1 = NULL, y1 = NULL, x2 = NULL, y2 = NULL)}\if{html}{\out{</div>}}
@@ -558,6 +594,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-linearGradient"></a>}}
+\if{latex}{\out{\hypertarget{method-linearGradient}{}}}
 \subsection{Method \code{linearGradient()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$linearGradient(
@@ -576,6 +613,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-marker"></a>}}
+\if{latex}{\out{\hypertarget{method-marker}{}}}
 \subsection{Method \code{marker()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$marker(
@@ -594,6 +632,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-mask"></a>}}
+\if{latex}{\out{\hypertarget{method-mask}{}}}
 \subsection{Method \code{mask()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$mask(
@@ -610,6 +649,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-mpath"></a>}}
+\if{latex}{\out{\hypertarget{method-mpath}{}}}
 \subsection{Method \code{mpath()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$mpath(..., xlink_href = NULL)}\if{html}{\out{</div>}}
@@ -618,6 +658,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-path"></a>}}
+\if{latex}{\out{\hypertarget{method-path}{}}}
 \subsection{Method \code{path()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$path(..., d = NULL, pathLength = NULL)}\if{html}{\out{</div>}}
@@ -626,6 +667,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-pattern"></a>}}
+\if{latex}{\out{\hypertarget{method-pattern}{}}}
 \subsection{Method \code{pattern()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$pattern(
@@ -645,6 +687,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-radialGradient"></a>}}
+\if{latex}{\out{\hypertarget{method-radialGradient}{}}}
 \subsection{Method \code{radialGradient()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$radialGradient(
@@ -666,6 +709,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-rect"></a>}}
+\if{latex}{\out{\hypertarget{method-rect}{}}}
 \subsection{Method \code{rect()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$rect(
@@ -682,6 +726,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-script"></a>}}
+\if{latex}{\out{\hypertarget{method-script}{}}}
 \subsection{Method \code{script()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$script(..., type = NULL, href = NULL)}\if{html}{\out{</div>}}
@@ -690,6 +735,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set"></a>}}
+\if{latex}{\out{\hypertarget{method-set}{}}}
 \subsection{Method \code{set()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$set(..., to = NULL)}\if{html}{\out{</div>}}
@@ -698,6 +744,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-stop"></a>}}
+\if{latex}{\out{\hypertarget{method-stop}{}}}
 \subsection{Method \code{stop()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$stop(..., offset = NULL, stop_color = NULL, stop_opacity = NULL)}\if{html}{\out{</div>}}
@@ -706,6 +753,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-style"></a>}}
+\if{latex}{\out{\hypertarget{method-style}{}}}
 \subsection{Method \code{style()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$style(...)}\if{html}{\out{</div>}}
@@ -714,6 +762,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-switch"></a>}}
+\if{latex}{\out{\hypertarget{method-switch}{}}}
 \subsection{Method \code{switch()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$switch(...)}\if{html}{\out{</div>}}
@@ -722,6 +771,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-symbol"></a>}}
+\if{latex}{\out{\hypertarget{method-symbol}{}}}
 \subsection{Method \code{symbol()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$symbol(
@@ -740,6 +790,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-text"></a>}}
+\if{latex}{\out{\hypertarget{method-text}{}}}
 \subsection{Method \code{text()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$text(
@@ -757,6 +808,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-textPath"></a>}}
+\if{latex}{\out{\hypertarget{method-textPath}{}}}
 \subsection{Method \code{textPath()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$textPath(
@@ -775,6 +827,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-title"></a>}}
+\if{latex}{\out{\hypertarget{method-title}{}}}
 \subsection{Method \code{title()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$title(...)}\if{html}{\out{</div>}}
@@ -783,6 +836,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-use"></a>}}
+\if{latex}{\out{\hypertarget{method-use}{}}}
 \subsection{Method \code{use()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$use(
@@ -798,6 +852,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-matrix}{}}}
 \subsection{Method \code{matrix()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$matrix(a, b, c, d, e, f)}\if{html}{\out{</div>}}
@@ -806,6 +861,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-translate"></a>}}
+\if{latex}{\out{\hypertarget{method-translate}{}}}
 \subsection{Method \code{translate()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$translate(x, y = NULL)}\if{html}{\out{</div>}}
@@ -814,6 +870,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-scale"></a>}}
+\if{latex}{\out{\hypertarget{method-scale}{}}}
 \subsection{Method \code{scale()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$scale(x, y = NULL)}\if{html}{\out{</div>}}
@@ -822,6 +879,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-rotate"></a>}}
+\if{latex}{\out{\hypertarget{method-rotate}{}}}
 \subsection{Method \code{rotate()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$rotate(a, x = NULL, y = NULL)}\if{html}{\out{</div>}}
@@ -830,6 +888,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-skewX"></a>}}
+\if{latex}{\out{\hypertarget{method-skewX}{}}}
 \subsection{Method \code{skewX()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewX(a)}\if{html}{\out{</div>}}
@@ -838,6 +897,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-skewY"></a>}}
+\if{latex}{\out{\hypertarget{method-skewY}{}}}
 \subsection{Method \code{skewY()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$skewY(a)}\if{html}{\out{</div>}}
@@ -846,6 +906,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-polygon"></a>}}
+\if{latex}{\out{\hypertarget{method-polygon}{}}}
 \subsection{Method \code{polygon()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$polygon(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
@@ -854,6 +915,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-polyline"></a>}}
+\if{latex}{\out{\hypertarget{method-polyline}{}}}
 \subsection{Method \code{polyline()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SVGElement$polyline(xs = NULL, ys = NULL, points = NULL, ...)}\if{html}{\out{</div>}}
@@ -862,6 +924,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Initialize an SVGElement
 \subsection{Usage}{
@@ -881,6 +944,7 @@ unnamed arguments treated as child nodes}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-update"></a>}}
+\if{latex}{\out{\hypertarget{method-update}{}}}
 \subsection{Method \code{update()}}{
 Update the SVG Element.
 \subsection{Usage}{
@@ -908,6 +972,7 @@ To print just the attribute name, but without a value, set to NA
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-append"></a>}}
+\if{latex}{\out{\hypertarget{method-append}{}}}
 \subsection{Method \code{append()}}{
 Append child nodes at the specified position.
 \subsection{Usage}{
@@ -927,6 +992,7 @@ but 'position' argument can be used to set location by index}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-update_child_list"></a>}}
+\if{latex}{\out{\hypertarget{method-update_child_list}{}}}
 \subsection{Method \code{update_child_list()}}{
 Update the list of child nodes by tag name
 \subsection{Usage}{
@@ -943,6 +1009,7 @@ Update the list of child nodes by tag name
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-rebuild_child_list"></a>}}
+\if{latex}{\out{\hypertarget{method-rebuild_child_list}{}}}
 \subsection{Method \code{rebuild_child_list()}}{
 URebuild the list of child nodes by tag name
 \subsection{Usage}{
@@ -952,6 +1019,7 @@ URebuild the list of child nodes by tag name
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add"></a>}}
+\if{latex}{\out{\hypertarget{method-add}{}}}
 \subsection{Method \code{add()}}{
 Simultaneous create an SVG element and add it as a child node
 \subsection{Usage}{
@@ -974,6 +1042,7 @@ the newly created element, \emph{not} the document
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-remove"></a>}}
+\if{latex}{\out{\hypertarget{method-remove}{}}}
 \subsection{Method \code{remove()}}{
 Remove child objects at the given indices
 \subsection{Usage}{
@@ -990,6 +1059,7 @@ Remove child objects at the given indices
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-reset_transform"></a>}}
+\if{latex}{\out{\hypertarget{method-reset_transform}{}}}
 \subsection{Method \code{reset_transform()}}{
 Remove any transform attributes from this node
 \subsection{Usage}{
@@ -999,6 +1069,7 @@ Remove any transform attributes from this node
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_character_inner"></a>}}
+\if{latex}{\out{\hypertarget{method-as_character_inner}{}}}
 \subsection{Method \code{as_character_inner()}}{
 Recursively convert this SVGElement and children to text
 \subsection{Usage}{
@@ -1020,6 +1091,7 @@ single character string
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_character"></a>}}
+\if{latex}{\out{\hypertarget{method-as_character}{}}}
 \subsection{Method \code{as_character()}}{
 Recursively convert this SVGElement and children to text
 \subsection{Usage}{
@@ -1043,6 +1115,7 @@ single character string
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
+\if{latex}{\out{\hypertarget{method-save}{}}}
 \subsection{Method \code{save()}}{
 Save the text representation of this node and its children
 \subsection{Usage}{
@@ -1063,6 +1136,7 @@ Save the text representation of this node and its children
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-has_attribs"></a>}}
+\if{latex}{\out{\hypertarget{method-has_attribs}{}}}
 \subsection{Method \code{has_attribs()}}{
 test if this element has all of the named attributes
 \subsection{Usage}{
@@ -1083,6 +1157,7 @@ TRUE
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-find"></a>}}
+\if{latex}{\out{\hypertarget{method-find}{}}}
 \subsection{Method \code{find()}}{
 Find elements which match the given tag names and attributes.
 \subsection{Usage}{
@@ -1116,6 +1191,7 @@ doc$find(tag = c('rect', 'circle'), attribs = list(fill = c('red', 'black')))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-copy"></a>}}
+\if{latex}{\out{\hypertarget{method-copy}{}}}
 \subsection{Method \code{copy()}}{
 Make a deep copy of this node and its children
 \subsection{Usage}{
@@ -1125,6 +1201,7 @@ Make a deep copy of this node and its children
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

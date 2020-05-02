@@ -1,4 +1,9 @@
 
+# minisvg 0.1.12  2020-05-02
+
+* Bug fix: All `transform` attributes are no longer being included twice.  
+  (Fixes Issue #10)
+
 # minisvg 0.1.11  2020-02-29
 
 * Bug fix: multiple transforms are now cumulative (again!).  (Fixes Issue #7)

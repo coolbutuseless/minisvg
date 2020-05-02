@@ -54,6 +54,7 @@ should be set to 'literal'}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Initialize an SVGElement
 \subsection{Usage}{
@@ -73,6 +74,7 @@ unnamed arguments treated as child nodes}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-update"></a>}}
+\if{latex}{\out{\hypertarget{method-update}{}}}
 \subsection{Method \code{update()}}{
 Update the SVG Element.
 \subsection{Usage}{
@@ -102,6 +104,7 @@ To print just the attribute name, but without a value, set to NA
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_character_inner"></a>}}
+\if{latex}{\out{\hypertarget{method-as_character_inner}{}}}
 \subsection{Method \code{as_character_inner()}}{
 Convert this SVGLiteral
 \subsection{Usage}{
@@ -121,6 +124,7 @@ single character string
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_character"></a>}}
+\if{latex}{\out{\hypertarget{method-as_character}{}}}
 \subsection{Method \code{as_character()}}{
 Convert this SVGLiteral
 \subsection{Usage}{
@@ -140,6 +144,7 @@ single character string
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

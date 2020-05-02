@@ -136,6 +136,7 @@ Has only been tested with MacOS and Rstudio
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Initialise a new SVG document
 \subsection{Usage}{
@@ -167,6 +168,7 @@ unnamed arguments treated as child nodes}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save_html"></a>}}
+\if{latex}{\out{\hypertarget{method-save_html}{}}}
 \subsection{Method \code{save_html()}}{
 Save a complete HTML document containing this SVG document
 \subsection{Usage}{
@@ -183,6 +185,7 @@ Save a complete HTML document containing this SVG document
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-show"></a>}}
+\if{latex}{\out{\hypertarget{method-show}{}}}
 \subsection{Method \code{show()}}{
 Render the SVG in the current viewer.
 \subsection{Usage}{
@@ -199,6 +202,7 @@ Render the SVG in the current viewer.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-inline_css"></a>}}
+\if{latex}{\out{\hypertarget{method-inline_css}{}}}
 \subsection{Method \code{inline_css()}}{
 Use the supplied string as the inline CSS for this document
 \subsection{Usage}{
@@ -215,6 +219,7 @@ Use the supplied string as the inline CSS for this document
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
 Print the SVGDocument object
 \subsection{Usage}{
@@ -233,6 +238,7 @@ Print the SVGDocument object
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

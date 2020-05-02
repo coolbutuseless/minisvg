@@ -4,7 +4,9 @@
 \name{svg_prop}
 \alias{svg_prop}
 \title{SVG property helper}
-\format{An object of class \code{list} of length 42.}
+\format{
+An object of class \code{list} of length 42.
+}
 \usage{
 svg_prop
 }

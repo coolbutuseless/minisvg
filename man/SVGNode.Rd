@@ -47,6 +47,7 @@ A class representing a single SVG element.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Initialize an SVGNode
 \subsection{Usage}{
@@ -56,6 +57,7 @@ Initialize an SVGNode
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-update"></a>}}
+\if{latex}{\out{\hypertarget{method-update}{}}}
 \subsection{Method \code{update()}}{
 Update the SVG Element.
 \subsection{Usage}{
@@ -83,6 +85,7 @@ To print just the attribute name, but without a value, set to NA
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_css_url"></a>}}
+\if{latex}{\out{\hypertarget{method-add_css_url}{}}}
 \subsection{Method \code{add_css_url()}}{
 Add a URL to a CSS style sheet
 \subsection{Usage}{
@@ -99,6 +102,7 @@ Add a URL to a CSS style sheet
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_css"></a>}}
+\if{latex}{\out{\hypertarget{method-add_css}{}}}
 \subsection{Method \code{add_css()}}{
 Add a CSS declaration for this element.
 \subsection{Usage}{
@@ -116,6 +120,7 @@ e.g. \code{$add_dec("#thing {font-size: 27px}")}}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_js_code"></a>}}
+\if{latex}{\out{\hypertarget{method-add_js_code}{}}}
 \subsection{Method \code{add_js_code()}}{
 Add javascript code for this element
 \subsection{Usage}{
@@ -132,6 +137,7 @@ Add javascript code for this element
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_js_url"></a>}}
+\if{latex}{\out{\hypertarget{method-add_js_url}{}}}
 \subsection{Method \code{add_js_url()}}{
 Add a javaxcript URL to load within the SVG
 \subsection{Usage}{
@@ -148,6 +154,7 @@ Add a javaxcript URL to load within the SVG
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_css_decls"></a>}}
+\if{latex}{\out{\hypertarget{method-get_css_decls}{}}}
 \subsection{Method \code{get_css_decls()}}{
 Create a CSS declaration string for inclusion in the
              character output for this element.
@@ -162,6 +169,7 @@ this includes all css for all child elements
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_css_urls"></a>}}
+\if{latex}{\out{\hypertarget{method-get_css_urls}{}}}
 \subsection{Method \code{get_css_urls()}}{
 Create a vector or urls for CSS inclustion
 \subsection{Usage}{
@@ -175,6 +183,7 @@ this includes all CSS URLs for all child elements
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_js_code"></a>}}
+\if{latex}{\out{\hypertarget{method-get_js_code}{}}}
 \subsection{Method \code{get_js_code()}}{
 Create a character vector of JS code for this node and
              all child nodes.
@@ -185,6 +194,7 @@ Create a character vector of JS code for this node and
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_js_urls"></a>}}
+\if{latex}{\out{\hypertarget{method-get_js_urls}{}}}
 \subsection{Method \code{get_js_urls()}}{
 Create a vector of external JS urls
 \subsection{Usage}{
@@ -198,6 +208,7 @@ this includes all CSS URLs for all child elements
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_css_style"></a>}}
+\if{latex}{\out{\hypertarget{method-get_css_style}{}}}
 \subsection{Method \code{get_css_style()}}{
 Create a complete CSS <style> tag using the declarations
              and URLs of the current element, and all child elements.
@@ -211,6 +222,7 @@ character string
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_js_style"></a>}}
+\if{latex}{\out{\hypertarget{method-get_js_style}{}}}
 \subsection{Method \code{get_js_style()}}{
 Create a complete CSS style tag using the declarations
              and URLs of the current element, and all child elements.
@@ -224,6 +236,7 @@ character string
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_character_inner"></a>}}
+\if{latex}{\out{\hypertarget{method-as_character_inner}{}}}
 \subsection{Method \code{as_character_inner()}}{
 Recursively convert this SVGElement and children to text
 \subsection{Usage}{
@@ -236,6 +249,7 @@ single character string
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_character"></a>}}
+\if{latex}{\out{\hypertarget{method-as_character}{}}}
 \subsection{Method \code{as_character()}}{
 Recursively convert this SVGElement and children to text
 \subsection{Usage}{
@@ -248,6 +262,7 @@ single character string
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
 Print the SVG string to the terminal
 \subsection{Usage}{
@@ -266,6 +281,7 @@ Print the SVG string to the terminal
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
+\if{latex}{\out{\hypertarget{method-save}{}}}
 \subsection{Method \code{save()}}{
 Save the text representation of this node and its children
 \subsection{Usage}{
@@ -286,6 +302,7 @@ Save the text representation of this node and its children
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-copy"></a>}}
+\if{latex}{\out{\hypertarget{method-copy}{}}}
 \subsection{Method \code{copy()}}{
 Make a deep copy of this node and its children
 \subsection{Usage}{
@@ -295,6 +312,7 @@ Make a deep copy of this node and its children
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-find"></a>}}
+\if{latex}{\out{\hypertarget{method-find}{}}}
 \subsection{Method \code{find()}}{
 Find elements which match the given tags
 \subsection{Usage}{
@@ -315,6 +333,7 @@ minisvg objects which inherit from SVGNode will return NULL
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

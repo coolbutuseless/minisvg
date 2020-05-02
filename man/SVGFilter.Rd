@@ -126,6 +126,7 @@ f <- SVGFilter$new(id = "turbulence-filter", stag$feTurbulence(...))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Initialise an SVGFilter object
 \subsection{Usage}{
@@ -144,6 +145,7 @@ Initialise an SVGFilter object
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_full_svg"></a>}}
+\if{latex}{\out{\hypertarget{method-as_full_svg}{}}}
 \subsection{Method \code{as_full_svg()}}{
 Wrap the SVG for this filter in a full SVG document and return the text
 \subsection{Usage}{
@@ -160,6 +162,7 @@ Wrap the SVG for this filter in a full SVG document and return the text
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save_full_svg"></a>}}
+\if{latex}{\out{\hypertarget{method-save_full_svg}{}}}
 \subsection{Method \code{save_full_svg()}}{
 Save the SVG for this filter in a full SVG document
 \subsection{Usage}{
@@ -180,6 +183,7 @@ Save the SVG for this filter in a full SVG document
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-show"></a>}}
+\if{latex}{\out{\hypertarget{method-show}{}}}
 \subsection{Method \code{show()}}{
 Render this filter in the context of a complete SVG document
 \subsection{Usage}{
@@ -198,6 +202,7 @@ Render this filter in the context of a complete SVG document
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

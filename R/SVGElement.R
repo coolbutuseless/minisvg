@@ -128,7 +128,6 @@ SVGElement <- R6::R6Class(
       attrib_names <- gsub("colour"     , "color"      , attrib_names)
       names(attribs) <- attrib_names
 
-
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # pull out any 'transform' changes and handle separately
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -209,10 +208,15 @@ SVGElement <- R6::R6Class(
       self$attribs <- modifyList(self$attribs, attribs, keep.null = FALSE)
 
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      # but the 'transform' declaration appends to the current transform
+      # but the 'transform' declaration appends to the current transform.
+      # but only take the unique 'transform=<X>' within trans to avoid
+      # double-ups within the one call
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       if (!is.null(trans) && length(trans) > 0) {
-        self$attribs$transform <- paste0(c(self$attribs$transform, trans), collapse = " ")
+        self$attribs$transform <- paste0(
+          c(self$attribs$transform, trans[!duplicated(trans)]),
+          collapse = " "
+        )
       }
 
       invisible(self)
